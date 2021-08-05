@@ -1,24 +1,26 @@
-<script context="module">
-	import { base } from '$app/paths';
+<script context="module" lang="ts">
+	import type { Load, LoadInput } from '@sveltejs/kit';
+	import { getURL } from './consts';
 
-	export async function load({ page, fetch }) {
-		const slug = page.params.slug;
-		const post = await fetch(`${base}/posts/${slug}.json`).then((r) => r.json());
+	export const load: Load<LoadInput<PostLocals>> = async ({ page, fetch }) => {
+		const { slug } = page.params;
+		const post: Post = await getURL(fetch, slug);
 		return {
 			props: { post }
 		};
-	}
+	};
 </script>
 
-<script>
-	export let post;
+<script lang="ts">
+	export let post: Post;
 	let date = post.metadata.date.toUpperCase();
+	let title = post.metadata.title;
 </script>
 
 <svelte:head>
-	<title>{post.metadata.title}</title>
+	<title>{title}</title>
 </svelte:head>
 
-<h1 class="title">{post.metadata.title}</h1>
-<p class="info"><a href="https://github.com/zhuzilin">zhuzilin</a> {date}</p>
+<h1 class="title">{title}</h1>
+<p class="info">{date}</p>
 {@html post.content}
