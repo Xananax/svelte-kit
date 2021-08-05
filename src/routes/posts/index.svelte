@@ -1,12 +1,6 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import { getURL, url } from './consts';
-	export const load: Load = async ({ fetch }) => {
-		const posts: Post[] = await getURL(fetch);
-		return {
-			props: { posts }
-		};
-	};
+	import { url } from './consts';
+	export { loadAll as load } from './consts';
 </script>
 
 <script lang="ts">

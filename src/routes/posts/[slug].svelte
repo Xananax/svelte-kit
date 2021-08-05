@@ -1,14 +1,5 @@
 <script context="module" lang="ts">
-	import type { Load, LoadInput } from '@sveltejs/kit';
-	import { getURL } from './consts';
-
-	export const load: Load<LoadInput<PostLocals>> = async ({ page, fetch }) => {
-		const { slug } = page.params;
-		const post: Post = await getURL(fetch, slug);
-		return {
-			props: { post }
-		};
-	};
+	export { load } from './consts';
 </script>
 
 <script lang="ts">
