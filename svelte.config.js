@@ -7,7 +7,7 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	extensions: ['.svelte', ...mdsvexConfig.extensions],
-	preprocess: [md.mdsvex(mdsvexConfig)],
+	preprocess: [preprocess(), md.mdsvex(mdsvexConfig)],
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte'
