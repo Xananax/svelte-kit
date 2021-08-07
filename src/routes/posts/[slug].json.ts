@@ -31,7 +31,7 @@ const loadFile = (fileName: string) => {
 };
 
 export const loadAll = () =>
-	readdirSync(join(file))
+	readdirSync(file)
 		.filter(fileIsValid)
 		.map(loadFile)
 		.sort(({ metadata: { date_unix: a } }, { metadata: { date_unix: b } }) => a - b);
