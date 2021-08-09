@@ -1,7 +1,7 @@
 ---
 title: Deploy the blog to Github Pages
 date: 2021-04-04
-excerpt: "Fun fact: Github Pages is free!"
+excerpt: 'Fun fact: Github Pages is free!'
 ---
 
 After the first post, we already have a blog that runs on the local machine. Now, let's deploy it to Github Pages!
@@ -66,7 +66,7 @@ npm run deploy
 
 The `gh-pages` library will post the files in `.svelte-kit/static/build` folder to a new remote branch -- `gh-pages`, where Github Pages will look for static contents to host. The root url of the hosted app is `xxx.github.io/yyy` if your app is `xxx/yyy`. In my case, the address is `svelteland.github.io/svelte-kit-blog-demo`.
 
-Are we all set? Unfortunately, we are not... The hosted app does not work. All the CSS and JavaScripts are missing and  the routing is a mess. The reason for those is that the root for a Github Pages is, as we just mentioned, `xxx.github.io/yyy`, instead of `xxx.github.io`. Therefore we need to configure the relative directory, so that when looking for `a.css`, the app knows we actually need `xxx.github.io/yyy/a.css` but not `xxx.github.io/a.css`.
+Are we all set? Unfortunately, we are not... The hosted app does not work. All the CSS and JavaScripts are missing and the routing is a mess. The reason for those is that the root for a Github Pages is, as we just mentioned, `xxx.github.io/yyy`, instead of `xxx.github.io`. Therefore we need to configure the relative directory, so that when looking for `a.css`, the app knows we actually need `xxx.github.io/yyy/a.css` but not `xxx.github.io/a.css`.
 
 Apart from that, lots of CSS and js files are in `.svelte-kit/static/build/_app` folder. However, the folder starts with underscore are ignored by Github Pages because of Jekyll. We need to disable Jekyll by updating the 2 command below in `package.json`:
 
@@ -81,7 +81,7 @@ where the `-t true` flag in `deploy` is to make the `gh-pages` upload files star
 
 First we need to set the `paths.base` and `paths.assets` config in `svelte.config.js` to the relative path. In my case, it is:
 
-``` json
+```json
 // Comment the paths if wants to run in dev mode.
 paths: {
   base: '/svelte-kit-blog-demo',
@@ -108,15 +108,14 @@ Then, we should update the directory or href in our component or javascript file
 Or in `index.svelte`, we need to update the json to load:
 
 ```js
-  import { base } from '$app/paths';
+import { base } from '$app/paths';
 
-  export async function load({ fetch }) {
-    const posts = await fetch(`${base}/index.json`)
-        .then((r) => r.json());
-    return {
-      props: { posts }
-    }
-  }
+export async function load({ fetch }) {
+  const posts = await fetch(`${base}/index.json`).then((r) => r.json());
+  return {
+    props: { posts }
+  };
+}
 ```
 
 After configuring these paths, rerun `npm run deploy`, you could see your app running correctly!

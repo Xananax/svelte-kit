@@ -1,20 +1,14 @@
 {
-    "spellright.language": [
-        "en-US-9-0."
-    ],
-    "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
-    ],
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        ".npmrc": true,
-        "node_modules": true
-    },
-    "explorerExclude.backup": null
+  "spellright.language": ["en-US-9-0."],
+  "spellright.documentTypes": ["markdown", "latex", "plaintext"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    ".npmrc": true,
+    "node_modules": true
+  },
+  "explorerExclude.backup": null
 }

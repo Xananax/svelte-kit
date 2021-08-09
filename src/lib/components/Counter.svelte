@@ -1,10 +1,10 @@
 <script>
-	let count = 0;
+  let count = 0;
 </script>
 
 <div class="counter">
-	<p class="count">{count}</p>
-	<button on:click={() => (count += 1)}>Increment</button>
+  <p class="count">{count}</p>
+  <button on:click={() => (count += 1)}>Increment</button>
 </div>
 
 <style>

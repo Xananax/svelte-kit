@@ -26,7 +26,7 @@ The blog site contains 3 types of pages:
 - post page: render markdown file into beautiful html
 - about page: show about information
 
-In SvelteKit, we have a so-called *a filesystem-based router*. The files in `src/route` will correspond to the actual webpage. In our case, the folder structure of `src/route` would be:
+In SvelteKit, we have a so-called _a filesystem-based router_. The files in `src/route` will correspond to the actual webpage. In our case, the folder structure of `src/route` would be:
 
 ```
 route
@@ -62,14 +62,14 @@ And in `__layout.svelte`, I can import the `Nav` component in this way:
 </script>
 
 <div class="g-app-wrapper">
-  <Nav/>
+  <nav />
   <slot></slot>
 </div>
 ```
 
 ### EndPoints and Data Loading
 
-With routing, layout and components, we could build most of the blog.  But there is one important question: how should we get the markdown file and render it to beautiful html? I'll talk about the details about how to parse the markdown file with `remark` later. For now, let's take a step back: we need to understand how SvelteKit would load the data from server to browser.
+With routing, layout and components, we could build most of the blog. But there is one important question: how should we get the markdown file and render it to beautiful html? I'll talk about the details about how to parse the markdown file with `remark` later. For now, let's take a step back: we need to understand how SvelteKit would load the data from server to browser.
 
 In SvelteKit, data are transfered in JSON format. For each page component that requires data, we need to create a corresponding `.json.js` as the endpoints. **Endpoints** in SvelteKit are those `.js` (or `.ts` if you are using TypeScript) files that contains functions for HTTP methods. For example, in the index page, we need to get the list of post titles from the server (assume we are hosting the app with a server instead of generating static pages), therefore, we need to create a `index.json.js` file with a `get` function:
 
@@ -77,11 +77,10 @@ In SvelteKit, data are transfered in JSON format. For each page component that r
 // index.json.js
 export function get() {
   // our markdown files lie in src/posts.
-  let postTitles = fs.readdirSync(`src/posts`)
-      .map(fileName => getTitleFrom(fileName));
+  let postTitles = fs.readdirSync(`src/posts`).map((fileName) => getTitleFrom(fileName));
   let body = JSON.stringify(postTitles);
 
-  return { body }
+  return { body };
 }
 ```
 
@@ -98,7 +97,7 @@ export function get({ params }) {
   const { metadata, content } = process(`src/posts/${slug}.md`);
   const body = JSON.stringify({ metadata, content });
 
-  return { body }
+  return { body };
 }
 ```
 
@@ -108,8 +107,7 @@ Now we have the function that supply the data, we can use the `load` function to
 <script context="module">
   export async function load({ page, fetch }) {
     const slug = page.params.slug;
-    const post = await fetch(`${slug}.json`)
-        .then((r) => r.json());
+    const post = await fetch(`${slug}.json`).then((r) => r.json());
     return {
       props: { post }
     };
@@ -138,19 +136,19 @@ For this blog, I chose [remark](https://github.com/remarkjs/remark) as the markd
 ```js
 import vfile from 'to-vfile';
 import unified from 'unified';
-import remarkParse from 'remark-parse'
-import remark2rehype from 'remark-rehype'
-import stringify from 'rehype-stringify'
+import remarkParse from 'remark-parse';
+import remark2rehype from 'remark-rehype';
+import stringify from 'rehype-stringify';
 
 let processor = unified()
-    .use(remarkParse)    // parse into markdown syntax tree
-    .use(remark2rehype)  // convert to html syntax tree
-    .use(stringify)      // turn html syntax tree to html
+  .use(remarkParse) // parse into markdown syntax tree
+  .use(remark2rehype) // convert to html syntax tree
+  .use(stringify); // turn html syntax tree to html
 
 // process function will return the generated html string.
 function process(filename) {
-    // use vfile to read the file, could use fs if you like.
-    return processor.processSync(vfile.readSync(filename));
+  // use vfile to read the file, could use fs if you like.
+  return processor.processSync(vfile.readSync(filename));
 }
 ```
 

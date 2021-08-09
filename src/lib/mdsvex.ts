@@ -5,14 +5,14 @@ import { mdsvex } from 'mdsvex';
 import mdsvexConfig from './mdsvex.config';
 
 export const process = async (path: string) => {
-	const filename = join(path, 'index.md');
-	const source = readFileSync(filename, { encoding: 'utf-8' });
+  const filename = join(path, 'index.md');
+  const source = readFileSync(filename, { encoding: 'utf-8' });
 
-	console.log({ source });
-	const preprocessed = await preprocess(source, mdsvex(mdsvexConfig as any), { filename });
+  console.log({ source });
+  const preprocessed = await preprocess(source, mdsvex(mdsvexConfig as any), { filename });
 
-	console.log({ preprocessed });
-	const compiled = compile(preprocessed.code, {});
-	console.log({ compiled });
-	return {};
+  console.log({ preprocessed });
+  const compiled = compile(preprocessed.code, {});
+  console.log({ compiled });
+  return {};
 };

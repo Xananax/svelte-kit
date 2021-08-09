@@ -15,10 +15,7 @@ As we are using the remark (unified.js) ecosystem, it' s pretty easy to add code
 ```js
 import highlight from 'rehype-highlight';
 
-let runner = unified()
-    .use(remark2rehype)
-    .use(highlight)
-    .use(rehypeStringify);
+let runner = unified().use(remark2rehype).use(highlight).use(rehypeStringify);
 ```
 
 And the generated html would have the class names of highlight.js.
@@ -52,10 +49,10 @@ It's very common to have a link to the Github repo and it is super easy using Sv
   import GithubCorner from '$lib/GithubCorner.svelte';
 </script>
 
-<GithubCorner/>
+<GithubCorner />
 
 <div class="g-app-wrapper">
-  <Nav/>
+  <nav />
   <slot></slot>
 </div>
 ```

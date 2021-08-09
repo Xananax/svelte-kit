@@ -3,5 +3,5 @@
 /// <reference types="vite/client" />
 
 interface Fetch {
-	(info: RequestInfo, init?: RequestInit): Promise<Response>;
+  (info: RequestInfo, init?: RequestInit): Promise<Response>;
 }

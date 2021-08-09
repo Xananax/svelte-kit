@@ -1,3 +1,3 @@
 <div class="g-app-wrapper">
-	<slot />
+  <slot />
 </div>

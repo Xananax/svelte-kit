@@ -1,13 +1,13 @@
 <script>
-	export let author;
-	export let date;
+  export let author;
+  export let date;
 
-	const formattedDate = new Date(date).toDateString();
+  const formattedDate = new Date(date).toDateString();
 </script>
 
 <p>
-	<span class="author">{author}</span>
-	<span class="date">{formattedDate}</span>
+  <span class="author">{author}</span>
+  <span class="date">{formattedDate}</span>
 </p>
 
 <style>
@@ -16,12 +16,12 @@
     margin-bottom: calc(var(--spacing-unit) * 4);
   }
 
-	.author {
+  .author {
     font-weight: bold;
-		margin-right: calc(var(--spacing-unit) * 2);
-	}
+    margin-right: calc(var(--spacing-unit) * 2);
+  }
 
-	.date {
-		color: var(--color-text-secondary);
-	}
+  .date {
+    color: var(--color-text-secondary);
+  }
 </style>
