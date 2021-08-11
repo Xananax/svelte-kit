@@ -15,7 +15,11 @@
     ".eslintrc.cjs": true,
     ".prettierignore": true,
     ".svelte-kit": true,
-    ".vscode": true
+    ".vscode": true,
+    "mdsvex.config.js": true,
+    "svelte.config.js": true,
+    ".gitignore": true,
+    "package.json": true
   },
   "explorerExclude.backup": null
 }

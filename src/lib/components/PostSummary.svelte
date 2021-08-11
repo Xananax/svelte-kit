@@ -10,18 +10,17 @@
   export let href: PostMetadataAugmented['href']
 </script>
 
-<article>
-  <PostTitle {slug} {title} {href} />
-  <PostMeta {author} {date} />
-  <p>
-    {description}
-    <a {href}>Read More &rarr;</a>
-  </p>
-  <slot />
-</article>
+<template lang="pug">
+  article
+    PostTitle({slug} {title} {href})
+    PostMeta({author} {date})
+    p
+      | {description}
+      a({href}) Read More &rarr;
+    slot
+</template>
 
-<style>
-  article {
-    margin-bottom: calc(var(--spacing-unit) * 8);
-  }
+<style lang="stylus">
+  article
+    margin-bottom calc(var(--spacing-unit) * 8)
 </style>

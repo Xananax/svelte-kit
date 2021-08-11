@@ -11,11 +11,10 @@
   export let href: PostMetadataAugmented['href']
 </script>
 
-<PageHead {title} {description} />
-
-<PostTitle {title} {href} {slug} />
-<PostMeta {author} {date} />
-
-<div>
-  <slot />
-</div>
+<template lang="pug">
+  PageHead({title} {description})
+  PostTitle({title} {href} {slug})
+  PostMeta({author} {date})
+  div
+    slot
+</template>

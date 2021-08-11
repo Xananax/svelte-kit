@@ -5,15 +5,15 @@
   const id = slug
 </script>
 
-<h3 class="heading" {id}>
-  <a {href}>
-    {title}
-  </a>
-</h3>
+<template lang="pug">
 
-<style>
-  .heading {
-    margin: 0;
-    font-size: 1.8rem;
-  }
+  h3({id} class="heading")
+    a({href}) {title}
+
+</template>
+
+<style lang="stylus">
+  .heading
+    margin 0
+    font-size 1.8rem
 </style>

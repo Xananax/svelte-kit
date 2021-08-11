@@ -6,23 +6,19 @@
   const formattedDate = date.fromNow()
 </script>
 
-<p>
-  <span class="author">{author}</span>
-  <span class="date">{formattedDate}</span>
-</p>
+<template lang="pug">
+  p
+    span.author {author}
+    span.date {formattedDate}
+</template>
 
-<style>
-  p {
-    margin: 0;
-    margin-bottom: calc(var(--spacing-unit) * 4);
-  }
-
-  .author {
-    font-weight: bold;
-    margin-right: calc(var(--spacing-unit) * 2);
-  }
-
-  .date {
-    color: var(--color-text-secondary);
-  }
+<style lang="stylus">
+  p
+    margin 0
+    margin-bottom calc(var(--spacing-unit) * 4)
+  .author
+    font-weight bold
+    margin-right calc(var(--spacing-unit) * 2)
+  .date
+    color var(--color-text-secondary)
 </style>

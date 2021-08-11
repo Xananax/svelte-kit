@@ -49,12 +49,14 @@
   export let posts: PostMetadataAugmented[]
 </script>
 
-{#if post}
-  <PostFull {...post}>
-    <slot />
-  </PostFull>
-{:else}
-  {#each posts as post (post.slug)}
-    <PostSummary {...post} />
-  {/each}
-{/if}
+<template>
+  {#if post}
+    <PostFull {...post}>
+      <slot />
+    </PostFull>
+  {:else}
+    {#each posts as post (post.slug)}
+      <PostSummary {...post} />
+    {/each}
+  {/if}
+</template>
