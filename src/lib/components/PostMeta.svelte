@@ -6,7 +6,7 @@
 
 <p>
   <span class="author">{author}</span>
-  <span class="date">{date.format('YYYY-MM-DDTHH')}</span>
+  <span class="date">{date.fromNow()}</span>
 </p>
 
 <style>
