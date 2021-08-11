@@ -3,17 +3,10 @@ import dayjs from 'dayjs'
 import { basename, dirname } from 'path'
 
 const slugFromPath = (path: string) => basename(dirname(path))
-interface SvelteModule {
-  default: {
-    render: () => unknown
-    $$render: () => unknown
-  }
-  metadata: ModulePostMetadata
-}
 
-type Modules = Array<[string, () => Promise<SvelteModule>]>
-
-const modules = Object.entries(import.meta.glob(`./*/index.{md,svx,svelte.md}`)) as Modules
+const modules = Object.entries(
+  import.meta.glob(`./*/index.{md,svx,svelte.md}`) as ImportMetaModules
+)
 
 const loadPostMetadata = async (path: string, resolver: () => Promise<SvelteModule>) => {
   const slug = slugFromPath(path)

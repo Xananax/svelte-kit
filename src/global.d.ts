@@ -20,3 +20,15 @@ interface PostMetadata {
 type PostMetadataAugmented = Omit<PostMetadata, 'date'> & { date: Dayjs; href: string }
 
 type ModulePostMetadata = Partial<Omit<PostMetadata, 'date_unix'>>
+
+interface SvelteModule {
+  default: {
+    render: () => unknown
+    $$render: () => unknown
+  }
+  metadata: ModulePostMetadata
+}
+
+interface ImportMetaModules {
+  [path: string]: () => Promise<SvelteModule>
+}
