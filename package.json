@@ -34,6 +34,7 @@
   "type": "module",
   "dependencies": {
     "@fontsource/fira-mono": "^4.2.2",
+    "@iarna/toml": "^2.2.5",
     "@lukeed/uuid": "^2.0.0",
     "cookie": "^0.4.1",
     "cross-env": "^7.0.3",

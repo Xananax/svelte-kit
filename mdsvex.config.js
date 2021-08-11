@@ -1,7 +1,7 @@
-import remarkGithub from 'remark-github';
-import remarkAbbr from 'remark-abbr';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkGithub from 'remark-github'
+import remarkAbbr from 'remark-abbr'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 export default {
   extensions: ['.svelte.md', '.md', '.svx'],
@@ -27,4 +27,4 @@ export default {
       }
     ]
   ]
-};
+}

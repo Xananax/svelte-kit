@@ -1,13 +1,12 @@
-<script>
-  export let author;
-  export let date;
-
-  const formattedDate = new Date(date).toDateString();
+<script lang="ts">
+  import type { Dayjs } from 'dayjs'
+  export let author: string
+  export let date: Dayjs
 </script>
 
 <p>
   <span class="author">{author}</span>
-  <span class="date">{formattedDate}</span>
+  <span class="date">{date.format('YYYY-MM-DDTHH')}</span>
 </p>
 
 <style>

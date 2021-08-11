@@ -1,23 +1,3 @@
-<script context="module" lang="ts">
-  import { url } from './consts';
-  export { loadAll as load } from './consts';
-</script>
-
 <script lang="ts">
-  export let posts: Post[];
+  // this file exists solely to trigger the right behavior from svelte-kit. The magic happens in __layout
 </script>
-
-<svelte:head>
-  <title>Home</title>
-</svelte:head>
-
-<div>
-  <h1>SvelteKit Blog</h1>
-  <p class="info">{posts.length} posts.</p>
-  {#each posts as { slug, metadata: { title, excerpt } }}
-    <a href={`${url}/${slug}`}>
-      <h2 class="title">{title}</h2>
-      <p>{excerpt}</p>
-    </a>
-  {/each}
-</div>

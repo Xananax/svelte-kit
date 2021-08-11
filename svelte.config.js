@@ -1,6 +1,6 @@
-import preprocess from 'svelte-preprocess';
-import md from 'mdsvex';
-import mdsvexConfig from './mdsvex.config.js';
+import preprocess from 'svelte-preprocess'
+import md from 'mdsvex'
+import mdsvexConfig from './mdsvex.config.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,6 +12,6 @@ const config = {
     // hydrate the <div id="svelte"> element in src/app.html
     target: '#svelte'
   }
-};
+}
 
-export default config;
+export default config
