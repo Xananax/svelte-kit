@@ -1,8 +1,6 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
-  import relativeTime from 'dayjs/plugin/relativeTime'
-  import dayjs from 'dayjs'
-  dayjs.extend(relativeTime)
+  import { dayjs } from '$lib/dayjs'
 
   const processPost = (post: PostMetadata): PostMetadataAugmented => ({
     ...post,

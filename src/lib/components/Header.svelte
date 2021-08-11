@@ -1,6 +1,18 @@
 <script lang="ts">
   import { page } from '$app/stores'
+  import { toPath } from '$lib/toPath'
   import logo from './svelte-logo.svg'
+
+  export let pages: PageMetadataAugmented[]
+
+  const preparePage = (path: string[]) => (page: PageMetadataAugmented) => {
+    const pagePath = toPath(page.href)
+    const active = pagePath[0] === 'pages' ? page.slug === path[1] : pagePath[0] === path[0]
+    return { ...page, active }
+  }
+
+  $: path = toPath($page.path)
+  $: pagesList = pages.map(preparePage(path))
 </script>
 
 <template lang="pug">
@@ -12,12 +24,9 @@
       svg(viewbox="0 0 2 3" aria-hidden="true")
         path(d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z")
       ul
-        li(class:active="{$page.path === '/'}")
-          a(sveltekit:prefetch="" href="/") Home
-        li(class:active="{$page.path === '/pages/about'}")
-          a(sveltekit:prefetch="" href="/pages/about") About
-        li(class:active="{$page.path === '/posts'}")
-          a(sveltekit:prefetch="" href="/posts") Posts
+        +each('pagesList as { href, title, active } (href)')
+          li(class:active)
+            a(sveltekit:prefetch href="{href}") {title}
       svg(viewbox="0 0 2 3" aria-hidden="true")
         path(d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z")
     .corner

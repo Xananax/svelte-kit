@@ -1,10 +1,32 @@
+<script context="module" lang="ts">
+  import type { Load } from '@sveltejs/kit'
+  import { dayjs } from '$lib/dayjs'
+
+  const processPage = (post: PageMetadata): PageMetadataAugmented => ({
+    ...post,
+    date: dayjs(post.date),
+    href: post.href ?? `/pages/${post.slug}`
+  })
+
+  export const load: Load = async ({ fetch }) => {
+    const pages = (await fetch(`/pages.json`).then((res) => res.json())).map(processPage)
+    return {
+      props: {
+        pages
+      }
+    }
+  }
+</script>
+
 <script lang="ts">
   import Header from '$lib/components/Header.svelte'
   import '../app.stylus'
+
+  export let pages: PageMetadata[]
 </script>
 
 <template lang="pug">
-  Header
+  Header("{pages}")
   main
     slot
   footer

@@ -1,36 +1,14 @@
 import type { RequestHandler } from '@sveltejs/kit'
-import dayjs from 'dayjs'
+import { loadPostMetadata } from '$lib/loadPostMetadata'
 import { basename, dirname } from 'path'
 
-const slugFromPath = (path: string) => basename(dirname(path))
+export const slugFromPath = (path: string) => basename(dirname(path))
+
+const load = loadPostMetadata(import.meta.url, slugFromPath)
 
 const modules = Object.entries(
   import.meta.glob(`./*/index.{md,svx,svelte.md}`) as ImportMetaModules
 )
-
-const loadPostMetadata = async (path: string, resolver: () => Promise<SvelteModule>) => {
-  const slug = slugFromPath(path)
-  const post = await resolver()
-  const metadata = post.metadata
-  const published = Boolean(metadata.published ?? true)
-  const _date = dayjs(metadata.date ?? new Date())
-  const date_unix = _date.unix()
-  const date = _date.format(`YYYY-MM-DDTHH`)
-  const title = metadata.title ?? slug.replace(/-|_/g, ' ')
-  const description = metadata.description ?? ''
-  const author = metadata.author ?? ''
-  const data: PostMetadata = {
-    ...metadata,
-    slug,
-    title,
-    published,
-    description,
-    author,
-    date,
-    date_unix
-  }
-  return data
-}
 
 export const getOne = async (slug: string) => {
   const match = modules.find(([path]) => slugFromPath(path) === slug)
@@ -39,14 +17,12 @@ export const getOne = async (slug: string) => {
     return null
   }
 
-  const post = await loadPostMetadata(...match)
+  const post = await load(...match)
   return post
 }
 
 export async function getMany(limit: number) {
-  const posts = (
-    await Promise.all(modules.map(([path, resolver]) => loadPostMetadata(path, resolver)))
-  )
+  const posts = (await Promise.all(modules.map((pair) => load(...pair))))
     .filter(({ published }) => published)
     .sort(({ date_unix: a }, { date_unix: b }) => a - b)
     .slice(0, limit)

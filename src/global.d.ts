@@ -15,6 +15,7 @@ interface PostMetadata {
   author: string
   date: string
   published: boolean
+  order: number
 }
 
 type PostMetadataAugmented = Omit<PostMetadata, 'date'> & { date: Dayjs; href: string }
@@ -32,3 +33,10 @@ interface SvelteModule {
 interface ImportMetaModules {
   [path: string]: () => Promise<SvelteModule>
 }
+
+type PageMetadata = Pick<
+  PostMetadataAugmented,
+  'title' | 'href' | 'slug' | 'date' | 'date_unix'
+> & { href?: string }
+
+type PageMetadataAugmented = Omit<PageMetadata, 'date'> & { date: Dayjs; href: string }
