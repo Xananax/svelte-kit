@@ -1,12 +1,14 @@
 <script lang="ts">
   import type { Dayjs } from 'dayjs'
-  export let author: string
-  export let date: Dayjs
+  export let author: PostMetadataAugmented['author']
+  export let date: PostMetadataAugmented['date']
+
+  const formattedDate = date.fromNow()
 </script>
 
 <p>
   <span class="author">{author}</span>
-  <span class="date">{date.fromNow()}</span>
+  <span class="date">{formattedDate}</span>
 </p>
 
 <style>

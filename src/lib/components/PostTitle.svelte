@@ -1,7 +1,7 @@
 <script lang="ts">
-  export let slug: string
-  export let title: string
-  export let href: string
+  export let slug: PostMetadataAugmented['slug']
+  export let title: PostMetadataAugmented['title']
+  export let href: PostMetadataAugmented['href']
   const id = slug
 </script>
 

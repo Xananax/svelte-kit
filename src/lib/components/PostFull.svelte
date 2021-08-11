@@ -2,19 +2,18 @@
   import PageHead from '$lib/components/PageHead.svelte'
   import PostTitle from '$lib/components/PostTitle.svelte'
   import PostMeta from '$lib/components/PostMeta.svelte'
-  import type { Dayjs } from 'dayjs'
 
-  export let title: string
-  //export let slug: string;
-  export let date: Dayjs
-  export let author: string
-  export let description: string
-  export let href: string
+  export let title: PostMetadataAugmented['title']
+  export let slug: PostMetadataAugmented['slug']
+  export let date: PostMetadataAugmented['date']
+  export let author: PostMetadataAugmented['author']
+  export let description: PostMetadataAugmented['description']
+  export let href: PostMetadataAugmented['href']
 </script>
 
 <PageHead {title} {description} />
 
-<PostTitle {title} {href} />
+<PostTitle {title} {href} {slug} />
 <PostMeta {author} {date} />
 
 <div>
