@@ -1,24 +1,10 @@
-+++
-author = "nathan"
-title = "Getting started with Godot in 2021"
-menuTitle = "Getting Started"
-description = "This series will teach you all the most essential techniques you need to know to get started with Godot, with hands-on examples."
-date = 2021-02-10T18:29:41Z
-
-weight = 1
-
-difficulty = "beginner"
-
-keywords = ["getting started with godot", "godot getting started", "learn godot", "godot for beginners", "godot 2021"]
-
-type = "course"
-
-[[resources]]
-src = "get-started-with-godot-banner.png"
-name = "banner"
-
-playlistId = "PLhqJJNjsQ7KEcm-iYJ2a8UCRN62bTneKa"
-+++
+---
+title: 'Welcome to my blog!'
+description: 'I love to write about Svelte and all the cool things that you can build with it.'
+author: 'Mehdi Vasigh'
+date: '2021-04-21'
+published: true
+---
 
 <script>
   import Counter from '$lib/components/Counter.svelte'
