@@ -8,7 +8,14 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     ".npmrc": true,
-    "node_modules": true
+    "node_modules": true,
+    "tsconfig.json": true,
+    "pnpm-lock.yaml": true,
+    ".prettierrc": true,
+    ".eslintrc.cjs": true,
+    ".prettierignore": true,
+    ".svelte-kit": true,
+    ".vscode": true
   },
   "explorerExclude.backup": null
 }
