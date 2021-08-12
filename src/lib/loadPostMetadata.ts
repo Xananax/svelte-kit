@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import { strip } from '$lib/path'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultGetFileTime = async (_filename: string) => Date.now()
@@ -8,6 +9,9 @@ export const loadPostMetadata = (
   getFileTime = defaultGetFileTime
 ) => async (path: string, resolver: () => Promise<SvelteModule>) => {
   const slug = slugFromPath(path)
+  const pathArray = strip(slug).split('/')
+  const levels = pathArray.length
+  const root = levels === 1 ? '' : pathArray[0]
   const post = await resolver()
   const metadata = post.metadata ?? {}
   const published = Boolean(metadata.published ?? true)
@@ -28,7 +32,9 @@ export const loadPostMetadata = (
     date,
     order,
     date_unix,
-    path
+    path,
+    levels,
+    root
   }
   return data
 }

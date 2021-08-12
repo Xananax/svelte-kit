@@ -19,9 +19,9 @@ export const getOne = async (slug: string) => {
   return post
 }
 
-export async function getMany(limit: number) {
+export async function getMany(limit: number, fromRoot: string) {
   const posts = (await getModules()).list
-    .filter(({ published }) => published)
+    .filter(({ published, root }) => published && root == fromRoot)
     .sort(({ date_unix: a }, { date_unix: b }) => a - b)
     .slice(0, limit)
 
@@ -39,7 +39,7 @@ export const get: RequestHandler = async ({ params, query }) => {
 
   const slug = params.slug.replace(/\.json$/, '')
 
-  const result = await (slug === 'all' ? getMany(limit) : getOne(slug))
+  const result = await (slug === 'all' ? getMany(limit, '') : getOne(slug))
 
   if (!result) {
     return {

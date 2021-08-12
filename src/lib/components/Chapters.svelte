@@ -1,14 +1,13 @@
 <script lang="ts">
   import RefLink from './RefLink.svelte'
   export let list: PostMetadata[] = []
+  console.log({ list })
 </script>
 
 <template>
   <ul>
     {#each list as { slug, title } (slug)}
-      <li>
-        <RefLink {slug}>{title}</RefLink>
-      </li>
+      <li />
     {/each}
   </ul>
 </template>

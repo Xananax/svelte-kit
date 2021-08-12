@@ -8,7 +8,11 @@ published: true
 
 <script>
   import Counter from '$c/Counter.svelte'
+  import { Chapters } from '$g'
+  import { metadata as C1 } from './chapters/getting-started.md'
+  console.log([C1])
 </script>
+
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pellentesque orci nec facilisis iaculis. Sed accumsan placerat dolor. Donec sollicitudin nisi sit amet sodales molestie. Maecenas sit amet dolor nulla. Fusce sed elit et erat consequat dignissim. Nunc eu erat felis. Mauris pretium, arcu eu dapibus tempor, mauris eros tempor tortor, eu tincidunt erat libero sit amet mi. Phasellus eu libero mollis, finibus lacus eget, sollicitudin nulla.
 
