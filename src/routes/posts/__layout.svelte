@@ -2,6 +2,9 @@
   import type { Load } from '@sveltejs/kit'
   import { dayjs } from '$lib/dayjs'
 
+  import aside from '$lib/components/Note.svelte'
+  export { aside }
+
   const processPost = (post: PostMetadata): PostMetadataAugmented => ({
     ...post,
     date: dayjs(post.date),

@@ -19,7 +19,8 @@
     "mdsvex.config.js": true,
     "svelte.config.js": true,
     ".gitignore": true,
-    "package.json": true
+    "package.json": true,
+    "build": true
   },
   "explorerExclude.backup": null
 }
