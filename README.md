@@ -10,7 +10,7 @@
 - [] do some SEO basics (meta tags and such)
 - [] move courses out of `src` (method below)
 - [] routing management (route match and such for determining current page)
-
+- [] global components
 
 
 Essentially it's this for routes/posts/index.svelte
