@@ -1,12 +1,13 @@
 import type { RequestHandler } from '@sveltejs/kit'
 import { loadPostMetadata } from '$lib/loadPostMetadata'
 import { getFileTime } from '$lib/getFileTime'
-import { basename, dirname } from 'path'
+import { strip } from '$lib/path'
 import { makeModuleLoader } from '$lib/makeModuleLoader'
 
-export const slugFromPath = (path: string) => basename(dirname(path))
+export const slugFromPath = (path: string) => strip(path.replace(/^\.\.|(\/index\.md|\.md)$/g, ''))
+
 const load = loadPostMetadata(slugFromPath, getFileTime(import.meta.url))
-const getModules = makeModuleLoader(import.meta.glob(`./*/index.{md,svx,svelte.md}`), load)
+const getModules = makeModuleLoader(import.meta.glob(`../**/*.{md,svx,svelte.md}`), load)
 
 export const getOne = async (slug: string) => {
   const post = (await getModules()).list.find(({ path }) => slugFromPath(path) === slug)
@@ -36,7 +37,7 @@ export const get: RequestHandler = async ({ params, query }) => {
     }
   }
 
-  const { slug } = params
+  const slug = params.slug.replace(/\.json$/, '')
 
   const result = await (slug === 'all' ? getMany(limit) : getOne(slug))
 

@@ -1,7 +1,7 @@
 # GDQuest
 
 
-- [] port one course
+- [] making sub-pages work with the same loader (for internal course pages -- at the moment, they work if I create a loader file for each directory, but I don't want to do that)
 - [] make it work on gh-pages
 - [] implement some form of authentication (how would it work with gh-pages?)
 - [] protect a course behind authentication

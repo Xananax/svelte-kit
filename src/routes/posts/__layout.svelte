@@ -23,7 +23,9 @@
       }
     }
 
-    const post = await fetch(`/posts/${path}.json`)
+    const url = `/posts/${path}.json`
+
+    const post = await fetch(url)
       .then((res) => res.json())
       .then(processPost)
 
