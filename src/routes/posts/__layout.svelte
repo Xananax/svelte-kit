@@ -2,7 +2,7 @@
   import type { Load } from '@sveltejs/kit'
   import { dayjs } from '$lib/dayjs'
 
-  import aside from '$lib/components/Note.svelte'
+  import aside from '$c/Note.svelte'
   export { aside }
 
   const processPost = (post: PostMetadata): PostMetadataAugmented => ({
@@ -43,21 +43,35 @@
 </script>
 
 <script lang="ts">
-  import PostFull from '$lib/components/PostFull.svelte'
-  import PostSummary from '$lib/components/PostSummary.svelte'
+  import PostFull from '$c/PostFull.svelte'
+  import PostSummary from '$c/PostSummary.svelte'
 
-  export let post: PostMetadataAugmented
-  export let posts: PostMetadataAugmented[]
+  export let post: PostMetadataAugmented = null
+  export let posts: PostMetadataAugmented[] = []
 </script>
 
 <template>
   {#if post}
-    <PostFull {...post}>
+    <PostFull
+      title={post.title}
+      slug={post.slug}
+      date={post.date}
+      author={post.author}
+      description={post.description}
+      href={post.href}
+    >
       <slot />
     </PostFull>
   {:else}
     {#each posts as post (post.slug)}
-      <PostSummary {...post} />
+      <PostSummary
+        title={post.title}
+        slug={post.slug}
+        date={post.date}
+        author={post.author}
+        description={post.description}
+        href={post.href}
+      />
     {/each}
   {/if}
 </template>

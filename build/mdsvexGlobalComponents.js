@@ -25,14 +25,16 @@ export const mdsvexGlobalComponents = (options = {}) => {
 
   const imports = list
     .map((f) => join(dir, f))
-    .map((path) => `import ${path.split('/').pop().replace('.svelte', '')} from "${path}"`)
+    .map((path) => `\nimport ${path.split('/').pop().replace('.svelte', '')} from "${path}"`)
     .join('\n')
 
+  const visited = {}
   const preprocessor = {
     script({ content, filename }) {
-      if (!filename.match(extensionsRegex)) {
+      if (visited[filename] || !filename.match(extensionsRegex)) {
         return { code: content }
       }
+      visited[filename] = true
       return { code: `${imports}\n${content}` }
     }
   }

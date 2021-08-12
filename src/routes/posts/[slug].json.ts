@@ -1,28 +1,25 @@
 import type { RequestHandler } from '@sveltejs/kit'
 import { loadPostMetadata } from '$lib/loadPostMetadata'
+import { getFileTime } from '$lib/getFileTime'
 import { basename, dirname } from 'path'
+import { makeModuleLoader } from '$lib/makeModuleLoader'
 
 export const slugFromPath = (path: string) => basename(dirname(path))
-
-const load = loadPostMetadata(import.meta.url, slugFromPath)
-
-const modules = Object.entries(
-  import.meta.glob(`./*/index.{md,svx,svelte.md}`) as ImportMetaModules
-)
+const load = loadPostMetadata(slugFromPath, getFileTime(import.meta.url))
+const getModules = makeModuleLoader(import.meta.glob(`./*/index.{md,svx,svelte.md}`), load)
 
 export const getOne = async (slug: string) => {
-  const match = modules.find(([path]) => slugFromPath(path) === slug)
+  const post = (await getModules()).find(({ path }) => slugFromPath(path) === slug)
 
-  if (!match) {
+  if (!post) {
     return null
   }
 
-  const post = await load(...match)
   return post
 }
 
 export async function getMany(limit: number) {
-  const posts = (await Promise.all(modules.map((pair) => load(...pair))))
+  const posts = (await getModules())
     .filter(({ published }) => published)
     .sort(({ date_unix: a }, { date_unix: b }) => a - b)
     .slice(0, limit)

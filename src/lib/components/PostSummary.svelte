@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PostTitle from '$lib/components/PostTitle.svelte'
-  import PostMeta from '$lib/components/PostMeta.svelte'
+  import PostTitle from '$c/PostTitle.svelte'
+  import PostMeta from '$c/PostMeta.svelte'
 
   export let title: PostMetadataAugmented['title']
   export let slug: PostMetadataAugmented['slug']

@@ -16,6 +16,7 @@ interface PostMetadata {
   date: string
   published: boolean
   order: number
+  path: string
 }
 
 type PostMetadataAugmented = Omit<PostMetadata, 'date'> & { date: Dayjs; href: string }
