@@ -9,7 +9,7 @@ const load = loadPostMetadata(slugFromPath, getFileTime(import.meta.url))
 const getModules = makeModuleLoader(import.meta.glob(`./*/index.{md,svx,svelte.md}`), load)
 
 export const getOne = async (slug: string) => {
-  const post = (await getModules()).find(({ path }) => slugFromPath(path) === slug)
+  const post = (await getModules()).list.find(({ path }) => slugFromPath(path) === slug)
 
   if (!post) {
     return null
@@ -19,7 +19,7 @@ export const getOne = async (slug: string) => {
 }
 
 export async function getMany(limit: number) {
-  const posts = (await getModules())
+  const posts = (await getModules()).list
     .filter(({ published }) => published)
     .sort(({ date_unix: a }, { date_unix: b }) => a - b)
     .slice(0, limit)

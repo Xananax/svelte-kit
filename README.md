@@ -3,7 +3,7 @@
 
 - [] port one course
 - [] make it work on gh-pages
-- [] implement some form of authentication
+- [] implement some form of authentication (how would it work with gh-pages?)
 - [] protect a course behind authentication
 - [] implement some styles
 - [] write the README

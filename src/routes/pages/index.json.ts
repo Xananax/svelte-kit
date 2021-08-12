@@ -19,10 +19,10 @@ const date_unix = now.unix()
 
 export const get: RequestHandler = async () => {
   const pages = getModules().then(
-    (modules) =>
+    ({ list }) =>
       [
         { title: 'Home', href: '/', slug: '', date, date_unix },
-        ...modules.sort(sortByOrder),
+        ...list.sort(sortByOrder),
         { title: 'Courses', href: '/posts', slug: 'posts', date, date_unix }
       ] as PageMetadata[]
   )

@@ -1,18 +1,7 @@
 <script context="module" lang="ts">
-  import { makeModuleLoader } from '$lib/makeModuleLoader'
-  import { loadPostMetadata } from '$lib/loadPostMetadata'
-  import { basename } from '$lib/path'
-
-  export const slugFromPath = (path: string) => basename(path.replace('/index.md', ''))
-  const load = loadPostMetadata(slugFromPath)
-  const getModules = makeModuleLoader(
-    import.meta.glob(`../../routes/posts/*/index.{md,svx,svelte.md}`),
-    load
-  )
-  const getModule = async (slug: string) => {
-    await getModules()
-    return getModules.dict[slug].title
-  }
+  import { loadPostList } from '$lib/loadPostList'
+  const getModules = loadPostList(import.meta.glob(`../../routes/posts/*/index.{md,svx,svelte.md}`))
+  const getModule = async (slug: string) => (await getModules()).dict[slug]?.title
 </script>
 
 <script lang="ts">

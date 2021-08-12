@@ -10,22 +10,21 @@ interface ModuleLoader {
 }
 
 export const makeModuleLoader = (globbed: ImportMetaModules, load: ModuleLoader) => {
-  let loadedModules: PostMetadata[]
-  const loadedModulesObject = {} as Record<PostMetadata['slug'], PostMetadata>
+  let list: PostMetadata[]
+  const dict = {} as Record<PostMetadata['slug'], PostMetadata>
   const getModules = async () => {
-    if (!loadedModules) {
+    if (!list) {
       const modules = Object.entries(globbed)
-      loadedModules = await Promise.all(
+      list = await Promise.all(
         modules.map(([path, resolver]) =>
           load(path, resolver).then((metadata) => {
-            loadedModulesObject[metadata.slug] = metadata
+            dict[metadata.slug] = metadata
             return metadata
           })
         )
       )
     }
-    return loadedModules
+    return { list, dict }
   }
-  getModules.dict = loadedModulesObject
   return getModules
 }
