@@ -13,6 +13,9 @@
 - [] global components
 
 
+- multilanguage?
+- file.[lng].md
+
 Essentially it's this for routes/posts/index.svelte
 ```js
 <script context="module">
