@@ -7,7 +7,7 @@ const strip = (path: string) => path.replace(/^\/+|\/+$/g, '')
 
 const children = {} as Record<PostMetadata['slug'], PostMetadata[]>
 
-const pages = Object.entries(unprocessedPages).reduce((obj, [path, resolver]) => {
+const makeMetadata = (path: string, resolver: SvelteModule) => {
   const normalizedPath = strip(normalizePagePath(path))
   const defaultSlug = strip(pagePathToSlug(normalizedPath))
   const { metadata } = resolver
@@ -16,7 +16,7 @@ const pages = Object.entries(unprocessedPages).reduce((obj, [path, resolver]) =>
   const levels = pathArray.length
   const _date = dayjs(metadata.date ?? getFileTimeSync(filename)(path))
   const root = levels === 1 ? '' : pathArray[0]
-  const data = {
+  return {
     slug,
     levels,
     root,
@@ -28,8 +28,13 @@ const pages = Object.entries(unprocessedPages).reduce((obj, [path, resolver]) =>
     description: metadata.description ?? '',
     author: metadata.author ?? '',
     path: normalizedPath,
-    children: []
+    children: [] as PostMetadata[]
   }
+}
+
+const pages = Object.entries(unprocessedPages).reduce((obj, [path, resolver]) => {
+  const data = makeMetadata(path, resolver)
+  const { slug, root } = data
   obj[slug] = data
   ;(children[root] = children[root] || []).push(data)
   return obj

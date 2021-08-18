@@ -22,7 +22,11 @@ interface PostMetadata {
   children: PostMetadata[]
 }
 
-type PostMetadataAugmented = Omit<PostMetadata, 'date'> & { date: Dayjs; href: string }
+type PostMetadataAugmented = Omit<PostMetadata, 'date' | 'children'> & {
+  date: Dayjs
+  children: PostMetadataAugmented[]
+  href: string
+}
 
 type ModulePostMetadata = Partial<Omit<PostMetadata, 'date_unix'>>
 
