@@ -9,6 +9,7 @@
   export let author: PostMetadataAugmented['author']
   export let description: PostMetadataAugmented['description']
   export let href: PostMetadataAugmented['href']
+  export let children: PostMetadataAugmented['children']
 </script>
 
 <template lang="pug">
@@ -17,4 +18,9 @@
   PostMeta({author} {date})
   div
     slot
+  +if('children')
+    ul
+      +each('children as { title, href, slug } (slug)')
+        li
+          a({href}) {title}
 </template>

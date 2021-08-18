@@ -45,7 +45,8 @@
 
 <script lang="ts">
   import type { SvelteComponent } from 'svelte'
-  import { children } from 'svelte/internal'
+  import PostFull from '$c/PostFull.svelte'
+  import PostSummary from '$c/PostSummary.svelte'
 
   export let list: PostMetadataAugmented[] = []
   export let post: PostMetadataAugmented = null
@@ -66,24 +67,34 @@
   </details>
   {#if post}
     {#if isCourse}
-      <h1>{post.title}</h1>
+      <PostFull
+        title={post.title}
+        slug={post.slug}
+        date={post.date}
+        author={post.author}
+        description={post.description}
+        href={post.href}
+        children={post.children}
+      >
+        <svelte:component this={md} />
+      </PostFull>
     {:else if isChapter}
-      <h1>{post.title}</h1>
-    {/if}
-    {#if md}
-      <svelte:component this={md} />
-    {/if}
-    {#if post.children}
-      <ul>
-        {#each post.children as { title, href, slug } (slug)}
-          <li><a {href}>{title}</a></li>
-        {/each}
-      </ul>
+      <PostFull
+        title={post.title}
+        slug={post.slug}
+        date={post.date}
+        author={post.author}
+        description={post.description}
+        href={post.href}
+        children={post.children}
+      >
+        <svelte:component this={md} />
+      </PostFull>
     {/if}
   {:else if list}
     <ul>
-      {#each list as { title, href, slug } (slug)}
-        <li><a {href}>{title}</a></li>
+      {#each list as { title, href, description, author, date, slug } (slug)}
+        <PostSummary {title} {slug} {date} {author} {description} {href} />
       {/each}
     </ul>
   {/if}
