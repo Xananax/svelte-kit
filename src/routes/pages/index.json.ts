@@ -11,8 +11,6 @@ const getFileTime = (path: string) => getFileTimeSync(toFilename(path))
 
 const unprocessedPages = import.meta.globEager('./*.{md,svx,svelte,svelte.md}')
 
-console.log(unprocessedPages)
-
 const list = Object.entries(unprocessedPages)
   .map(([path, { metadata }]) =>
     makeMetadata({ path, metadata: metadata ?? {}, toSlug, toNormalizedPath, getFileTime })

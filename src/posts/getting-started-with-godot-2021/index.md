@@ -19,8 +19,6 @@ resources:
 </script>
 
 
-<Chapters {list}/>
-
 You want to learn Godot or game development but don't know how to get started? Or you tried some tutorials already, but you don't feel like you understand how the engine works or how to code your games?
 
 This completely free course will give you the tools you need to make games with Godot.
