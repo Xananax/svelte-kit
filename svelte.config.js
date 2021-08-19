@@ -1,6 +1,6 @@
 import preprocess from 'svelte-preprocess'
-import { mdsvex, extensions } from './build/mdsvex.config.js'
-import { mdsvexGlobalComponents } from './build/mdsvexGlobalComponents.js'
+import { mdsvex, extensions } from './svelte-kit/mdsvex.config.js'
+import { mdsvexGlobalComponents } from './svelte-kit/mdsvexGlobalComponents.js'
 import { resolve } from 'path'
 
 const globalComponents = mdsvexGlobalComponents({

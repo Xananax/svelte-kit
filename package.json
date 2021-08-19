@@ -16,6 +16,7 @@
     "clean": "run-s clean:svelte clean:modules"
   },
   "devDependencies": {
+    "@sveltejs/adapter-static": "^1.0.0-next.16",
     "@sveltejs/kit": "next",
     "@types/cookie": "^0.4.0",
     "@typescript-eslint/eslint-plugin": "^4.19.0",

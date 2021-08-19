@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@lukeed/uuid': ^2.0.0
+  '@sveltejs/adapter-static': ^1.0.0-next.16
   '@sveltejs/kit': next
   '@types/cookie': ^0.4.0
   '@types/youtube': ^0.0.44
@@ -51,6 +52,7 @@ dependencies:
   type-fest: 2.0.0
 
 devDependencies:
+  '@sveltejs/adapter-static': 1.0.0-next.16
   '@sveltejs/kit': 1.0.0-next.154_svelte@3.41.0
   '@types/cookie': 0.4.1
   '@typescript-eslint/eslint-plugin': 4.28.5_514553717ff968e20f6d1c6e521f8616
@@ -176,6 +178,10 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.0
+    dev: true
+
+  /@sveltejs/adapter-static/1.0.0-next.16:
+    resolution: {integrity: sha512-xGFcg+GHF0BL1fyWx2vCzlYj4S4R+Od9cF00soo1TVp/scGOi1G9grSYYW4x5H+iDn1sscoJ65OGBGWIcOgrXg==}
     dev: true
 
   /@sveltejs/kit/1.0.0-next.154_svelte@3.41.0:
