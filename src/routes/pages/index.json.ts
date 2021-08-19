@@ -1,30 +1,34 @@
 import type { RequestHandler } from '@sveltejs/kit'
-import { basename, extname } from 'path'
-import { loadPostMetadata } from '$lib/loadPostMetadata'
+import { basename, extname, join, dirname } from 'path'
 import { dayjs } from '$lib/dayjs'
-import { getFileTime } from '$lib/getFileTime'
-import { makeModuleLoader } from '$lib/makeModuleLoader'
+import { makeMetadata } from '$lib/makeMetadata'
+import { getFileTimeSync } from '$lib/getFileTime'
 
-const sortByOrder = ({ order: a }, { order: b }) => a - b
+const toSlug = (path: string) => basename(path, extname(path))
+const toNormalizedPath = (path: string) => path.replace(/^(\.\/)/, '')
+const toFilename = (path: string) => join(dirname(import.meta.url), path)
+const getFileTime = (path: string) => getFileTimeSync(toFilename(path))
 
-const slugFromPath = (path: string) => basename(path, extname(path))
+const unprocessedPages = import.meta.globEager('./*.{md,svx,svelte,svelte.md}')
 
-const load = loadPostMetadata(slugFromPath, getFileTime(import.meta.url))
+console.log(unprocessedPages)
 
-const getModules = makeModuleLoader(import.meta.glob(`./*.{md,svx,svelte.md,svelte}`), load)
+const list = Object.entries(unprocessedPages)
+  .map(([path, { metadata }]) =>
+    makeMetadata({ path, metadata: metadata ?? {}, toSlug, toNormalizedPath, getFileTime })
+  )
+  .sort(({ order: a }, { order: b }) => a - b)
 
 const now = dayjs(Date.now())
 const date = now.format(`YYYY-MM-DDTHH`)
 const date_unix = now.unix()
 
-export const get: RequestHandler = async () => {
-  const pages = getModules().then(
-    ({ list }) =>
-      [
-        { title: 'Home', href: '/', slug: '', date, date_unix },
-        ...list.sort(sortByOrder),
-        { title: 'Courses', href: '/posts', slug: 'posts', date, date_unix }
-      ] as PageMetadata[]
-  )
-  return { body: JSON.stringify(await pages) }
+const pages = [
+  { title: 'Home', href: '/', slug: '', date, date_unix },
+  ...list,
+  { title: 'Courses', href: '/courses', slug: 'courses', date, date_unix }
+] as PageMetadata[]
+
+export const get: RequestHandler = () => {
+  return { body: JSON.stringify(pages) }
 }

@@ -9,8 +9,6 @@ published: true
 <script>
   import Counter from '$c/Counter.svelte'
   import { Chapters } from '$g'
-  import { metadata as C1 } from './chapters/getting-started.md'
-  console.log([C1])
 </script>
 
 

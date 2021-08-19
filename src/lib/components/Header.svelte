@@ -1,9 +1,10 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { toPath } from '$lib/toPath'
   import logo from './svelte-logo.svg'
 
   export let pages: PageMetadataAugmented[]
+
+  const toPath = (path: string) => path.replace(/^\/|\/$/g, '').split('/')
 
   const preparePage = (path: string[]) => (page: PageMetadataAugmented) => {
     const pagePath = toPath(page.href)

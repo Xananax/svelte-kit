@@ -6,6 +6,11 @@ interface Fetch {
   (info: RequestInfo, init?: RequestInit): Promise<Response>
 }
 
+interface ImportMeta {
+  glob(pattern: string): ImportMetaModules
+  globEager(pattern: string): ImportMetaModules
+}
+
 interface PostMetadata {
   title: string
   date: string

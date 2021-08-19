@@ -26,7 +26,7 @@
         const post = augmentMetadata(response.data)
         const isCourse = post.levels == 1
         const isChapter = post.levels > 1
-        const md = (await import(`../posts/${post.path}`)).default
+        const md = (await import(`../../posts/${post.path}`)).default
         return {
           post,
           md,

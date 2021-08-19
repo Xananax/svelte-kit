@@ -1,3 +1,8 @@
+/**
+ * Node has a neat `path` module, but despite needing no I/O, that module
+ * isn't accessible to
+ */
+
 export const basename = (path: string, removeExtension: boolean | string = false) => {
   const base = new String(path).substring(path.lastIndexOf('/') + 1)
   if (removeExtension && base.lastIndexOf('.') != -1) {
@@ -6,7 +11,7 @@ export const basename = (path: string, removeExtension: boolean | string = false
   return base
 }
 
-export const join = (...parts: string[]) => {
+export const join = (...parts: string[]): string => {
   const base = parts.shift() ?? ''
   const url = parts.shift() ?? ''
   const ret = new URL(url, base).href

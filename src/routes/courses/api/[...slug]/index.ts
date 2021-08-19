@@ -1,46 +1,10 @@
 import type { RequestHandler } from '@sveltejs/kit'
-import { unprocessedPages, filename, normalizePagePath, pagePathToSlug } from '../_consts'
+import { loadPages, toFilename } from '../_consts'
 import { getFileTimeSync } from '$lib/getFileTime'
-import { dayjs } from '$lib/dayjs'
 
-const strip = (path: string) => path.replace(/^\/+|\/+$/g, '')
+const getFileTime = (path: string) => getFileTimeSync(toFilename(path))
 
-const children = {} as Record<PostMetadata['slug'], PostMetadata[]>
-
-const makeMetadata = (path: string, resolver: SvelteModule) => {
-  const normalizedPath = strip(normalizePagePath(path))
-  const defaultSlug = strip(pagePathToSlug(normalizedPath))
-  const { metadata } = resolver
-  const slug = metadata.slug ?? defaultSlug
-  const pathArray = strip(slug).split('/')
-  const levels = pathArray.length
-  const _date = dayjs(metadata.date ?? getFileTimeSync(filename)(path))
-  const root = levels === 1 ? '' : pathArray[0]
-  return {
-    slug,
-    levels,
-    root,
-    published: Boolean(metadata.published ?? true),
-    date_unix: _date.unix(),
-    date: _date.format(`YYYY-MM-DDTHH`),
-    order: metadata.order ?? 0,
-    title: metadata.title ?? slug.replace(/-|_/g, ' '),
-    description: metadata.description ?? '',
-    author: metadata.author ?? '',
-    path: normalizedPath,
-    children: [] as PostMetadata[]
-  }
-}
-
-const pages = Object.entries(unprocessedPages).reduce((obj, [path, resolver]) => {
-  const data = makeMetadata(path, resolver)
-  const { slug, root } = data
-  obj[slug] = data
-  ;(children[root] = children[root] || []).push(data)
-  return obj
-}, {} as Record<PostMetadata['slug'], PostMetadata>)
-
-Object.entries(children).forEach(([slug, children]) => slug && (pages[slug].children = children))
+const { pages, children } = loadPages(getFileTime)
 
 type ResponseList = {
   isList: true

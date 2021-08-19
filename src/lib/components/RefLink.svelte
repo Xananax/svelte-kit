@@ -1,18 +1,46 @@
 <script context="module" lang="ts">
-  import { loadPostList } from '$lib/loadPostList'
-  const getModules = loadPostList(
-    '',
-    import.meta.glob(`../../routes/posts/*/index.{md,svx,svelte.md}`)
+  import type { PromiseValue } from 'type-fest'
+
+  const toNormalizedPath = (path: string) => path.replace(/^(\.\.\/)+posts/, '')
+  const pagePathToSlug = (path: string) =>
+    path
+      .replace(/(\/index)?\.(md|svx|svelte\.md)$/, '')
+      .replace(/\/chapters\//, '/')
+      .replace(/^\/|\/$/g, '')
+
+  const process = async ([path, resolver]: [string, () => Promise<SvelteModule>]) => {
+    const { metadata } = await resolver()
+    const { title, slug } = metadata
+    return {
+      title,
+      slug: slug ?? pagePathToSlug(toNormalizedPath(path))
+    }
+  }
+
+  type RefLinkProps = PromiseValue<ReturnType<typeof process>>
+  type RefLinkDict = Record<string, RefLinkProps>
+
+  const modules = Promise.all(
+    Object.entries(import.meta.glob(`../../posts/**/*.{md,svx,svelte.md}`)).map(process)
+  ).then((elements) =>
+    elements.reduce((dict, mod) => {
+      dict[mod.slug] = mod
+      return dict
+    }, {} as RefLinkDict)
   )
-  const getModule = async (slug: string) => (await getModules()).dict[slug]?.title
+
+  const getModuleTitle = async (slug: string, def: string) => {
+    const routes = await modules
+    return routes[slug] ?? def
+  }
 </script>
 
 <script lang="ts">
   export let slug: string
   $: href = `/posts/${slug}`
-  $: defaultName = slug.replace(/-|_/g, ' ')
-  const getName = async () => (await getModule(slug)) ?? defaultName
-  let name = $$slots.default ? '' : getName()
+  const defaultName = slug.replace(/-|_/g, ' ')
+  const getName = async () => $$slots.default ?? (await getModuleTitle(slug, defaultName))
+  let name = getName()
 </script>
 
 <template>

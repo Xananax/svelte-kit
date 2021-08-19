@@ -16,11 +16,6 @@ resources:
 
 <script lang="ts">
   import { RefLink, Note, Chapters } from '$g'
-  import { loadPostList } from '$lib/loadPostList'
-  let list: PostMetadata[] = []
-  loadPostList('getting-started-with-godot-2021/', import.meta.glob(`./chapters/*.{md,svx,svelte.md}`))().then((response) =>
-    list = response.list
-  )
 </script>
 
 
