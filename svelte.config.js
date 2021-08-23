@@ -59,7 +59,8 @@ const config = {
       }
     },
     paths: {
-      base: is_prod ? base : ''
+      base: is_prod ? base : '',
+      assets: is_prod ? base : ''
     },
     adapter: adapter()
   }
