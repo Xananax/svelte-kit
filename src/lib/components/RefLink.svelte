@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
   import type { PromiseValue } from 'type-fest'
+  import { base } from '$app/paths'
 
   const toNormalizedPath = (path: string) => path.replace(/^\.\.\/\.\.\/routes\/courses/, '')
   const pagePathToSlug = (path: string) =>
@@ -45,7 +46,7 @@
 
 <script lang="ts">
   export let slug: string
-  $: href = `/courses/${slug}`
+  $: href = `${base}/courses/${slug}`
   const defaultName = slugToTitle(slug)
   const getName = async () => $$slots.default ?? (await getModuleTitle(slug, defaultName))
   let name = getName()

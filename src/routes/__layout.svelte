@@ -1,15 +1,15 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
+  import { base } from '$app/paths'
   import { dayjs } from '$lib/dayjs'
 
-  const processPage = (post: PageMetadata): PageMetadataAugmented => ({
+  const processPage = (post: PageMetadata & { href: string }): PageMetadataAugmented => ({
     ...post,
-    date: dayjs(post.date),
-    href: post.href ?? `/pages/${post.slug}`
+    date: dayjs(post.date)
   })
 
   export const load: Load = async ({ fetch }) => {
-    const pages = (await fetch(`/pages.json`).then((res) => res.json())).map(processPage)
+    const pages = (await fetch(`${base}/pages.json`).then((res) => res.json())).map(processPage)
     return {
       props: {
         pages

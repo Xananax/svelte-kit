@@ -1,6 +1,6 @@
 /**
  * Node has a neat `path` module, but despite needing no I/O, that module
- * isn't accessible to
+ * isn't accessible to the client
  */
 
 export const basename = (path: string, removeExtension: boolean | string = false) => {

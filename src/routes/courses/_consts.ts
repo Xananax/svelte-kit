@@ -1,12 +1,13 @@
 import type { RequestHandler } from '@sveltejs/kit'
+import { base } from '$app/paths'
 import { makeMetadata } from '$lib/makeMetadata'
 
 const unprocessedPages = import.meta.globEager('./**/index.{md,svx,svelte.md}')
 const toNormalizedPath = (path: string) => path.replace(/^(\.\/)/, '')
 const pagePathToSlug = (path: string) => path.replace(/(\/index)?\.(md|svx|svelte\.md)$/, '')
 
-export const toAPIPath = (path: string) => path + '.json'
-export const toHref = (slug: string) => `/courses/${slug}`
+export const toAPIPath = (path: string) => `${base}${path}.json`
+export const toHref = (slug: string) => `${base}/courses/${slug}`
 
 const toSlug = (normalizedPath: string, metadata: PostMetadata) =>
   metadata.slug ?? pagePathToSlug(normalizedPath)
@@ -62,6 +63,7 @@ export const get: RequestHandler = async ({ params: { course, chapter }, query }
 type Fetch = (info: RequestInfo, init?: RequestInit) => Promise<globalThis.Response>
 
 export const loadPageMetadata = async (path: string, fetch: Fetch) => {
-  const response: Response = await (await fetch(toAPIPath(path))).json()
+  const apiPath = toAPIPath(path)
+  const response: Response = await (await fetch(apiPath)).json()
   return response
 }
