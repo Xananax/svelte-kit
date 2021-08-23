@@ -2,18 +2,18 @@
   import { page } from '$app/stores'
   import logo from './svelte-logo.svg'
 
-  export let pages: PageMetadataAugmented[]
+  export let pages: PageMetadataAugmented[] = []
 
-  const toPath = (path: string) => path.replace(/^\/|\/$/g, '').split('/')
-
-  const preparePage = (path: string[]) => (page: PageMetadataAugmented) => {
-    const pagePath = toPath(page.href)
-    const active = pagePath[0] === 'pages' ? page.slug === path[1] : pagePath[0] === path[0]
+  const markActivePage = (currentPath: string[]) => (page: PageMetadataAugmented) => {
+    const active =
+      page.pathParts[0] === 'pages'
+        ? page.slug === currentPath[1]
+        : page.pathParts[0] === currentPath[0]
     return { ...page, active }
   }
 
-  $: path = toPath($page.path)
-  $: pagesList = pages.map(preparePage(path))
+  $: currentPath = $page.path.replace(/^\/|\/$/g, '').split('/')
+  $: pagesList = pages.map(markActivePage(currentPath))
 </script>
 
 <template lang="pug">
