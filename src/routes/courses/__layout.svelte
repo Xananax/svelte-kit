@@ -45,6 +45,8 @@
   import type { SvelteComponent } from 'svelte'
   import PostFull from '$c/PostFull.svelte'
   import PostSummary from '$c/PostSummary.svelte'
+  import Debug from '$c/Debug.svelte'
+
   import type { PromiseValue } from 'type-fest'
 
   export let list: PostMetadataAugmented[] = []
@@ -52,18 +54,10 @@
   export let isCourse = false
   export let isChapter = false
   export let md: SvelteComponent | false = false
-  $: text = JSON.stringify({ post, list }, null, 2)
 </script>
 
 <template>
-  <details>
-    <summary>received JSON</summary>
-    <code>
-      <pre>
-        { text }
-      </pre>
-    </code>
-  </details>
+  <Debug {...{ post, list }} />
   {#if post}
     {#if isCourse}
       <PostFull

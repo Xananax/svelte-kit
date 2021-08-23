@@ -3,7 +3,7 @@
   import { base } from '$app/paths'
   import { dayjs } from '$lib/dayjs'
 
-  const processPage = (post: PageMetadata & { href: string }): PageMetadataAugmented => ({
+  const processPage = (post: PageMetadata): PageMetadataAugmented => ({
     ...post,
     date: dayjs(post.date)
   })
@@ -19,7 +19,8 @@
 </script>
 
 <script lang="ts">
-  import Header from '$lib/components/Header.svelte'
+  import Header from '$c/Header.svelte'
+  import Debug from '$c/Debug.svelte'
   import '../app.stylus'
 
   export let pages: PageMetadata[]
@@ -27,6 +28,7 @@
 
 <template lang="pug">
   Header("{pages}")
+  Debug("{base}" "{pages}")
   main
     slot
   footer
