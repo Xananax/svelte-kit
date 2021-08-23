@@ -24,13 +24,14 @@ interface PostMetadata {
   levels: number
   root: string
   path: string
+  pathParts: string[]
+  href: string
   children: PostMetadata[]
 }
 
 type PostMetadataAugmented = Omit<PostMetadata, 'date' | 'children'> & {
   date: Dayjs
   children: PostMetadataAugmented[]
-  href: string
 }
 
 type ModulePostMetadata = Partial<Omit<PostMetadata, 'date_unix'>>
@@ -47,7 +48,9 @@ type ImportMetaModules = Record<string, SvelteModule>
 
 type PageMetadata = Pick<
   PostMetadataAugmented,
-  'title' | 'href' | 'slug' | 'date' | 'date_unix'
+  'title' | 'href' | 'slug' | 'date' | 'date_unix' | 'pathParts'
 > & { href?: string }
 
-type PageMetadataAugmented = Omit<PageMetadata, 'date'> & { date: Dayjs; href: string }
+type PageMetadataAugmented = Omit<PageMetadata, 'date'> & {
+  date: Dayjs
+}
