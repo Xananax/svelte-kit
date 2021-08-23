@@ -1,6 +1,6 @@
 import preprocess from 'svelte-preprocess'
-//import adapterStatic from '@sveltejs/adapter-static'
-import node from '@sveltejs/adapter-node'
+import adapter from '@sveltejs/adapter-static'
+//import adapter from '@sveltejs/adapter-node'
 import { mdsvex, extensions } from './svelte-kit/mdsvex.config.js'
 import { mdsvexGlobalComponents } from './svelte-kit/mdsvexGlobalComponents.js'
 import { resolve } from 'path'
@@ -28,7 +28,7 @@ const config = {
     paths: {
       //base: '/your-repo-name'
     },
-    adapter: node()
+    adapter: adapter()
   }
 }
 

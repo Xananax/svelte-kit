@@ -1,12 +1,9 @@
 <script context="module" lang="ts">
   import type { PromiseValue } from 'type-fest'
 
-  const toNormalizedPath = (path: string) => path.replace(/^(\.\.\/)+posts/, '')
+  const toNormalizedPath = (path: string) => path.replace(/^\.\.\/\.\.\/routes\/courses/, '')
   const pagePathToSlug = (path: string) =>
-    path
-      .replace(/(\/index)?\.(md|svx|svelte\.md)$/, '')
-      .replace(/\/chapters\//, '/')
-      .replace(/^\/|\/$/g, '')
+    path.replace(/(\/index)?\.(md|svx|svelte\.md)$/, '').replace(/^\/|\/$/g, '')
 
   const slugToTitle = (slug: string) => slug.replace(/-|_/g, ' ')
 
@@ -28,7 +25,9 @@
   type RefLinkDict = Record<string, RefLinkProps>
 
   const modules = Promise.all(
-    Object.entries(import.meta.glob(`../../posts/**/*.{md,svx,svelte.md}`)).map(process)
+    Object.entries(import.meta.glob(`../../routes/courses/**/index.{md,svx,svelte.md}`)).map(
+      process
+    )
   ).then((elements) =>
     elements.reduce((dict, mod) => {
       if (mod) {

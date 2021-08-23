@@ -1,8 +1,7 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
-  import { toAPIPath, toHref, loadPages } from './api/_consts'
+  import { toHref, modules, loadPageMetadata } from './_consts'
   import { dayjs } from '$lib/dayjs'
-  import type { Response } from './api/[...slug]/index'
 
   const augmentMetadata = (metadata: PostMetadata): PostMetadataAugmented => {
     const { date, slug, children } = metadata
@@ -15,38 +14,30 @@
     }
   }
 
-  const modules = import.meta.globEager('../../posts/**/*.{md,svx,svelte.md}')
-  const loadModule = (path: string) => {
-    const filename = `../../posts/${path}`
-    return modules[filename]?.default
-  }
-
-  const handleResponse = async (response: Response) => {
+  export const load: Load = async ({ page: { path }, fetch }) => {
+    const response = await loadPageMetadata(path, fetch)
     switch (response.isList) {
       case true:
         const list = response.data.map(augmentMetadata)
         return {
-          list
+          props: {
+            list
+          }
         }
       case false:
         const post = augmentMetadata(response.data)
         const isCourse = post.levels == 1
         const isChapter = post.levels > 1
-        const md = loadModule(post.path)
-
+        const md = modules[post.path]
         return {
-          post,
-          md,
-          isCourse,
-          isChapter
+          props: {
+            post,
+            md,
+            isCourse,
+            isChapter
+          }
         }
     }
-  }
-
-  export const load: Load = async ({ page: { path }, fetch }) => {
-    const response: Response = await (await fetch(toAPIPath(path))).json()
-    const props = await handleResponse(response)
-    return { props }
   }
 </script>
 
@@ -54,6 +45,7 @@
   import type { SvelteComponent } from 'svelte'
   import PostFull from '$c/PostFull.svelte'
   import PostSummary from '$c/PostSummary.svelte'
+  import type { PromiseValue } from 'type-fest'
 
   export let list: PostMetadataAugmented[] = []
   export let post: PostMetadataAugmented = null
