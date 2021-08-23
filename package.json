@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "build:site": "svelte-kit build",
+    "build": "run-s clean:build build:site",
     "preview": "svelte-kit preview",
     "check:ts": "svelte-check --tsconfig ./tsconfig.json",
     "check:ts:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -12,10 +13,12 @@
     "check": "run-s check:lint check:pretty",
     "format": "prettier --write --plugin-search-dir=. .",
     "clean:svelte": "rimraf .svelte-kit",
+    "clean:build": "rimraf build",
     "clean:modules": "rimraf node_modules",
-    "clean": "run-s clean:svelte clean:modules"
+    "clean": "run-s clean:svelte clean:modules clean:build"
   },
   "devDependencies": {
+    "@sveltejs/adapter-node": "^1.0.0-next.43",
     "@sveltejs/adapter-static": "^1.0.0-next.16",
     "@sveltejs/kit": "next",
     "@types/cookie": "^0.4.0",

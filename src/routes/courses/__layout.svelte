@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
-  import { toAPIPath, toHref } from './api/_consts'
+  import { toAPIPath, toHref, loadPages } from './api/_consts'
   import { dayjs } from '$lib/dayjs'
   import type { Response } from './api/[...slug]/index'
 
-  export const augmentMetadata = (metadata: PostMetadata): PostMetadataAugmented => {
+  const augmentMetadata = (metadata: PostMetadata): PostMetadataAugmented => {
     const { date, slug, children } = metadata
     const href = toHref(slug)
     return {
@@ -15,7 +15,13 @@
     }
   }
 
-  export const handleResponse = async (response: Response) => {
+  const modules = import.meta.globEager('../../posts/**/*.{md,svx,svelte.md}')
+  const loadModule = (path: string) => {
+    const filename = `../../posts/${path}`
+    return modules[filename]?.default
+  }
+
+  const handleResponse = async (response: Response) => {
     switch (response.isList) {
       case true:
         const list = response.data.map(augmentMetadata)
@@ -26,7 +32,8 @@
         const post = augmentMetadata(response.data)
         const isCourse = post.levels == 1
         const isChapter = post.levels > 1
-        const md = (await import(`../../posts/${post.path}`)).default
+        const md = loadModule(post.path)
+
         return {
           post,
           md,

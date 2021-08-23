@@ -1,19 +1,20 @@
 import type { RequestHandler } from '@sveltejs/kit'
-import { basename, extname, join, dirname } from 'path'
+import { basename, extname, join } from 'path'
 import { dayjs } from '$lib/dayjs'
 import { makeMetadata } from '$lib/makeMetadata'
-import { getFileTimeSync } from '$lib/getFileTime'
+
+//const dir = typeof __dirname !== 'undefined' ? __dirname : dirname(import.meta.url)
+const dir = 'src/routes/pages'
 
 const toSlug = (path: string) => basename(path, extname(path))
 const toNormalizedPath = (path: string) => path.replace(/^(\.\/)/, '')
-const toFilename = (path: string) => join(dirname(import.meta.url), path)
-const getFileTime = (path: string) => getFileTimeSync(toFilename(path))
+const toFilename = (path: string) => join(dir, path)
 
 const unprocessedPages = import.meta.globEager('./*.{md,svx,svelte,svelte.md}')
 
 const list = Object.entries(unprocessedPages)
   .map(([path, { metadata }]) =>
-    makeMetadata({ path, metadata: metadata ?? {}, toSlug, toNormalizedPath, getFileTime })
+    makeMetadata({ path, metadata: metadata ?? {}, toSlug, toNormalizedPath })
   )
   .sort(({ order: a }, { order: b }) => a - b)
 

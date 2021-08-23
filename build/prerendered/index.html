@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Home</title>
+
+		
+
+		<link rel="modulepreload" href="/_app/start-ced8d0f2.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-b56a8f06.js">
+		<link rel="modulepreload" href="/_app/chunks/preload-helper-ec9aa979.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-2ceccec4.js">
+		<link rel="modulepreload" href="/_app/chunks/dayjs-846f7fb2.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-14dc52eb.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-eaf2d68d.css">
+		<link rel="stylesheet" href="/_app/assets/pages/index.svelte-32fc98bc.css">
+
+		<script type="module">
+			import { start } from "/_app/start-ced8d0f2.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-2ceccec4.js"),
+						import("/_app/pages/index.svelte-14dc52eb.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "/",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="svelte-v23w10"><div class="corner svelte-v23w10"><a href="https://kit.svelte.dev" class="svelte-v23w10"><img src="/_app/assets/svelte-logo-87df40b8.svg" alt="SvelteKit" class="svelte-v23w10"></a></div><nav class="svelte-v23w10"><svg viewBox="0 0 2 3" aria-hidden="true" class="svelte-v23w10"><path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" class="svelte-v23w10"></path></svg><ul class="svelte-v23w10"><li class="svelte-v23w10 active"><a sveltekit:prefetch href="/" class="svelte-v23w10">Home</a></li><li class="svelte-v23w10"><a sveltekit:prefetch href="/pages/about" class="svelte-v23w10">About</a></li><li class="svelte-v23w10"><a sveltekit:prefetch href="/courses" class="svelte-v23w10">Courses</a></li></ul><svg viewBox="0 0 2 3" aria-hidden="true" class="svelte-v23w10"><path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" class="svelte-v23w10"></path></svg></nav><div class="corner svelte-v23w10"></div></header><main class="svelte-1gn4ivr">
+
+<section class="svelte-wsxvlq"><h1 class="svelte-wsxvlq"><div class="welcome svelte-wsxvlq"><picture><source srcset="svelte-welcome.webp" type="image/webp"><img img src="svelte-welcome.png" alt="Welcome" class="svelte-wsxvlq"></picture></div><span>to your new <br>SvelteKit app</span></h1><h2>try editing src/routes/index.svelte</h2></section></main><footer class="svelte-1gn4ivr"><p>visit <a href="https://kit.svelte.dev" class="svelte-1gn4ivr">kit.svelte.dev</a> to learn SvelteKit</p></footer>
+
+
+
+	<script type="application/json" data-type="svelte-data" data-url="/pages.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"[{\"title\":\"Home\",\"href\":\"\u002F\",\"slug\":\"\",\"date\":\"2021-08-23T14\",\"date_unix\":1629714891},{\"slug\":\"about\",\"levels\":1,\"root\":\"\",\"published\":true,\"date_unix\":1629714891,\"date\":\"2021-08-23T14\",\"order\":1,\"title\":\"About\",\"description\":\"\",\"author\":\"\",\"path\":\"about.svelte\",\"children\":[]},{\"title\":\"Courses\",\"href\":\"\u002Fcourses\",\"slug\":\"courses\",\"date\":\"2021-08-23T14\",\"date_unix\":1629714891}]"}</script>
+</div>
+  </body>
+</html>

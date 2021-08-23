@@ -1,28 +1,26 @@
 import { dayjs } from '$lib/dayjs'
 
 const strip = (path: string) => path.replace(/^\/+|\/+$/g, '')
-const defaultGetFileTime = () => Date.now()
+const getFileTime = () => Date.now()
 
 export type MetadataMakerOptions = {
   path: string
   metadata: SvelteModule['metadata']
   toNormalizedPath: (path: string, metadata: SvelteModule['metadata']) => string
   toSlug: (normalizedPath: string, metadata: SvelteModule['metadata']) => string
-  getFileTime?: (normalizedPath: string, metadata: SvelteModule['metadata']) => number
 }
 
 export const makeMetadata = ({
   path,
   metadata,
   toNormalizedPath,
-  toSlug,
-  getFileTime = defaultGetFileTime
+  toSlug
 }: MetadataMakerOptions) => {
   const normalizedPath = strip(toNormalizedPath(path, metadata))
   const slug = strip(toSlug(normalizedPath, metadata))
   const pathArray = strip(slug).split('/')
   const levels = pathArray.length
-  const _date = dayjs(metadata.date ?? getFileTime(normalizedPath, metadata))
+  const _date = dayjs(metadata.date ?? getFileTime())
   const root = levels === 1 ? '' : pathArray[0]
   return {
     slug,

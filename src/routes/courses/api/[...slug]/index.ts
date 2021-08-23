@@ -1,10 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit'
 import { loadPages, toFilename } from '../_consts'
-import { getFileTimeSync } from '$lib/getFileTime'
 
-const getFileTime = (path: string) => getFileTimeSync(toFilename(path))
-
-const { pages, children } = loadPages(getFileTime)
+const { pages, children } = loadPages()
 
 type ResponseList = {
   isList: true
