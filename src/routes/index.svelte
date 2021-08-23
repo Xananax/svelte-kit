@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
+  import { title } from '$lib/env'
   export const prerender = true
 </script>
 
 <svelte:head>
-  <title>Home</title>
+  <title>{title}</title>
 </svelte:head>
 
 <template lang="pug">

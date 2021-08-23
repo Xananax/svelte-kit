@@ -2,14 +2,43 @@ import preprocess from 'svelte-preprocess'
 import adapter from '@sveltejs/adapter-static'
 //import adapter from '@sveltejs/adapter-node'
 import { mdsvex, extensions } from './svelte-kit/mdsvex.config.js'
-import { mdsvexGlobalComponents } from './svelte-kit/mdsvexGlobalComponents.js'
+//import { mdsvexGlobalComponents } from './svelte-kit/mdsvexGlobalComponents.js'
 import { resolve } from 'path'
+import { readFileSync } from 'fs'
+import { join, basename, dirname } from 'path'
 
+const is_prod = process.env.NODE_ENV === 'production'
+const __dirname = dirname(import.meta.url).replace(/^file:\//, '')
+const { name, version, homepage } = JSON.parse(
+  readFileSync(join(__dirname, 'package.json'), 'utf8')
+)
+
+const path = basename(homepage)
+const base = path ? `/${path}` : ''
+
+/*
 const globalComponents = mdsvexGlobalComponents({
   dir: `$lib/components`,
   list: ['Note.svelte', 'Youtube.svelte', 'RefLink.svelte'],
   extensions
 })
+
+const multi = function (adapters) {
+    return {
+        name: 'Multi Adapter',
+        async adapt(argument) {
+            await adapters.forEach(item => Promise.resolve(item).then(resolved => resolved.adapt(argument)))
+        }
+    };
+}
+
+const config = {
+    kit: {
+        adapter: multi([staticAdapter(), nodeAdapter()]),
+        target: '#svelte',
+    }
+};
+*/
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -18,6 +47,10 @@ const config = {
   kit: {
     target: '#svelte',
     vite: {
+      define: {
+        'process.env.TITLE': `"${name}"`,
+        'process.env.VERSION': `"${version}"`
+      },
       resolve: {
         alias: {
           $c: resolve('./src/lib/components'),
@@ -26,7 +59,7 @@ const config = {
       }
     },
     paths: {
-      //base: '/your-repo-name'
+      base: is_prod ? base : ''
     },
     adapter: adapter()
   }

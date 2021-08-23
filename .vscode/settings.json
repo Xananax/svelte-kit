@@ -17,7 +17,6 @@
     "**/build": true,
     "mdsvex.config.js": true,
     "node_modules": true,
-    "package.json": true,
     "pnpm-lock.yaml": true,
     "svelte.config.js": true,
     "tsconfig.json": true,
