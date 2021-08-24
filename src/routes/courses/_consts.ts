@@ -1,13 +1,12 @@
 import type { RequestHandler } from '@sveltejs/kit'
-import { base } from '$app/paths'
 import { makeMetadata } from '$lib/makeMetadata'
 
 const unprocessedPages = import.meta.globEager('./**/index.{md,svx,svelte.md}')
 const toNormalizedPath = (path: string) => path.replace(/^(\.\/)/, '')
 const pagePathToSlug = (path: string) => path.replace(/(\/index)?\.(md|svx|svelte\.md)$/, '')
 
-export const toAPIPath = (path: string) => `${base}${path}.json`
-export const toHref = (slug: string) => `${base}/courses/${slug}`
+export const toAPIPath = (path: string) => `${path}.json`
+export const toHref = (slug: string) => `/courses/${slug}`
 
 const toSlug = (normalizedPath: string, metadata: PostMetadata) =>
   metadata.slug ?? pagePathToSlug(normalizedPath)
@@ -17,7 +16,7 @@ export const { children, pages, modules } = (() => {
   const modules = {} as Record<string, SvelteModule['default']>
   const pages = Object.entries(unprocessedPages).reduce(
     (obj, [path, { metadata, default: module }]) => {
-      const data = makeMetadata({ path, metadata, toSlug, toNormalizedPath })
+      const data = makeMetadata({ path, metadata, toSlug, toNormalizedPath, toHref })
       const { slug, root } = data
       obj[slug] = data
       modules[slug] = module

@@ -13,7 +13,7 @@ const { name, version, homepage } = JSON.parse(
   readFileSync(join(__dirname, 'package.json'), 'utf8')
 )
 
-const path = basename(homepage)
+const path = homepage ? basename(homepage) : ''
 const base = path ? `/${path}` : ''
 
 /*
@@ -59,7 +59,8 @@ const config = {
       }
     },
     paths: {
-      base: is_prod ? base : ''
+      //base: is_prod ? base : ''
+      base //: ''
     },
     adapter: adapter()
   }

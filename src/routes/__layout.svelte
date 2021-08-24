@@ -5,7 +5,8 @@
 
   const processPage = (post: PageMetadata): PageMetadataAugmented => ({
     ...post,
-    date: dayjs(post.date)
+    date: dayjs(post.date),
+    href: `${base}${post.href}`
   })
 
   export const load: Load = async ({ fetch }) => {
