@@ -1,5 +1,6 @@
 <script context="module">
   import { browser, dev } from '$app/env'
+  import PageTitle from '$c/PageTitle.svelte'
 
   // we don't need any JS on this page, though we'll load
   // it in dev so that we get hot module replacement...
@@ -19,11 +20,8 @@
   }
 </script>
 
-<svelte:head>
-  <title>About</title>
-</svelte:head>
-
 <template lang="pug">
+  PageTitle(title="{metadata.title}")
   .content
     h1 About this app
     p 
@@ -36,10 +34,3 @@
       | Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
       | the devtools network panel and reloading.
 </template>
-
-<style lang="stylus">
-  .content
-    width 100%
-    max-width var(--column-width)
-    margin var(--column-margin-top) auto 0 auto
-</style>

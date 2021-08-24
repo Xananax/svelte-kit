@@ -9,7 +9,7 @@ import { join, basename, dirname } from 'path'
 
 const is_prod = process.env.NODE_ENV === 'production'
 const __dirname = dirname(import.meta.url).replace(/^file:\//, '')
-const { name, version, homepage } = JSON.parse(
+const { name, title, version, homepage } = JSON.parse(
   readFileSync(join(__dirname, 'package.json'), 'utf8')
 )
 
@@ -48,8 +48,10 @@ const config = {
     target: '#svelte',
     vite: {
       define: {
-        'process.env.TITLE': `"${name}"`,
-        'process.env.VERSION': `"${version}"`
+        'process.env.NAME': `"${name}"`,
+        'process.env.TITLE': `"${title}"`,
+        'process.env.VERSION': `"${version}"`,
+        'process.env.HOMEPAGE': `"${homepage}"`
       },
       resolve: {
         alias: {
@@ -59,8 +61,7 @@ const config = {
       }
     },
     paths: {
-      //base: is_prod ? base : ''
-      base //: ''
+      base: is_prod ? base : ''
     },
     adapter: adapter()
   }

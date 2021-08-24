@@ -46,6 +46,7 @@
   import type { SvelteComponent } from 'svelte'
   import PostFull from '$c/PostFull.svelte'
   import PostSummary from '$c/PostSummary.svelte'
+  import PageTitle from '$c/PageTitle.svelte'
   import Debug from '$c/Debug.svelte'
 
   import type { PromiseValue } from 'type-fest'
@@ -55,10 +56,12 @@
   export let isCourse = false
   export let isChapter = false
   export let md: SvelteComponent | false = false
+  $: title = post?.title ?? 'Courses'
 </script>
 
 <template>
   <Debug {...{ post, list }} />
+  <PageTitle {title} />
   {#if post}
     {#if isCourse}
       <PostFull

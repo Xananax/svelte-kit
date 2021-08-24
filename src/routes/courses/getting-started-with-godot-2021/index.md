@@ -23,7 +23,8 @@ You want to learn Godot or game development but don't know how to get started? O
 
 This completely free course will give you the tools you need to make games with Godot.
 
-<RefLink slug="a-second-post"/>
+If you need more basics, you could check 
+<RefLink slug="learn-to-code"/>
 
 Through detailed explanations and hands-on, step-by-step projects, you will learn the 4 most essential concepts you need to understand in Godot.
 
@@ -34,7 +35,7 @@ It will only take you a couple of hours total, and by the end, you will have cod
 <Note>
 The course is still in the making and one new lesson's coming out weekly.
 
-Be sure to subscribe to our channel so you don't miss any!
+Be sure to [subscribe to our channel](https://www.youtube.com/c/gdquest/) so you don't miss any!
 </Note>
 
 In the first video lesson, we'll go briefly over what Godot is and what you need to know to use it.

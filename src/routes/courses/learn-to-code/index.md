@@ -1,20 +1,29 @@
 ---
-title: 'Welcome to my blog!'
-description: 'I love to write about Svelte and all the cool things that you can build with it.'
-author: 'Mehdi Vasigh'
-date: '2021-04-21'
+title: New Features in Godot 3.1
+description: Discover the main new features in Godot 3.1.
+author: nathan
+date: 2019-06-24
+difficulty: beginner
+keywords: godot new features, godot features, godot 3.1
 published: true
 ---
 
 <script>
   import Counter from '$c/Counter.svelte'
-  import { Chapters } from '$g'
+  import Ref from '$c/RefLink.svelte'
 </script>
 
+Every Godot version brings a breadth of new features. It was especially the case for Godot 3.1.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pellentesque orci nec facilisis iaculis. Sed accumsan placerat dolor. Donec sollicitudin nisi sit amet sodales molestie. Maecenas sit amet dolor nulla. Fusce sed elit et erat consequat dignissim. Nunc eu erat felis. Mauris pretium, arcu eu dapibus tempor, mauris eros tempor tortor, eu tincidunt erat libero sit amet mi. Phasellus eu libero mollis, finibus lacus eget, sollicitudin nulla.
+If you're not constantly following the news, it's difficult to keep track of them. The documentation does not always keep up.
 
-Here's a random Svelte component thrown into my MDsveX markdown:
+In this series, we go through each new and updated feature one by one, so you know what's available and how everything works.
+
+If you're looking for more general Godot courses, we prepared completely free series for you:
+
+1. If you're fairly new to programming, check out our <Ref>getting started series for beginners</Ref>.
+2. If you're an experienced developer, you'll certainly like our <Ref>developer's learning path to Godot</Ref>
+
 
 <Counter />
 

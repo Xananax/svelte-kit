@@ -6,7 +6,7 @@
   const pagePathToSlug = (path: string) =>
     path.replace(/(\/index)?\.(md|svx|svelte\.md)$/, '').replace(/^\/|\/$/g, '')
 
-  const slugToTitle = (slug: string) => slug.replace(/-|_/g, ' ')
+  const slugToTitle = (slug: string) => slug?.replace(/-|_/g, ' ')
 
   const process = async ([path, resolver]: [string, () => Promise<SvelteModule>]) => {
     const { metadata } = await resolver()
@@ -39,6 +39,7 @@
   )
 
   const getModuleTitle = async (slug: string, def: string) => {
+    // TODO: Make this work
     const routes = {} //await modules
     return routes[slug] ?? def
   }
@@ -46,7 +47,7 @@
 
 <script lang="ts">
   export let slug: string
-  $: href = `${base}/courses/${slug}`
+  $: href = `${base}/courses/${slug || ''}`
   const defaultName = slugToTitle(slug)
   const getName = async () => $$slots.default ?? (await getModuleTitle(slug, defaultName))
   let name = getName()

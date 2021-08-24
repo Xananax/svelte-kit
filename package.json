@@ -1,5 +1,6 @@
 {
-  "name": "svelte-kit",
+  "name": "gdquest",
+  "title": "GDQuest",
   "version": "0.0.1",
   "homepage": "https://xananax.github.io/svelte-kit",
   "repository": {

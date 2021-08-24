@@ -2,11 +2,12 @@
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
   import { dayjs } from '$lib/dayjs'
+  import { title, homepage } from '$lib/env'
 
   const processPage = (post: PageMetadata): PageMetadataAugmented => ({
     ...post,
     date: dayjs(post.date),
-    href: `${base}${post.href}`
+    href: `${base}${post.href}` // TODO: WHY IS THIS NECESSARY BOTH HERE AND IN makeMetadata?????
   })
 
   export const load: Load = async ({ fetch }) => {
@@ -29,11 +30,11 @@
 
 <template lang="pug">
   Header("{pages}")
-  Debug("{base}" "{pages}")
+  Debug("{pages}")
   main
     slot
   footer
-    p visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+    p visit <a href={homepage}>{title}</a> to learn SvelteKit
 </template>
 
 <style lang="stylus">
@@ -43,10 +44,10 @@
     flex-direction column
     padding 1rem
     width 100%
-    max-width 1024px
     margin 0 auto
     box-sizing border-box
-
+    max-width var(--column-width)
+    margin var(--column-margin-top) auto 0 auto
   footer
     display flex
     flex-direction column
@@ -55,7 +56,6 @@
     padding 40px
     a
       font-weight bold
-
   @media (min-width: 480px)
     footer
       padding 40px 0

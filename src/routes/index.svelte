@@ -1,25 +1,22 @@
 <script context="module" lang="ts">
-  import { title } from '$lib/env'
+  import Logo from '$c/Logo.svelte'
+  import PageTitle from '$c/PageTitle.svelte'
   export const prerender = true
 </script>
 
-<svelte:head>
-  <title>{title}</title>
-</svelte:head>
-
 <template lang="pug">
+  PageTitle(title="Home")
   section
-    h1
-      .welcome
-        picture
-          source(srcset="svelte-welcome.webp" type="image/webp")
-          img(img src="svelte-welcome.png" alt="Welcome")
-      span to your new <br/>SvelteKit app
+    .logo
+      Logo(fill="#050505")
+    h1 welcome to your new SvelteKit app
     h2 try editing src/routes/index.svelte
 </template>
 
 <style lang="stylus">
-  section
+  .logo
+    width 100%
+  section, .logo
     display flex
     flex-direction column
     justify-content center
@@ -29,15 +26,4 @@
   h1
     width 100%
 
-  .welcome
-    position relative
-    width 100%
-    height 0
-    padding 0 0 calc(100% * 495 / 2048) 0
-    img
-      position absolute
-      width 100%
-      height 100%
-      top 0
-      display block
 </style>
