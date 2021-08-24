@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Getting started with Godot in 2021 | GDQuest</title><meta property="og:site_name" content="GDQuest" data-svelte="svelte-1i575el"><meta property="og:title" content="Getting started with Godot in 2021 | GDQuest" data-svelte="svelte-1i575el"><meta property="og:description" content="This series will teach you all the most essential techniques you need to know to get started with Godot, with hands-on examples." data-svelte="svelte-1i575el">
+    <title>The New Inspector | GDQuest</title><meta property="og:site_name" content="GDQuest" data-svelte="svelte-1i575el"><meta property="og:title" content="The New Inspector | GDQuest" data-svelte="svelte-1i575el"><meta property="og:description" content="Godot 3.1 brings a completely redesigned inspector with a modern UX, nested resources, editable array and dictionaries, plugin support, and more!" data-svelte="svelte-1i575el">
 
 		
 
@@ -25,7 +25,7 @@
 		<link rel="modulepreload" href="/svelte-kit/_app/chunks/index-4b501879.js">
 		<link rel="modulepreload" href="/svelte-kit/_app/chunks/index-4b66bed2.js">
 		<link rel="modulepreload" href="/svelte-kit/_app/chunks/PageTitle-93b10e05.js">
-		<link rel="modulepreload" href="/svelte-kit/_app/pages/courses/getting-started-with-godot-2021/index.md-4b7925cc.js">
+		<link rel="modulepreload" href="/svelte-kit/_app/pages/courses/learn-to-code/01-game-engine-basics/index.md-fed1506d.js">
 		<link rel="stylesheet" href="/svelte-kit/_app/assets/start-61d1577b.css">
 		<link rel="stylesheet" href="/svelte-kit/_app/assets/pages/__layout.svelte-01a15926.css">
 		<link rel="stylesheet" href="/svelte-kit/_app/assets/Debug-b073a08b.css">
@@ -50,11 +50,11 @@
 					nodes: [
 						import("/svelte-kit/_app/pages/__layout.svelte-28d4c4df.js"),
 						import("/svelte-kit/_app/pages/courses/__layout.svelte-4146b8f8.js"),
-						import("/svelte-kit/_app/pages/courses/getting-started-with-godot-2021/index.md-4b7925cc.js")
+						import("/svelte-kit/_app/pages/courses/learn-to-code/01-game-engine-basics/index.md-fed1506d.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
-						path: "/courses/getting-started-with-godot-2021",
+						path: "/courses/learn-to-code/01-game-engine-basics",
 						query: new URLSearchParams(""),
 						params: {}
 					}
@@ -110,89 +110,36 @@
   ]
 }</code></pre></details><main class="svelte-dvqa9l"><details  class="svelte-d5vc6o"><summary class="svelte-d5vc6o">received JSON</summary><pre><code class="language-json">{
   &quot;post&quot;: {
-    &quot;slug&quot;: &quot;getting-started-with-godot-2021&quot;,
-    &quot;levels&quot;: 1,
-    &quot;root&quot;: &quot;&quot;,
-    &quot;href&quot;: &quot;/svelte-kit/courses/getting-started-with-godot-2021&quot;,
+    &quot;slug&quot;: &quot;learn-to-code/01-game-engine-basics&quot;,
+    &quot;levels&quot;: 2,
+    &quot;root&quot;: &quot;learn-to-code&quot;,
+    &quot;href&quot;: &quot;/svelte-kit/courses/learn-to-code/01-game-engine-basics&quot;,
     &quot;published&quot;: true,
-    &quot;date_unix&quot;: 1612981781,
-    &quot;date&quot;: &quot;2021-02-10T18:00:00.000Z&quot;,
+    &quot;date_unix&quot;: 1554400807,
+    &quot;date&quot;: &quot;2019-04-04T18:00:00.000Z&quot;,
     &quot;order&quot;: 0,
-    &quot;title&quot;: &quot;Getting started with Godot in 2021&quot;,
-    &quot;description&quot;: &quot;This series will teach you all the most essential techniques you need to know to get started with Godot, with hands-on examples.&quot;,
-    &quot;author&quot;: &quot;Nathan&quot;,
-    &quot;path&quot;: &quot;getting-started-with-godot-2021/index.md&quot;,
+    &quot;title&quot;: &quot;The New Inspector&quot;,
+    &quot;description&quot;: &quot;Godot 3.1 brings a completely redesigned inspector with a modern UX, nested resources, editable array and dictionaries, plugin support, and more!&quot;,
+    &quot;author&quot;: &quot;nathan&quot;,
+    &quot;path&quot;: &quot;learn-to-code/01-game-engine-basics/index.md&quot;,
     &quot;pathParts&quot;: [
       &quot;courses&quot;,
-      &quot;getting-started-with-godot-2021&quot;
+      &quot;learn-to-code&quot;,
+      &quot;01-game-engine-basics&quot;
     ],
-    &quot;children&quot;: [
-      {
-        &quot;slug&quot;: &quot;getting-started-with-godot-2021/010-getting-started&quot;,
-        &quot;levels&quot;: 2,
-        &quot;root&quot;: &quot;getting-started-with-godot-2021&quot;,
-        &quot;href&quot;: &quot;/svelte-kit/courses/getting-started-with-godot-2021/010-getting-started&quot;,
-        &quot;published&quot;: true,
-        &quot;date_unix&quot;: 1612981789,
-        &quot;date&quot;: &quot;2021-02-10T18:00:00.000Z&quot;,
-        &quot;order&quot;: 0,
-        &quot;title&quot;: &quot;Introduction&quot;,
-        &quot;description&quot;: &quot;&quot;,
-        &quot;author&quot;: &quot;nathan&quot;,
-        &quot;path&quot;: &quot;getting-started-with-godot-2021/010-getting-started/index.md&quot;,
-        &quot;pathParts&quot;: [
-          &quot;courses&quot;,
-          &quot;getting-started-with-godot-2021&quot;,
-          &quot;010-getting-started&quot;
-        ],
-        &quot;children&quot;: []
-      },
-      {
-        &quot;slug&quot;: &quot;getting-started-with-godot-2021/020-essential-building-blocks&quot;,
-        &quot;levels&quot;: 2,
-        &quot;root&quot;: &quot;getting-started-with-godot-2021&quot;,
-        &quot;href&quot;: &quot;/svelte-kit/courses/getting-started-with-godot-2021/020-essential-building-blocks&quot;,
-        &quot;published&quot;: true,
-        &quot;date_unix&quot;: 1612981789,
-        &quot;date&quot;: &quot;2021-02-10T18:00:00.000Z&quot;,
-        &quot;order&quot;: 0,
-        &quot;title&quot;: &quot;The 4 essential building blocks&quot;,
-        &quot;description&quot;: &quot;&quot;,
-        &quot;author&quot;: &quot;nathan&quot;,
-        &quot;path&quot;: &quot;getting-started-with-godot-2021/020-essential-building-blocks/index.md&quot;,
-        &quot;pathParts&quot;: [
-          &quot;courses&quot;,
-          &quot;getting-started-with-godot-2021&quot;,
-          &quot;020-essential-building-blocks&quot;
-        ],
-        &quot;children&quot;: []
-      }
-    ]
+    &quot;children&quot;: []
   },
   &quot;list&quot;: []
 }</code></pre></details>
   
-  <h3 class="heading svelte-1lc8vzj" id="getting-started-with-godot-2021"><a href="/svelte-kit/courses/getting-started-with-godot-2021">Getting started with Godot in 2021</a></h3><p class="svelte-itej1q"><span class="author svelte-itej1q">Nathan</span><span class="date svelte-itej1q">6 months ago</span></p><div></div><ul><li><a href="/svelte-kit/courses/getting-started-with-godot-2021/010-getting-started">Introduction</a></li><li><a href="/svelte-kit/courses/getting-started-with-godot-2021/020-essential-building-blocks">The 4 essential building blocks</a></li></ul>
-  <p>You want to learn Godot or game development but don’t know how to get started? Or you tried some tutorials already, but you don’t feel like you understand how the engine works or how to code your games?</p>
-<p>This completely free course will give you the tools you need to make games with Godot.</p>
-<p>If you need more basics, you could check </p>
-<a sveltekit:prefetch href="/svelte-kit/courses/learn-to-code">
-      
-        learn to code
-      
-    </a>
-<p>Through detailed explanations and hands-on, step-by-step projects, you will learn the 4 most essential concepts you need to understand in Godot.</p>
-<p>The first videos give you a general introduction to the engine, nodes, scenes, the scene tree, and signals, the interface, and progressively build up towards creating two complete game projects, one in 2D and one in 3D.</p>
-<p>It will only take you a couple of hours total, and by the end, you will have coded two complete games from scratch.</p>
-<aside class="note svelte-1vkqylt">The course is still in the making and one new lesson&#39;s coming out weekly.
-<p>Be sure to <a href="https://www.youtube.com/c/gdquest/" rel="nofollow">subscribe to our channel</a> so you don’t miss any!</p></aside>
-<p>In the first video lesson, we’ll go briefly over what Godot is and what you need to know to use it.</p></main><footer class="svelte-dvqa9l"><p>visit <a href="https://xananax.github.io/svelte-kit" class="svelte-dvqa9l">GDQuest</a> to learn SvelteKit</p></footer>
+  <h3 class="heading svelte-1lc8vzj" id="learn-to-code/01-game-engine-basics"><a href="/svelte-kit/courses/learn-to-code/01-game-engine-basics">The New Inspector</a></h3><p class="svelte-itej1q"><span class="author svelte-itej1q">nathan</span><span class="date svelte-itej1q">2 years ago</span></p><div></div><ul></ul>
+  <div class="youtube svelte-1v7wbrd responsive"><div class="youtube-player svelte-1v7wbrd" id="player_lpOP2tbl3zc_b419e1b7-ec55-43f9-8106-1dddb863ca1c"></div></div></main><footer class="svelte-dvqa9l"><p>visit <a href="https://xananax.github.io/svelte-kit" class="svelte-dvqa9l">GDQuest</a> to learn SvelteKit</p></footer>
 
 
 
 	<script type="application/json" data-type="svelte-data" data-url="/svelte-kit/pages.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"[{\"title\":\"Home\",\"pathParts\":[\"\"],\"href\":\"\u002F\",\"slug\":\"\",\"date\":\"2021-08-24T21\",\"date_unix\":1629826630},{\"slug\":\"about\",\"levels\":1,\"root\":\"\",\"href\":\"\u002Fpages\u002Fabout\",\"published\":true,\"date_unix\":1629826630,\"date\":\"2021-08-24T21\",\"order\":1,\"title\":\"About\",\"description\":\"\",\"author\":\"\",\"path\":\"about.svelte\",\"pathParts\":[\"pages\",\"about\"],\"children\":[]},{\"title\":\"Courses\",\"pathParts\":[\"courses\"],\"href\":\"\u002Fcourses\",\"slug\":\"courses\",\"date\":\"2021-08-24T21\",\"date_unix\":1629826630}]"}</script>
 
-	<script type="application/json" data-type="svelte-data" data-url="/svelte-kit/courses/getting-started-with-godot-2021.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"isList\":false,\"data\":{\"slug\":\"getting-started-with-godot-2021\",\"levels\":1,\"root\":\"\",\"href\":\"\u002Fcourses\u002Fgetting-started-with-godot-2021\",\"published\":true,\"date_unix\":1612981781,\"date\":\"2021-02-10T22\",\"order\":0,\"title\":\"Getting started with Godot in 2021\",\"description\":\"This series will teach you all the most essential techniques you need to know to get started with Godot, with hands-on examples.\",\"author\":\"Nathan\",\"path\":\"getting-started-with-godot-2021\u002Findex.md\",\"pathParts\":[\"courses\",\"getting-started-with-godot-2021\"],\"children\":[{\"slug\":\"getting-started-with-godot-2021\u002F010-getting-started\",\"levels\":2,\"root\":\"getting-started-with-godot-2021\",\"href\":\"\u002Fcourses\u002Fgetting-started-with-godot-2021\u002F010-getting-started\",\"published\":true,\"date_unix\":1612981789,\"date\":\"2021-02-10T22\",\"order\":0,\"title\":\"Introduction\",\"description\":\"\",\"author\":\"nathan\",\"path\":\"getting-started-with-godot-2021\u002F010-getting-started\u002Findex.md\",\"pathParts\":[\"courses\",\"getting-started-with-godot-2021\",\"010-getting-started\"],\"children\":[]},{\"slug\":\"getting-started-with-godot-2021\u002F020-essential-building-blocks\",\"levels\":2,\"root\":\"getting-started-with-godot-2021\",\"href\":\"\u002Fcourses\u002Fgetting-started-with-godot-2021\u002F020-essential-building-blocks\",\"published\":true,\"date_unix\":1612981789,\"date\":\"2021-02-10T22\",\"order\":0,\"title\":\"The 4 essential building blocks\",\"description\":\"\",\"author\":\"nathan\",\"path\":\"getting-started-with-godot-2021\u002F020-essential-building-blocks\u002Findex.md\",\"pathParts\":[\"courses\",\"getting-started-with-godot-2021\",\"020-essential-building-blocks\"],\"children\":[]}]}}"}</script>
+	<script type="application/json" data-type="svelte-data" data-url="/svelte-kit/courses/learn-to-code/01-game-engine-basics.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"isList\":false,\"data\":{\"slug\":\"learn-to-code\u002F01-game-engine-basics\",\"levels\":2,\"root\":\"learn-to-code\",\"href\":\"\u002Fcourses\u002Flearn-to-code\u002F01-game-engine-basics\",\"published\":true,\"date_unix\":1554400807,\"date\":\"2019-04-04T22\",\"order\":0,\"title\":\"The New Inspector\",\"description\":\"Godot 3.1 brings a completely redesigned inspector with a modern UX, nested resources, editable array and dictionaries, plugin support, and more!\",\"author\":\"nathan\",\"path\":\"learn-to-code\u002F01-game-engine-basics\u002Findex.md\",\"pathParts\":[\"courses\",\"learn-to-code\",\"01-game-engine-basics\"],\"children\":[]}}"}</script>
 </div>
   </body>
 </html>
