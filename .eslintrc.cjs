@@ -17,7 +17,17 @@ module.exports = {
     'svelte3/typescript': () => require('typescript')
   },
   rules: {
-    '@typescript-eslint/explicit-module-boundary-types': 'off'
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: false,
+        varsIgnorePattern1: '[iI]gnored',
+        argsIgnorePattern: '^_'
+      }
+    ]
   },
   parserOptions: {
     sourceType: 'module',

@@ -54,3 +54,8 @@ type PageMetadata = Pick<
 type PageMetadataAugmented = Omit<PageMetadata, 'date'> & {
   date: Dayjs
 }
+
+interface ImportMetaEnv {
+  VITE_GITHUB_OAUTH_CLIENT_ID: string
+  VITE_GITHUB_OAUTH_CLIENT_SECRET: string
+}
