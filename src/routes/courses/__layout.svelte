@@ -49,8 +49,6 @@
   import PageTitle from '$c/PageTitle.svelte'
   import Debug from '$c/Debug.svelte'
 
-  import type { PromiseValue } from 'type-fest'
-
   export let list: PostMetadataAugmented[] = []
   export let post: PostMetadataAugmented = null
   export let isCourse = false

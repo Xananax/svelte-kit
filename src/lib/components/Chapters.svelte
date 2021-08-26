@@ -1,7 +1,6 @@
 <script lang="ts">
   import RefLink from './RefLink.svelte'
   export let list: PostMetadata[] = []
-  console.log({ list })
 </script>
 
 <template>
