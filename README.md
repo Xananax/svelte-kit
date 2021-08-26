@@ -21,3 +21,4 @@ Has scripts to auto-deploy to Github
 - [ ] global components
 - [ ] multilanguage (file.[lng].md)
 - [ ] make it work with Gitlab
+- [ ] make `state` login unique

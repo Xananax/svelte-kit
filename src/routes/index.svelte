@@ -11,6 +11,9 @@
       Logo(fill="#050505")
     h1 welcome to your new SvelteKit app
     h2 try editing src/routes/index.svelte
+
+    p
+      a(href="/profile") log in
 </template>
 
 <style lang="stylus">
