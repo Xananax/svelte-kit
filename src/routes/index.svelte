@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
   import Logo from '$c/Logo.svelte'
   import PageTitle from '$c/PageTitle.svelte'
+  import { base } from '$app/paths'
   export const prerender = true
 </script>
 
@@ -13,7 +14,7 @@
     h2 try editing src/routes/index.svelte
 
     p
-      a(href="/profile") log in
+      a(href="{base}/profile") log in
 </template>
 
 <style lang="stylus">

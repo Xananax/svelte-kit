@@ -16,16 +16,17 @@
 </script>
 
 <script lang="ts">
+  import { base } from '$app/paths'
   export let user: string
 </script>
 
 <template>
   <p>
     {#if user}
-      <a href="/profile/logout">log out</a>
-      <a href="/profile/@{user}">profile</a>
+      <a href="{base}/profile/logout">log out</a>
+      <a href="{base}/profile/@{user}">profile</a>
     {:else}
-      <a href="/profile/login">log in</a>
+      <a href="{base}/profile/login">log in</a>
     {/if}
   </p>
 </template>

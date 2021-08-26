@@ -1,5 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit'
 import { github_client_id, github_client_secret } from '$lib/serverEnv'
+import { base } from '$app/paths'
 
 const authURL = 'https://github.com/login/oauth/authorize'
 
@@ -40,7 +41,7 @@ export const loadUser: RequestHandler = async (req) => {
   return {
     status: 302,
     headers: {
-      location: '/'
+      location: `${base}/profile/@${user.login}`
     }
   }
 }
