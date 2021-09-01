@@ -8,10 +8,6 @@ weight: 1
 type: video
 ---
 
-<script>
-  import { RefLink, Note, Youtube } from '$g'
-</script>
-
 <Youtube videoId="lGZ4RaC4O2w"/>
 
 There are four concepts you really need to understand to get started with Godot.
@@ -21,9 +17,9 @@ Moving forward, you will learn more tools and features, but these four are at th
 In short, these are:
 
 1. **Nodes**, which are like the base Lego blocks you use to build your game. They are a base object type defined in the engine.
-1. **Scenes** are templates made of multiple nodes, which you can save and create reproductions of in your game.
-1. A Godot game is a tree of scene instances, which is called the **scene tree**.
-1. To make multiple nodes communicate within or across scenes, Godot provides a built-in tool named **signals**, its version of the popular Observer programming pattern.
+2. **Scenes** are templates made of multiple nodes, which you can save and create reproductions of in your game.
+3. A Godot game is a tree of scene instances, which is called the **scene tree**.
+4. To make multiple nodes communicate within or across scenes, Godot provides a built-in tool named **signals**, its version of the popular Observer programming pattern.
 
 We will look at each of these core features in detail later in the course.
 

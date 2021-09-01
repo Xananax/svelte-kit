@@ -14,9 +14,6 @@ resources:
   - playlistId: PLhqJJNjsQ7KEcm-iYJ2a8UCRN62bTneKa
 ---
 
-<script lang="ts">
-  import { RefLink, Note, Chapters } from '$g'
-</script>
 
 
 You want to learn Godot or game development but don't know how to get started? Or you tried some tutorials already, but you don't feel like you understand how the engine works or how to code your games?
@@ -24,7 +21,7 @@ You want to learn Godot or game development but don't know how to get started? O
 This completely free course will give you the tools you need to make games with Godot.
 
 If you need more basics, you could check 
-<RefLink slug="learn-to-code/01-game-engine-basics"/>
+<Ref slug="learn-to-code/01-game-engine-basics"/>
 
 Through detailed explanations and hands-on, step-by-step projects, you will learn the 4 most essential concepts you need to understand in Godot.
 

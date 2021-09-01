@@ -10,7 +10,6 @@ published: true
 
 <script>
   import Counter from '$c/Counter.svelte'
-  import Ref from '$c/RefLink.svelte'
 </script>
 
 Every Godot version brings a breadth of new features. It was especially the case for Godot 3.1.

@@ -8,8 +8,4 @@ weight: 2
 type: video
 ---
 
-<script>
-  import { RefLink, Note, Youtube } from '$g'
-</script>
-
 <Youtube videoId="lpOP2tbl3zc"/>
