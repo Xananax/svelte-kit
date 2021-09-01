@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { title as first } from '$lib/env'
+  import { title as first } from '$lib/config'
   export let title = ''
   $: text = title ? `${title} | ${first}` : title
 </script>

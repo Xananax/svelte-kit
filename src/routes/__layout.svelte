@@ -2,7 +2,8 @@
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
   import { dayjs } from '$lib/dayjs'
-  import { title, homepage } from '$lib/env'
+  import { homepage } from '$lib/env'
+  import { title } from '$lib/config'
 
   const processPage = (post: PageMetadata): PageMetadataAugmented => ({
     ...post,

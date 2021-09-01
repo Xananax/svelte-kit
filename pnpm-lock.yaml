@@ -29,6 +29,7 @@ specifiers:
   stylus: ^0.54.8
   svelte: ^3.29.0
   svelte-check: ^2.0.0
+  svelte-icons: ^2.1.0
   svelte-preprocess: ^4.0.0
   tslib: ^2.0.0
   type-fest: ^2.0.0
@@ -50,6 +51,7 @@ dependencies:
   rimraf: 3.0.2
   stylus: 0.54.8
   svelte: 3.42.2
+  svelte-icons: 2.1.0
   svelte-preprocess: 4.8.0_469bc58789dfd3933670a4d4e5b774d3
   type-fest: 2.1.0
 
@@ -2240,6 +2242,10 @@ packages:
     dependencies:
       svelte: 3.42.2
     dev: true
+
+  /svelte-icons/2.1.0:
+    resolution: {integrity: sha512-rHPQjweEc9fGSnvM0/4gA3pDHwyZyYsC5KhttCZRhSMJfLttJST5Uq0B16Czhw+HQ+HbSOk8kLigMlPs7gZtfg==}
+    dev: false
 
   /svelte-preprocess/4.8.0_469bc58789dfd3933670a4d4e5b774d3:
     resolution: {integrity: sha512-i9Z17cwGlp+kuSSv3kJWdAdAP2L26A5yMzHHdDj8YL+86sN64Yz5/gfjQp3Xb6fiaToo4sB+wTpid/23Gz0yvw==}

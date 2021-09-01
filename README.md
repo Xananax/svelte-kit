@@ -18,8 +18,8 @@ If you're using VSCode, <kbd>F5</kbd> will run the dev site and open firefox
 
 - [x] implement some form of authentication (how would it work with gh-pages?)
 - [x] protect a page behind authentication
-1 - [ ] make reference links auto-work
-2 - [ ] global components
+1 - [x] make reference links auto-work
+2 - [x] global components
 3 - [ ] implement some styles
 4 - [ ] write the README (explanation for collaborators)
 5 - [ ] implement a payment provider
@@ -29,6 +29,9 @@ If you're using VSCode, <kbd>F5</kbd> will run the dev site and open firefox
 9 - [ ] multilanguage (file.[lng].md)
 10 - [ ] make `state` login unique to prevent session hijacking
 11 - [ ] implement other authentication providers
+
+https://github.com/Introvertuous-Fun/svelte-icons
+https://svelte-icons-explorer.vercel.app/
 
 ## References:
 

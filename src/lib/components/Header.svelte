@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import { homepage } from '$lib/env'
+  import SocialMediaLinks from './SocialMediaLinks.svelte'
   import Logo from './Logo.svelte'
 
   export let pages: PageMetadataAugmented[] = []
@@ -21,6 +22,7 @@
   header
     a(href="{homepage}")
       Logo
+    SocialMediaLinks
     nav
       +each('pagesList as { href, title, active } (href)')
         a(sveltekit:prefetch class:active {href}) {title}
