@@ -1,68 +1,66 @@
 <script context="module" lang="ts">
-  import type { PromiseValue } from 'type-fest'
-  import { base } from '$app/paths'
+  import { makeMetadata } from '$lib/metadataHelpers'
+  import { toHref, toSlug, slugToTitle } from '../../routes/courses/_utils'
 
-  const toNormalizedPath = (path: string) => path.replace(/^\.\.\/\.\.\/routes\/courses/, '')
-  const pagePathToSlug = (path: string) =>
-    path.replace(/(\/index)?\.(md|svx|svelte\.md)$/, '').replace(/^\/|\/$/g, '')
+  const toNormalizedPath = (path: string) => path.replace(/^(\.\.\/)+routes\/courses\//, '')
 
-  const slugToTitle = (slug: string) => slug?.replace(/-|_/g, ' ')
-
-  const process = async ([path, resolver]: [string, () => Promise<SvelteModule>]) => {
-    const { metadata } = await resolver()
-    if (!metadata) {
-      const slug = pagePathToSlug(toNormalizedPath(path))
-      const title = slugToTitle(slug)
-      return { title, slug }
-    }
-    const { title, slug } = metadata
-    return {
-      title,
-      slug: slug ?? pagePathToSlug(toNormalizedPath(path))
-    }
-  }
-
-  type RefLinkProps = PromiseValue<ReturnType<typeof process>>
-  type RefLinkDict = Record<string, RefLinkProps>
-
-  const modules = Promise.all(
-    Object.entries(import.meta.glob(`../../routes/courses/**/index.{md,svx,svelte.md}`)).map(
-      process
-    )
-  ).then((elements) =>
-    elements.reduce((dict, mod) => {
-      if (mod) {
-        dict[mod.slug] = mod
-      }
-      return dict
-    }, {} as RefLinkDict)
+  const unprocessedPages = Object.entries(
+    import.meta.glob('../../routes/courses/**/index.{md,svx,svelte.md}')
   )
 
-  const getModuleTitle = async (slug: string, def: string) => {
-    // TODO: Make this work
-    const routes = {} //await modules
-    return routes[slug] ?? def
+  const pages = Promise.all(
+    unprocessedPages.map(async ([path, resolver]) => {
+      const { metadata } = await resolver()
+      if (!metadata) {
+        return ['', '']
+      }
+      const { slug, title } = makeMetadata({ path, metadata, toNormalizedPath, toHref, toSlug })
+      return [slug, title]
+    })
+  ).then((pages) =>
+    pages.filter(Boolean).reduce((obj, [slug, title]) => {
+      obj[slug] = title
+      return obj
+    }, {} as Record<string, string>)
+  )
+
+  const getTitle = async (slug: string, defaultName: string) => {
+    return (await pages)[slug] ?? defaultName
   }
 </script>
 
 <script lang="ts">
-  export let slug: string
-  $: href = `${base}/courses/${slug || ''}`
-  const defaultName = slugToTitle(slug)
-  const getName = async () => $$slots.default ?? (await getModuleTitle(slug, defaultName))
-  let name = getName()
+  import { browser, dev } from '$app/env'
+
+  export let slug = ''
+
+  let error = false
+
+  if (!slug && browser && dev) {
+    console.warn('Reference Link was not given a slug')
+    error = true
+  }
+
+  $: href = toHref(slug)
+  $: defaultTitle = slugToTitle(slug)
+  let title = $$slots.default ?? getTitle(slug, defaultTitle)
 </script>
 
 <template>
-  <a sveltekit:prefetch {href}>
+  <a sveltekit:prefetch {href} class:error>
     <slot>
-      {#await name}
-        {defaultName}
+      {#await title}
+        {defaultTitle}
       {:then name}
         {name}
-      {:catch error}
-        {defaultName}
       {/await}
     </slot>
   </a>
 </template>
+
+<style lang="stylus">
+  .error
+    background red
+    &::after, &::before
+      content: ' ERROR '
+</style>

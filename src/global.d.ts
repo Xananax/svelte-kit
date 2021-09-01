@@ -6,9 +6,12 @@ interface Fetch {
   (info: RequestInfo, init?: RequestInit): Promise<Response>
 }
 
+type ImportSveltePromisesModules = Record<string, () => Promise<SvelteModule>>
+type ImportSvelteMetaModules = Record<string, SvelteModule>
+
 interface ImportMeta {
-  glob(pattern: string): ImportMetaModules
-  globEager(pattern: string): ImportMetaModules
+  glob(pattern: string): ImportSveltePromisesModules
+  globEager(pattern: string): ImportSvelteMetaModules
 }
 
 interface PostMetadata {
@@ -43,8 +46,6 @@ interface SvelteModule {
   }
   metadata: ModulePostMetadata
 }
-
-type ImportMetaModules = Record<string, SvelteModule>
 
 type PageMetadata = Pick<
   PostMetadataAugmented,

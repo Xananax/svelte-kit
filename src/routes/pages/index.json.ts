@@ -2,7 +2,7 @@ import type { RequestHandler } from '@sveltejs/kit'
 import { base } from '$app/paths'
 import { basename, extname } from 'path'
 import { dayjs } from '$lib/dayjs'
-import { makeMetadata } from '$lib/makeMetadata'
+import { makeMetadata } from '$lib/metadataHelpers'
 
 const toSlug = (path: string) => basename(path, extname(path))
 const toNormalizedPath = (path: string) => path.replace(/^(\.\/)/, '')

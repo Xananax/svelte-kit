@@ -15,6 +15,7 @@
 
     p
       a(href="{base}/profile") log in
+  slot
 </template>
 
 <style lang="stylus">

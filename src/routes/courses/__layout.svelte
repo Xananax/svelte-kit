@@ -1,7 +1,8 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
-  import { modules, loadPageMetadata, augmentMetadata } from './index.json'
+  import { modules, loadPageMetadata } from './index.json'
+  import { augmentMetadata } from './_utils'
 
   export const load: Load = async ({ page: { path }, fetch }) => {
     const response = await loadPageMetadata(`${base}${path}`, fetch)
