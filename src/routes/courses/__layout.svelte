@@ -1,19 +1,7 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
-  import { toHref, modules, loadPageMetadata } from './index.json'
-  import { dayjs } from '$lib/dayjs'
-
-  const augmentMetadata = (metadata: PostMetadata): PostMetadataAugmented => {
-    const { date, slug, children } = metadata
-    const href = `${base}${toHref(slug)}`
-    return {
-      ...metadata,
-      href,
-      date: dayjs(date),
-      children: children.map(augmentMetadata)
-    }
-  }
+  import { modules, loadPageMetadata, augmentMetadata } from './index.json'
 
   export const load: Load = async ({ page: { path }, fetch }) => {
     const response = await loadPageMetadata(`${base}${path}`, fetch)
