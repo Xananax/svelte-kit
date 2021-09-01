@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
-  import { toHref, modules, loadPageMetadata } from './_consts'
+  import { toHref, modules, loadPageMetadata } from './index.json'
   import { dayjs } from '$lib/dayjs'
 
   const augmentMetadata = (metadata: PostMetadata): PostMetadataAugmented => {

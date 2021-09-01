@@ -1,1 +1,1 @@
-export { get } from '../_consts'
+export { get } from '../index.json'
