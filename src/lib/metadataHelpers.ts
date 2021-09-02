@@ -27,6 +27,9 @@ export const makeMetadata = ({
   const root = levels === 1 ? '' : pathArray[0]
   const _href = toHref(slug, normalizedPath, metadata)
   const href = base ? `${base}${_href}` : _href
+  const inMenu = metadata.inMenu ?? (metadata.menuTitle !== null && metadata.menuTitle !== '')
+  console.log(path, metadata.menuTitle)
+  const title = metadata.title ?? slug.replace(/-|_/g, ' ')
   return {
     slug,
     levels,
@@ -36,7 +39,9 @@ export const makeMetadata = ({
     date_unix: _date.unix(),
     date: _date.format(`YYYY-MM-DDTHH`),
     order: metadata.order ?? 0,
-    title: metadata.title ?? slug.replace(/-|_/g, ' '),
+    title,
+    menuTitle: metadata.menuTitle ?? metadata.title,
+    inMenu,
     description: metadata.description ?? '',
     author: metadata.author ?? '',
     path: normalizedPath,
