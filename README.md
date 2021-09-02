@@ -35,6 +35,11 @@ If you're using VSCode, <kbd>F5</kbd> will run the dev site and open firefox
 https://github.com/Introvertuous-Fun/svelte-icons
 https://svelte-icons-explorer.vercel.app/
 
+
+How to pass classes to child components? Look into social media icons
+
+noreferrer noopener nofollow
+
 ## References:
 
 https://github.com/sveltejs/realworld

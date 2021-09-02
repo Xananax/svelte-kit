@@ -2,8 +2,6 @@
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
   import { dayjs } from '$lib/dayjs'
-  import { homepage } from '$lib/env'
-  import { title } from '$lib/config'
 
   const processPage = (post: PageMetadata): PageMetadataAugmented => ({
     ...post,
@@ -22,41 +20,38 @@
 </script>
 
 <script lang="ts">
-  import Header from '$c/Header.svelte'
-  import Debug from '$c/Debug.svelte'
+  import Header from '$c/Navigation.svelte'
   import '../app.stylus'
 
+  const year = new Date().getFullYear()
   export let pages: PageMetadata[]
 </script>
 
 <template lang="pug">
   Header("{pages}")
-  Debug("{pages}")
   main
     slot
   footer
-    p visit <a href={homepage}>{title}</a> to learn SvelteKit
+    p 
+      | (c) 2015-2021 
+      a(href="https://twitter.com/NathanGDQuest" target="_blank" rel="noopener") GDQuest
+      |  | 
+      a(href="/pages/legal") mentions légales
 </template>
 
 <style lang="stylus">
-  main
-    flex 1
-    display flex
-    flex-direction column
-    padding 1rem
-    width 100%
-    margin 0 auto
-    box-sizing border-box
-    max-width var(--column-width)
-    margin var(--column-margin-top) auto 0 auto
   footer
     display flex
     flex-direction column
     justify-content center
     align-items center
     padding 40px
+    background-color #222
+    color #fdfdfd
     a
       font-weight bold
+      color #fdfdfd
+      text-decoration none
   @media (min-width: 480px)
     footer
       padding 40px 0

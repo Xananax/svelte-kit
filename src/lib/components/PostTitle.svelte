@@ -7,7 +7,7 @@
 
 <template lang="pug">
 
-  h3({id} class="heading")
+  h3({id}).heading
     a({href}) {title}
 
 </template>
@@ -16,4 +16,7 @@
   .heading
     margin 0
     font-size 1.8rem
+  a
+    text-decoration none
+    color var(--heading-color)
 </style>

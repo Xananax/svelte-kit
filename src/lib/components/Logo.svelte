@@ -1,7 +1,7 @@
 <script lang="ts">
   export let width = 200
   export let height = 62
-  export let fill = '#fff'
+  export let fill = 'currentColor'
   export let strokeWidth = 6.4
 </script>
 

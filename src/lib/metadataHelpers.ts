@@ -28,7 +28,6 @@ export const makeMetadata = ({
   const _href = toHref(slug, normalizedPath, metadata)
   const href = base ? `${base}${_href}` : _href
   const inMenu = metadata.inMenu ?? (metadata.menuTitle !== null && metadata.menuTitle !== '')
-  console.log(path, metadata.menuTitle)
   const title = metadata.title ?? slug.replace(/-|_/g, ' ')
   return {
     slug,
@@ -40,7 +39,7 @@ export const makeMetadata = ({
     date: _date.format(`YYYY-MM-DDTHH`),
     order: metadata.order ?? 0,
     title,
-    menuTitle: metadata.menuTitle ?? metadata.title,
+    menuTitle: metadata.menuTitle ?? title,
     inMenu,
     description: metadata.description ?? '',
     author: metadata.author ?? '',

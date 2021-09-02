@@ -18,7 +18,8 @@
         const post = augmentMetadata(response.data)
         const isCourse = post.levels == 1
         const isChapter = post.levels > 1
-        const md = modules[post.path]
+        //const md = modules[post.slug]
+        const md = false
         return {
           props: {
             post,
@@ -34,8 +35,8 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte'
   import PostFull from '$c/PostFull.svelte'
-  import PostSummary from '$c/PostSummary.svelte'
-  import PageTitle from '$c/PageTitle.svelte'
+  import PostList from '$c/PostList.svelte'
+  import Title from '$c/PageMeta/Title.svelte'
   import Debug from '$c/Debug.svelte'
 
   export let list: PostMetadataAugmented[] = []
@@ -48,7 +49,7 @@
 
 <template>
   <Debug {...{ post, list }} />
-  <PageTitle {title} />
+  <Title {title} />
   {#if post}
     {#if isCourse}
       <PostFull
@@ -60,6 +61,7 @@
         href={post.href}
         children={post.children}
       >
+        <slot />
         <svelte:component this={md} />
       </PostFull>
     {:else if isChapter}
@@ -72,15 +74,13 @@
         href={post.href}
         children={post.children}
       >
+        <slot />
         <svelte:component this={md} />
       </PostFull>
     {/if}
-  {:else if list}
-    <ul>
-      {#each list as { title, href, description, author, date, slug } (slug)}
-        <PostSummary {title} {slug} {date} {author} {description} {href} />
-      {/each}
-    </ul>
+  {:else if list && list.length}
+    <PostList {list}>
+      <slot />
+    </PostList>
   {/if}
-  <slot />
 </template>

@@ -22,7 +22,8 @@ const config = {
       define,
       resolve: {
         alias: {
-          $c: resolve('./src/lib/components')
+          $c: resolve('./src/lib/components'),
+          $assets: resolve('./src/lib/assets')
         }
       }
     },

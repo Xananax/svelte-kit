@@ -1,7 +1,8 @@
 <script lang="ts">
-  import PageHead from '$c/PageHead.svelte'
+  import MetaTags from '$c/PageMeta/MetaTags.svelte'
   import PostTitle from '$c/PostTitle.svelte'
   import PostMeta from '$c/PostMeta.svelte'
+  import Content from '$c/Content.svelte'
 
   export let title: PostMetadataAugmented['title']
   export let slug: PostMetadataAugmented['slug']
@@ -13,14 +14,16 @@
 </script>
 
 <template lang="pug">
-  PageHead({title} {description})
-  PostTitle({title} {href} {slug})
-  PostMeta({author} {date})
-  div
+  MetaTags({description})
+  Content(white="{false}")
+    PostTitle({title} {href} {slug})
+    PostMeta({author} {date})
+  +if('children && children.length')
+    Content(white="{false}").table-of-contents
+      ul
+        +each('children as { title, href, slug } (slug)')
+          li
+            a({href}) {title}
+  Content
     slot
-  +if('children')
-    ul
-      +each('children as { title, href, slug } (slug)')
-        li
-          a({href}) {title}
 </template>

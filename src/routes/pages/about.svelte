@@ -1,6 +1,6 @@
 <script context="module">
   import { browser, dev } from '$app/env'
-  import PageTitle from '$c/PageTitle.svelte'
+  import Title from '$c/PageMeta/Title.svelte'
 
   // we don't need any JS on this page, though we'll load
   // it in dev so that we get hot module replacement...
@@ -20,10 +20,15 @@
   }
 </script>
 
+<script lang="ts">
+  import Content from '$c/Content.svelte'
+</script>
+
 <template lang="pug">
-  PageTitle(title="{metadata.title}")
-  .content
+  Title(title="{metadata.title}")
+  Content(white="{false}")
     h1 About this app
+  Content
     p 
       | This is a 
       a(href="https://kit.svelte.dev") SvelteKit

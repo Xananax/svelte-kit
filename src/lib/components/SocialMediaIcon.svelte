@@ -14,7 +14,7 @@
   type IconName = keyof typeof icons | false
 
   export let icon: IconName = false
-  export let className: string = ''
+  let className: string = ''
   export { className as class }
   $: classes = className ? `icon ${className}` : 'icon'
   $: component = (icon && icons[icon]) ?? false

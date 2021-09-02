@@ -16,6 +16,8 @@ interface ImportMeta {
 
 interface PostMetadata {
   title: string
+  menuTitle: string
+  inMenu: boolean
   date: string
   date_unix: number
   slug: string
