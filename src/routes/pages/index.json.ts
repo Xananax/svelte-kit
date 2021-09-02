@@ -21,10 +21,19 @@ const date = now.format(`YYYY-MM-DDTHH`)
 const date_unix = now.unix()
 
 const pages = [
-  { title: 'Home', pathParts: [''], href: `${base}/`, slug: '', date, date_unix },
-  ...list,
+  {
+    title: 'Home',
+    menuTitle: 'Home',
+    pathParts: [''],
+    href: `${base}/`,
+    slug: '',
+    date,
+    date_unix
+  },
+  ...list.filter(({ inMenu }) => inMenu),
   {
     title: 'Courses',
+    menuTitle: 'Courses',
     pathParts: ['courses'],
     href: `${base}/courses`,
     slug: 'courses',
