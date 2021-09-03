@@ -153,7 +153,7 @@ It's important to scope `:global`, or else you created a global rule (but in a p
 
 Alternative method:
 
-1. Add the value to [`./build-scripts/globalEnv.js`](./build-scripts/globalEnv.js)
+1. Add the value to [`./build-scripts//svelte-config/globalEnv.js`](./build-scripts//svelte-config/globalEnv.js)
 2. Add the value to [./src/lib/config/env.ts](./src/lib/config/env.ts)
 3. Import `$lib/config/env.ts` and use the variable
 

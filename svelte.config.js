@@ -1,9 +1,9 @@
 import preprocess from 'svelte-preprocess'
 import adapter from '@sveltejs/adapter-static'
 //import adapter from '@sveltejs/adapter-node'
-import { mdsvex, extensions } from './build-scripts/mdsvex.config.js'
-import define, { is_prod, base } from './build-scripts/globalEnv.js'
-import { mdsvexGlobalComponents } from './build-scripts/mdsvexGlobalComponents.js'
+import { mdsvex, extensions } from './build-scripts/svelte-config/mdsvex.config.js'
+import define, { is_prod, base } from './build-scripts/svelte-config/globalEnv.js'
+import { mdsvexGlobalComponents } from './build-scripts/svelte-config/mdsvexGlobalComponents.js'
 import { resolve } from 'path'
 
 const globalComponents = mdsvexGlobalComponents({
