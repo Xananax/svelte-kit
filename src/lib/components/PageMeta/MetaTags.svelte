@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { title } from '$lib/config'
+  import { title } from '$lib/config/siteConfig'
 
   export let description: string
 </script>

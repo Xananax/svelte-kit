@@ -16,17 +16,18 @@
 </script>
 
 <script lang="ts">
-  import { base } from '$app/paths'
+  import Link from '$c/Link.svelte'
+
   export let user: string
 </script>
 
 <template>
   <p>
     {#if user}
-      <a href="{base}/profile/logout">log out</a>
-      <a href="{base}/profile/@{user}">profile</a>
+      <Link href="/profile/logout">log out</Link>
+      <Link href="/profile/@{user}">profile</Link>
     {:else}
-      <a href="{base}/profile/login">log in</a>
+      <Link href="/profile/login">log in</Link>
     {/if}
   </p>
 </template>

@@ -1,6 +1,10 @@
 /**
  * Node has a neat `path` module, but despite needing no I/O, that module
- * isn't accessible to the client
+ * isn't accessible to the client, and the canonical replacement, `browserify-path` is
+ * neither TS-compatible, nor `import` compatible.
+ *
+ * The below is a poor man's `path` and very certainly doesn't pass the tests, but it
+ * will get the job done for us
  */
 
 export const basename = (path: string, removeExtension: boolean | string = false) => {

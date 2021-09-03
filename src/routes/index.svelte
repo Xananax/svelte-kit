@@ -3,7 +3,7 @@
   import Title from '$c/PageMeta/Title.svelte'
   import Link from '$c/Link.svelte'
   import Content from '$c/Content.svelte'
-  import { base } from '$app/paths'
+
   export const prerender = true
 </script>
 
@@ -20,7 +20,7 @@
     h2 try editing src/routes/index.svelte
 
     p
-      a(href="{base}/profile") log in
+      Link(href="/profile") log in
   slot
 </template>
 

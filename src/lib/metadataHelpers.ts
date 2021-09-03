@@ -1,7 +1,7 @@
 import { dayjs } from '$lib/dayjs'
 import { base } from '$app/paths'
+import { strip } from '$lib/path'
 
-const strip = (path: string) => path.replace(/^\/+|\/+$/g, '')
 const getFileTime = () => Date.now()
 
 export type MetadataMakerOptions = {
@@ -12,6 +12,19 @@ export type MetadataMakerOptions = {
   toHref: (slug: string, normalizedPath: string, metadata: SvelteModule['metadata']) => string
 }
 
+/**
+ * Takes a Svelte Components metadata, and normalizes it.
+ * While the Typescript type will try to force you to have a few mandatory
+ * properties in your metadata, the function can actually derive valid schema
+ * from the `path` property and makes no assumptions about the shape of `metadata`,
+ * to allow for sloppy data entry.
+ * You do need a `metadata` property though, even if empty.
+ *
+ * This function is made generic by depInjecting methods for normalizing the path,
+ * creating a slug from that normalized path, and to transform the slug to Href
+ * @param options
+ * @returns
+ */
 export const makeMetadata = ({
   path,
   metadata,

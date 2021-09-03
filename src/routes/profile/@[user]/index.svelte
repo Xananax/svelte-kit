@@ -1,10 +1,11 @@
 <script lang="ts">
   import { session } from '$app/stores'
-  import { base } from '$app/paths'
+  import Link from '$c/Link.svelte'
+
   const { user } = $session
 </script>
 
 <template>
   <h1>Hello {user}!</h1>
-  <a href="{base}/profile/logout">log out</a>
+  <Link href="/profile/logout">log out</Link>
 </template>

@@ -1,8 +1,13 @@
+import { homepage } from './env'
+import { escapeRegExp } from '$lib/escapeRegExp'
+
 export const title = 'GDQuest'
 export const youtube = 'https://www.youtube.com/c/gdquest'
 export const twitter = 'https://twitter.com/NathanGDQuest'
 export const github = 'https://github.com/GDQuest/'
 export const discord = 'https://discord.gg/87NNb3Z'
+
+export { homepage }
 
 export const socialMedia = [
   ['Youtube', youtube],

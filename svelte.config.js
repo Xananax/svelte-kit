@@ -7,8 +7,8 @@ import { mdsvexGlobalComponents } from './build-scripts/mdsvexGlobalComponents.j
 import { resolve } from 'path'
 
 const globalComponents = mdsvexGlobalComponents({
-  dir: `$lib/components`,
-  list: ['Note.svelte', 'Youtube.svelte', ['Ref', 'RefLink.svelte']],
+  file: `$lib/MarkdownImports.ts`,
+  list: ['Note', 'Youtube', 'Ref', 'Link'],
   extensions
 })
 

@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
-  import { modules, loadPageMetadata } from './index.json'
+  import { loadPageMetadata } from './index.json'
   import { augmentMetadata } from './_utils'
 
   export const load: Load = async ({ page: { path }, fetch }) => {

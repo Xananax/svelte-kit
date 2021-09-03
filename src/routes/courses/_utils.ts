@@ -1,5 +1,4 @@
 import { strip } from '$lib/path'
-import { base } from '$app/paths'
 import { dayjs } from '$lib/dayjs'
 
 export const toNormalizedPath = (path: string) => path.replace(/^(\.\/)/, '')
@@ -22,7 +21,7 @@ export const toSlug = (normalizedPath: string, metadata: PostMetadata) =>
  */
 export const augmentMetadata = (metadata: PostMetadata): PostMetadataAugmented => {
   const { date, slug, children } = metadata
-  const href = `${base}${toHref(slug)}`
+  const href = `${toHref(slug)}`
   return {
     ...metadata,
     href,

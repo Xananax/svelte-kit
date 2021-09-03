@@ -14,7 +14,7 @@ export const is_prod = process.env.NODE_ENV === 'production'
 export const base = path ? `/${path}` : ''
 
 /**
- * Don't forget to also change ../src/lib/env.ts
+ * Don't forget to also change [../src/lib/config/env.ts](../src/lib/config/env.ts)
  */
 export default {
   'process.env.NAME': `"${name}"`,

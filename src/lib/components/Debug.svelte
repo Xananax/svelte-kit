@@ -1,4 +1,7 @@
 <script lang="ts">
+  /**
+   * A component that stringifies anything passed to it and outputs it as JSON in the doc
+   */
   export let open = false
   $: text = JSON.stringify($$props, null, 2)
 </script>

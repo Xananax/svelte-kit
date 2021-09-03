@@ -1,7 +1,7 @@
 import cookie from 'cookie'
 //import { v4 as uuid } from '@lukeed/uuid'
 import type { Handle, GetSession } from '@sveltejs/kit'
-import '$lib/serverEnv' // we import this to get the errors thrown as soon as we run if variables are missing
+import '$lib/config/serverEnv' // we import this to get the errors thrown as soon as we run if variables are missing
 
 export const handle: Handle = async ({ request, resolve }) => {
   const cookies = cookie.parse(request.headers.cookie || '')

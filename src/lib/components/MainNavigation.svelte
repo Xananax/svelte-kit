@@ -1,9 +1,10 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { homepage } from '$lib/env'
-  import { socialMedia } from '$lib/config'
-  import SocialMediaIcon from './SocialMediaIcon.svelte'
-  import Logo from './Logo.svelte'
+  import { homepage } from '$lib/config/env'
+  import { socialMedia } from '$lib/config/siteConfig'
+  import SocialMediaIcon from '$c/SocialMediaIcon.svelte'
+  import Link from '$c/Link.svelte'
+  import Logo from '$c/Logo.svelte'
 
   export let pages: PageMetadataAugmented[] = []
 
@@ -21,14 +22,14 @@
 
 <template lang="pug">
   header
-    a(href="{homepage}" class="logo")
+    Link(href="{homepage}" class="logo")
       Logo
     nav.site-links
       +each('pagesList as { href, menuTitle, active } (href)')
-        a(sveltekit:prefetch class:active {href}) {menuTitle}
+        Link(prefetch {active} {href}) {menuTitle}
     nav.social-media
       +each('socialMedia as {name, description, href} (href)')
-        a({href} target="_blank" rel="noopener")
+        Link({href} social)
           SocialMediaIcon(icon="{name}" class="social-media-icon") {description}
     slot
 </template>
@@ -44,28 +45,29 @@
   .social-media
     :global(.social-media-icon)
       height 1.3em
-  a
-    display flex
-    align-items center
-    justify-content center
-    box-sizing border-box
-    padding 1em
-    font-weight 700
-    font-size 0.8rem
-    text-transform uppercase
-    text-decoration none
-    transition color 1s ease-out
-    font-family montserrat, sans-serif
-    color var(--heading-color)
-    text-shadow 0 2px 2px rgba(0,0,0,.2)
-    border-bottom 4px solid transparent
-    border-top 4px solid transparent
-    &.active
-      border-bottom-color var(--heading-color)
-    &:hover
-      color var(--accent-color)
-      transition color .2s ease-in
+  header
+    :global(a)
+      display flex
+      align-items center
+      justify-content center
+      box-sizing border-box
+      padding 1em
+      font-weight 700
+      font-size 0.8rem
+      text-transform uppercase
       text-decoration none
-    &.active:hover, &.logo:hover
+      transition color 1s ease-out
+      font-family montserrat, sans-serif
+      color var(--heading-color)
+      text-shadow 0 2px 2px rgba(0,0,0,.2)
+      border-bottom 4px solid transparent
+      border-top 4px solid transparent
+      &:hover
+        color var(--accent-color)
+        transition color .2s ease-in
+        text-decoration none
+    :global(.active)
+      border-bottom-color var(--heading-color)
+    :global(.active:hover), :global(.logo:hover)
       color var(--heading-color)
 </style>

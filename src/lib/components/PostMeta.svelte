@@ -9,6 +9,7 @@
 <template lang="pug">
   p
     span.author {author}
+    |  
     span.date {formattedDate}
 </template>
 

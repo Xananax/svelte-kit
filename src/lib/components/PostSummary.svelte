@@ -1,6 +1,7 @@
 <script lang="ts">
   import PostTitle from '$c/PostTitle.svelte'
   import PostMeta from '$c/PostMeta.svelte'
+  import Link from '$c/Link.svelte'
 
   export let title: PostMetadataAugmented['title']
   export let slug: PostMetadataAugmented['slug']
@@ -16,7 +17,7 @@
     PostMeta({author} {date})
     p
       | {description}
-      a({href}) Read More &rarr;
+      Link({href}) Read More &rarr;
     slot
 </template>
 

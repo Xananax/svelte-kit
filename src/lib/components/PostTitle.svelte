@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Link from '$c/Link.svelte'
   export let slug: PostMetadataAugmented['slug']
   export let title: PostMetadataAugmented['title']
   export let href: PostMetadataAugmented['href']
@@ -8,7 +9,7 @@
 <template lang="pug">
 
   h3({id}).heading
-    a({href}) {title}
+    Link({href} class="heading-link") {title}
 
 </template>
 
@@ -16,7 +17,7 @@
   .heading
     margin 0
     font-size 1.8rem
-  a
-    text-decoration none
-    color var(--heading-color)
+    :global(.heading-link)
+      text-decoration none
+      color var(--heading-color)
 </style>

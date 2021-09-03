@@ -3,12 +3,10 @@
   export { className as class }
 
   export let white = true
-  export let backgroundColor = ''
-  $: style = backgroundColor ? `background-color: ${backgroundColor}` : ''
 </script>
 
 <template>
-  <section class={className} class:white {style}>
+  <section class={className} class:white>
     <div>
       <slot />
     </div>

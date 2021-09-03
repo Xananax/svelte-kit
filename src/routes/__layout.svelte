@@ -2,11 +2,14 @@
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
   import { dayjs } from '$lib/dayjs'
+  // TODO: Why is this not working? See: https://github.com/pngwn/MDsveX/discussions/292
+  import { a } from '$lib/MarkdownImports'
+  export { a }
 
   const processPage = (post: PageMetadata): PageMetadataAugmented => ({
     ...post,
     date: dayjs(post.date),
-    href: `${base}${post.href}` // TODO: WHY IS THIS NECESSARY BOTH HERE AND IN makeMetadata?????
+    href: `${post.href}` // TODO: WHY IS THIS NECESSARY BOTH HERE AND IN makeMetadata?????
   })
 
   export const load: Load = async ({ fetch }) => {
@@ -20,7 +23,8 @@
 </script>
 
 <script lang="ts">
-  import Header from '$c/Navigation.svelte'
+  import MainNavigation from '$c/MainNavigation.svelte'
+  import Link from '$c/Link.svelte'
   import '../app.stylus'
 
   const year = new Date().getFullYear()
@@ -28,15 +32,15 @@
 </script>
 
 <template lang="pug">
-  Header("{pages}")
+  MainNavigation("{pages}")
   main
     slot
   footer
     p 
       | (c) 2015-2021 
-      a(href="https://twitter.com/NathanGDQuest" target="_blank" rel="noopener") GDQuest
+      Link(href="https://twitter.com/NathanGDQuest" social) GDQuest
       |  | 
-      a(href="/pages/legal") mentions légales
+      Link(href="/pages/legal") mentions légales
 </template>
 
 <style lang="stylus">
@@ -48,7 +52,7 @@
     padding 40px
     background-color #222
     color #fdfdfd
-    a
+    :global(a)
       font-weight bold
       color #fdfdfd
       text-decoration none

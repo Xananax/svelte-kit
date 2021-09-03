@@ -1,4 +1,6 @@
 <script lang="ts">
+  // Left as an example of a dynamic component in a markdown file
+  // TODO: delete this, we don't need it
   let count = 0
   const increment = () => (count += 1)
 </script>

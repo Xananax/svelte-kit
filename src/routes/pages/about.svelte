@@ -22,6 +22,7 @@
 
 <script lang="ts">
   import Content from '$c/Content.svelte'
+  import Link from '$c/Link.svelte'
 </script>
 
 <template lang="pug">
@@ -31,7 +32,7 @@
   Content
     p 
       | This is a 
-      a(href="https://kit.svelte.dev") SvelteKit
+      Link(href="https://kit.svelte.dev") SvelteKit
       |  app. You can make your own by typing the following into your command line and following the prompts:
     pre npm init svelte@next
     p

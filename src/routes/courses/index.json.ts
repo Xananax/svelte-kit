@@ -55,8 +55,6 @@ export const get: RequestHandler = async ({ params: { course, chapter }, query }
   return { body: JSON.stringify(response) }
 }
 
-type Fetch = (info: RequestInfo, init?: RequestInit) => Promise<globalThis.Response>
-
 export const loadPageMetadata = async (path: string, fetch: Fetch) => {
   const apiPath = toAPIPath(path)
   const response: Response = await (await fetch(apiPath)).json()
