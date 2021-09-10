@@ -151,6 +151,8 @@ It's important to scope `:global`, or else you created a global rule (but in a p
 3. Open [`./src/lib/config/serverEnv.ts`](./src/lib/config/serverEnv.ts) and add the new variable
 4. In the file you need it in, import `$lib/config/serverEnv.ts` and use the variable (NOT IN THE CLIENT)
 
+And example of this process can be seen in commit 5478eae88f7f2ea9d66045f06d8daf5dad533318
+
 Alternative method:
 
 1. Add the value to [`./build-scripts//svelte-config/globalEnv.js`](./build-scripts//svelte-config/globalEnv.js)
