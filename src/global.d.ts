@@ -81,4 +81,5 @@ type PageMetadataAugmented = Omit<PageMetadata, 'date'> & {
 interface ImportMetaEnv {
   VITE_GITHUB_OAUTH_CLIENT_ID: string
   VITE_GITHUB_OAUTH_CLIENT_SECRET: string
+  VITE_STRIPE_SECRET_KEY: string
 }

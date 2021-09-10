@@ -24,3 +24,5 @@ export const github_client_id =
   import.meta.env.VITE_GITHUB_OAUTH_CLIENT_ID || err('VITE_GITHUB_OAUTH_CLIENT_ID')
 export const github_client_secret =
   import.meta.env.VITE_GITHUB_OAUTH_CLIENT_SECRET || err('VITE_GITHUB_OAUTH_CLIENT_SECRET')
+
+export const stripe_secret_key = import.meta.env.VITE_STRIPE_SECRET_KEY || err('VITE_STRIPE_SECRET_KEY')
