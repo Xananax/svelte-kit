@@ -1,6 +1,12 @@
 {
-  "spellright.language": ["en-US-9-0."],
-  "spellright.documentTypes": ["markdown", "latex", "plaintext"],
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ],
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
