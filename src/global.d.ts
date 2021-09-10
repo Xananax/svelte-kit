@@ -78,9 +78,23 @@ type PageMetadataAugmented = Omit<PageMetadata, 'date'> & {
   date: Dayjs
 }
 
+interface UploadableProduct {
+  product: Omit<import('stripe').Stripe.ProductCreateParams, 'id'>
+  price: import('stripe').Stripe.PriceCreateParams
+  includes: string[]
+}
+
+interface Product {
+  product: import('stripe').Stripe.ProductCreateParams
+  price: import('stripe').Stripe.PriceCreateParams & { id: string }
+  includes: string[]
+}
+
 interface ImportMetaEnv {
   VITE_GITHUB_OAUTH_CLIENT_ID: string
   VITE_GITHUB_OAUTH_CLIENT_SECRET: string
   VITE_STRIPE_SECRET_KEY: string
   VITE_STRIPE_API_VERSION: '2020-08-27'
+  VITE_STRIPE_WEBHOOK_SECRET: string
+  VITE_STRIPE_PUBLIC_KEY: string
 }

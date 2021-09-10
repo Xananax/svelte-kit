@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@lukeed/uuid': ^2.0.0
+  '@stripe/stripe-js': ^1.17.1
   '@sveltejs/adapter-node': ^1.0.0-next.43
   '@sveltejs/adapter-static': ^1.0.0-next.16
   '@sveltejs/kit': 1.0.0-next.147
@@ -39,6 +40,7 @@ specifiers:
 
 dependencies:
   '@lukeed/uuid': 2.0.0
+  '@stripe/stripe-js': 1.17.1
   '@types/youtube': 0.0.44
   cookie: 0.4.1
   cross-env: 7.0.3
@@ -183,6 +185,10 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.0
     dev: true
+
+  /@stripe/stripe-js/1.17.1:
+    resolution: {integrity: sha512-c9MyDvdi5Xou0j0JPNy86NebtTDfh9o62Ifuzx6GSm2YO0oedBpy51WSyOue2L8Fb+mqESS5gd6mGVEIPUnXsA==}
+    dev: false
 
   /@sveltejs/adapter-node/1.0.0-next.43:
     resolution: {integrity: sha512-SRKpI67XKcUTzUIhjLDqnuxx7SC3cPazqOAXhLsCTcrgJggqA9Wr7Mpdc05vU6hZYcaLpA+wxOKep2kCmXKfsQ==}

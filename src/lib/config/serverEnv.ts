@@ -30,3 +30,11 @@ export const stripe_secret_key =
 
 export const stripe_api_version =
   import.meta.env.VITE_STRIPE_API_VERSION || err('VITE_STRIPE_API_VERSION')
+
+export const stripe_webhook_secret =
+  import.meta.env.VITE_STRIPE_WEBHOOK_SECRET || err('VITE_STRIPE_WEBHOOK_SECRET')
+
+// Stripe's pubKey is used in the client, but we check it here to get a build-time error
+// if it is missing
+export const stripe_public_key =
+  import.meta.env.VITE_STRIPE_PUBLIC_KEY || err('VITE_STRIPE_PUBLIC_KEY')
