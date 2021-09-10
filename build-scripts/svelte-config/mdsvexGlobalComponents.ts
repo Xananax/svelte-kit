@@ -11,10 +11,10 @@ export const defaults = {
  * - the array list of components, like `['Component']`
  * - the valid extensions list as an array (defaults to `['.svelte.md', '.md', '.svx']`)
  *
- * @param {Partial<typeof defaults>} options options described above
+ * @param options options described above
  * @returns a preprocessor suitable to plug into the `preprocess` key of the svelte config
  */
-export const mdsvexGlobalComponents = (options = {}) => {
+export const mdsvexGlobalComponents = (options: Partial<typeof defaults> = {}) => {
   const { extensions, file, list } = { ...defaults, ...options }
   const extensionsRegex = new RegExp('(' + extensions.join('|').replace(/\./g, '\\.') + ')$', 'i')
 

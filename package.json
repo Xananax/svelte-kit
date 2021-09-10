@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "svelte-kit dev",
     "build:site": "svelte-kit build",
+    "build:products": "node ./build-scripts/products-creator/create-products.js",
     "build": "run-s clean:build build:site",
     "disable-jekill": "touch build/.nojekyll",
     "deploy:gh-pages": "gh-pages -d build -t true",

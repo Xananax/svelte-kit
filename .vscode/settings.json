@@ -25,9 +25,21 @@
     "pnpm-lock.yaml": true,
     "svelte.config.js": true,
     "tsconfig.json": true,
-    ".nojekyll": true
+    ".nojekyll": true,
+    "bbb**/*.js": true
   },
   "explorerExclude.backup": null,
+  "terminal.integrated.profiles.windows": {
+    "cmd": {
+      "path": "C:\\WINDOW\\System3d\\cmd.exe"
+    }
+  },
+  "terminal.integrated.profiles.linux": {
+    "bash (login)": {
+      "path": "bash",
+      "args": ["-l"]
+    }
+  },
   "search.exclude": {
     "**/.svelte-kit": true,
     "**/build": true

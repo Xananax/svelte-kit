@@ -1,32 +1,32 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "start-dev-server",
-            "type": "npm",
-            "script": "dev",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "isBackground": true,
-            "problemMatcher": {
-                "owner": "custom",
-                "pattern": {
-                    "regexp": "ˆ$"
-                },
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": "Compiling...",
-                    "endsPattern": "Compiled .*"
-                }
-            },
-            "options": {
-                "shell": {
-                    "executable": "bash",
-                    "args": ["-c"]
-                }
-            }
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "start-dev-server",
+      "type": "npm",
+      "script": "dev",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "ˆ$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Compiling...",
+          "endsPattern": "Compiled .*"
         }
-    ]
+      },
+      "options": {
+        "shell": {
+          "executable": "bash",
+          "args": ["-c"]
+        }
+      }
+    }
+  ]
 }
