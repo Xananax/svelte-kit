@@ -1,10 +1,11 @@
 import { readFileSync } from 'fs'
 import { join, basename, dirname } from 'path'
 
-const __dirname = dirname(dirname(import.meta.url).replace(/^file:\//, ''))
+const __dirname = dirname(dirname(import.meta.url).replace(/^file:\/+/, ''))
+const package_json_location = join(__dirname, '..', 'package.json')
 
 export const { name, version, homepage } = JSON.parse(
-  readFileSync(join(__dirname, 'package.json'), 'utf8')
+  readFileSync(package_json_location, 'utf8')
 )
 
 export const path = homepage ? basename(homepage) : ''
