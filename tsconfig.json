@@ -29,5 +29,5 @@
       "$assets/*": ["src/lib/assets/*"],
     }
   },
-  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]
+  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte", "build-scripts/**/*.js"]
 }
