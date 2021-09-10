@@ -1,12 +1,8 @@
-import { readFileSync } from 'fs'
-import { join, basename, dirname } from 'path'
+import { basename } from 'path'
+import { getPackageJson } from '../utils.js'
 
-const __dirname = dirname(dirname(import.meta.url).replace(/^file:\/+/, ''))
-const package_json_location = join(__dirname, '..', 'package.json')
 
-export const { name, version, homepage } = JSON.parse(
-  readFileSync(package_json_location, 'utf8')
-)
+export const { name, version, homepage } = getPackageJson()
 
 export const path = homepage ? basename(homepage) : ''
 
