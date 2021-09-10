@@ -2,6 +2,7 @@
   "extends": "../tsconfig.json",
   "compileOnSave": true,
   "compilerOptions": {
-    "watch": true
-  }
+    "watch": false
+  },
+  "include": ["./**/*.ts"]
 }

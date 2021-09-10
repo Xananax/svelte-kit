@@ -1,5 +1,7 @@
 .DS_Store
 node_modules
+build-scripts/**/*.js
+build-scripts/**/*.map
 /.svelte-kit
 /package
 build

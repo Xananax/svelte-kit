@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "svelte-kit dev",
     "build:site": "svelte-kit build",
+    "build:build-scripts": "npx tsc --project build-scripts/tsconfig.json ",
     "build:products": "node ./build-scripts/products-creator/create-products.js",
     "build": "run-s clean:build build:site",
     "disable-jekill": "touch build/.nojekyll",
@@ -23,7 +24,8 @@
     "clean:svelte": "rimraf .svelte-kit",
     "clean:build": "rimraf build",
     "clean:modules": "rimraf node_modules",
-    "clean": "run-s clean:svelte clean:build clean:modules"
+    "clean": "run-s clean:svelte clean:build clean:modules",
+    "postinstall": "run-s build:build-scripts"
   },
   "devDependencies": {
     "@sveltejs/adapter-node": "^1.0.0-next.43",

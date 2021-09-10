@@ -24,9 +24,10 @@
     "node_modules": true,
     "pnpm-lock.yaml": true,
     "svelte.config.js": true,
-    "tsconfig.json": true,
+    "**/tsconfig.json": true,
     ".nojekyll": true,
-    "bbb**/*.js": true
+    "build-scripts/**/*.js": true,
+    "build-scripts/**/*.map": true
   },
   "explorerExclude.backup": null,
   "terminal.integrated.profiles.windows": {
