@@ -12,6 +12,7 @@ specifiers:
   cookie: ^0.4.1
   cross-env: ^7.0.3
   dayjs: ^1.10.6
+  dotenv: ^10.0.0
   eslint: ^7.22.0
   eslint-config-prettier: ^8.1.0
   eslint-plugin-svelte3: ^3.2.0
@@ -26,6 +27,7 @@ specifiers:
   rehype-slug: ^5.0.0
   remark-abbr: ^1.4.1
   rimraf: ^3.0.2
+  stripe: ^8.174.0
   stylus: ^0.54.8
   svelte: ^3.29.0
   svelte-check: ^2.0.0
@@ -49,6 +51,7 @@ dependencies:
   rehype-slug: 5.0.0
   remark-abbr: 1.4.1
   rimraf: 3.0.2
+  stripe: 8.174.0
   stylus: 0.54.8
   svelte: 3.42.2
   svelte-icons: 2.1.0
@@ -62,6 +65,7 @@ devDependencies:
   '@types/cookie': 0.4.1
   '@typescript-eslint/eslint-plugin': 4.29.2_b01b7137116ac50f0745961d9cf72d34
   '@typescript-eslint/parser': 4.29.2_eslint@7.32.0+typescript@4.3.5
+  dotenv: 10.0.0
   eslint: 7.32.0
   eslint-config-prettier: 8.3.0_eslint@7.32.0
   eslint-plugin-svelte3: 3.2.0_eslint@7.32.0+svelte@3.42.2
@@ -712,6 +716,11 @@ packages:
   /doctypes/1.1.0:
     resolution: {integrity: sha1-6oCxBqh1OHdOijpKWv4pPeSJ4Kk=}
     dev: false
+
+  /dotenv/10.0.0:
+    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
+    engines: {node: '>=10'}
+    dev: true
 
   /email-addresses/3.1.0:
     resolution: {integrity: sha512-k0/r7GrWVL32kZlGwfPNgB2Y/mMXVTq/decgLczm/j34whdaspNrZO8CnXPf1laaHxI6ptUlsnAxN+UAPw+fzg==}
@@ -1874,6 +1883,13 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /qs/6.10.1:
+    resolution: {integrity: sha512-M528Hph6wsSVOBiYUnGf+K/7w0hNshs/duGsNXPUCLH5XAqjEtiPGwNONLV0tBH8NoGb0mvD5JubnUTrujKDTg==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.4
+    dev: false
+
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
@@ -2178,6 +2194,14 @@ packages:
     dependencies:
       escape-string-regexp: 1.0.5
     dev: true
+
+  /stripe/8.174.0:
+    resolution: {integrity: sha512-UFU5TuYH7XwUmSllUIcIKhhsvvhhjw9D6ZwVdfB74wU4VOOaWBiQqszkw6chaEFpdulUmbcAH5eZltV3HwOi7g==}
+    engines: {node: ^8.1 || >=10.*}
+    dependencies:
+      '@types/node': 16.7.1
+      qs: 6.10.1
+    dev: false
 
   /stylus/0.54.8:
     resolution: {integrity: sha512-vr54Or4BZ7pJafo2mpf0ZcwA74rpuYCZbxrHBsH8kbcXOwSfvBFwsRfpGO5OD5fhG5HDCFW737PKaawI7OqEAg==}
