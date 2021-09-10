@@ -11,7 +11,7 @@ export const defaults = {
  * - the array list of components, like `['Component']`
  * - the valid extensions list as an array (defaults to `['.svelte.md', '.md', '.svx']`)
  *
- * @param {Object} options options described above
+ * @param {Partial<typeof defaults>} options options described above
  * @returns a preprocessor suitable to plug into the `preprocess` key of the svelte config
  */
 export const mdsvexGlobalComponents = (options = {}) => {

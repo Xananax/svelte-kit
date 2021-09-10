@@ -34,5 +34,6 @@
   },
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "cSpell.words": ["jekill", "lukeed", "mdsvex", "nojekyll", "oldschool", "rehype", "sveltejs"]
 }

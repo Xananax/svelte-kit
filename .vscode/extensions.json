@@ -12,6 +12,7 @@
     "esbenp.prettier-vscode",
     "ardenivanov.svelte-intellisense",
     "rafaelmartinez.svelte-preview",
-    "sysoev.language-stylus"
+    "sysoev.language-stylus",
+    "svelte.svelte-vscode"
   ]
 }

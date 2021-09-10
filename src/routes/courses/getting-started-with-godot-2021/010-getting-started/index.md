@@ -1,5 +1,5 @@
 ---
-author: nathan
+author: Nathan
 date: 2021-02-10T18:29:49Z
 title: Introduction
 description: ""
