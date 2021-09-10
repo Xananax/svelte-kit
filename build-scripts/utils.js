@@ -1,5 +1,4 @@
 // @ts-check
-/// <reference path="../src/global.d.ts"/>
 import { dirname } from 'path'
 import dotenv from 'dotenv';
 import { readFileSync } from 'fs';
@@ -8,6 +7,13 @@ import { join } from 'path'
 
 export const isDev = process.env.NODE_ENV !== 'production'
 export const projectRoot = dirname(dirname(import.meta.url)).replace(/^file:\/+/, '')
+
+/**
+ * 
+ * @param {string} path 
+ * @returns 
+ */
+export const fromRoot = (path) => join(projectRoot, path)
 
 /**
  * @returns {ImportMetaEnv}
