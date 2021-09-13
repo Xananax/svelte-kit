@@ -13,7 +13,7 @@ export const fromRoot = (path: string) => join(projectRoot, path)
 export const getEnvFile = () => {
   const envFilename = join(projectRoot, `.env.${isDev ? 'development' : 'production'}.local`)
   const envFileContent = readFileSync(envFilename, { encoding: 'utf-8' })
-  const config = dotenv.parse(envFileContent) as ImportMetaEnv
+  const config = dotenv.parse(envFileContent) as unknown as ImportMetaEnv
   return config
 }
 
