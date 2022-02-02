@@ -2,7 +2,6 @@
   "recommendations": [
     "bungcip.better-toml",
     "formulahendry.auto-rename-tag",
-    "coenraads.bracket-pair-colorizer-2",
     "dbaeumer.vscode-eslint",
     "redvanworkshop.explorer-exclude-vscode-extension",
     "yzhang.markdown-all-in-one",
