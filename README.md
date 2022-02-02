@@ -39,7 +39,7 @@ Uses [Pug](https://pugjs.org/api/getting-started.html) for templating, [Typescri
 
 #### Run Local App
 
-1. Run `npm install` (Recommendation: install [pnpm](https://pnpm.io/) and use `pnpm install` instead)
+1. Run `npm install` (Recommendation: install [pnpm](https://pnpm.io/) and use `pnpm install` instead). **note**: due to a bug in npm, you may have to use `npm install --legacy-peer-deps` until [this npm bug](https://github.com/npm/cli/issues/3666) is resolved. `pnpm` does this automatically.
 2. Run `npm run dev` for the dev site; or `npm run build` to build the production site
 
 If you're using VSCode, <kbd>F5</kbd> will run the dev site and open firefox
@@ -60,6 +60,7 @@ If you're using VSCode, <kbd>F5</kbd> will run the dev site and open firefox
 6. Some global components are available to all `.md` files. To know which, check `/svelte.config.js`, at the top of the file. At the time of writing, global components are `Note.svelte`, `Youtube.svelte`, and `RefLink.svelte` (as `Ref`)
 7. To add a page, but hide it from menus, set its `menuTitle` to nothing (`null` or `''` -- in YAML, just leave it empty), or set `published` to `false`. An example of this can be seen in the `pages/license` page
 8. In most cases, instead of using an `<a>` tag, use the `Link` component, it does a bunch of magic (auto-detection of external links and such). It does make it nastier to add contextual styles though, do a project search to see how it was accomplished
+9. build scripts are not handled by svelte. You have the `npm run watch:build-scripts` and `npm run build:build-scripts` to watch then and compile them respectively.
 
 ## F.A.Q
 
