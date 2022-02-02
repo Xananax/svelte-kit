@@ -1,5 +1,7 @@
 import Stripe from 'stripe'
-import { stripe_secret_key, stripe_api_version as apiVersion } from '$lib/config/serverEnv'
+import env from '$lib/config/serverEnv'
+
+const { stripe_secret_key, stripe_api_version: apiVersion } = env
 
 export const stripe = new Stripe(stripe_secret_key, { apiVersion })
 

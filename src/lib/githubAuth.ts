@@ -1,6 +1,8 @@
 import type { RequestHandler } from '@sveltejs/kit'
-import { github_client_id, github_client_secret } from '$lib/config/serverEnv'
+import env from '$lib/config/serverEnv'
 import { base } from '$app/paths'
+
+const { github_client_id, github_client_secret } = env
 
 const authURL = 'https://github.com/login/oauth/authorize'
 

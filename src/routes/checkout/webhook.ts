@@ -1,6 +1,8 @@
 import type { Request, RequestHandler, Response } from '@sveltejs/kit'
 import { stripe } from '$lib/stripe'
-import { stripe_webhook_secret } from '$lib/config/serverEnv'
+import env from '$lib/config/serverEnv'
+
+const { stripe_webhook_secret } = env
 
 const constructEvent = (rawBody: string, signature: string) => {
   try {
