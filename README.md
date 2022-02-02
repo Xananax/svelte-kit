@@ -13,7 +13,6 @@
     - [I need Icons!](#i-need-icons)
     - [Is There an example of a large real world app to learn from?](#is-there-an-example-of-a-large-real-world-app-to-learn-from)
 - [Consistency & Code Style](#consistency--code-style)
-- [Todo](#todo)
 
 A test build of GDQuest's site with [Svelte-Kit](https://kit.svelte.dev/docs) using [Svelte](https://svelte.dev/docs)
 
@@ -175,27 +174,3 @@ You betcha. Head over to https://github.com/sveltejs/realworld
 Use the baked in EsLint and Prettier rules. If you're using VsCode and the recommended plugins, your code will auto-format on save, and the linter will throw warnings for you.
 
 Otherwise, use `npm run check` to check linting and format, and `npm run format` to format all files.
-
-## Todo
-
-- [x] port one course
-- [x] make it work on gh-pages
-- [x] meta tags
-- [x] routing management
-- [x] implement some form of authentication
-- [x] protect a page behind authentication
-- [x] make reference links auto-work
-- [x] global components
-- [x] social media icons
-- [x] implement some styles
-- [x] write the README
-- [x] Add a LICENSE file
-- [ ] implement a payment provider
-- [ ] Use [nps](https://www.npmjs.com/package/nps) for scripts
-- [ ] Add a sidebar in course layout, as well as next/previous in course chapters
-- [ ] Make an authors database (and link author field in articles)
-- [ ] Do some SEO basics (meta tags and such)
-- [ ] multilanguage (file.[lng].md)
-- [ ] search functionality
-- [ ] make `state` login unique to prevent session hijacking
-- [ ] implement other authentication providers
