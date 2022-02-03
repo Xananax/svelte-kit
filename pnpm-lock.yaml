@@ -10,10 +10,10 @@ specifiers:
   '@types/youtube': ^0.0.46
   '@typescript-eslint/eslint-plugin': ^5.10.2
   '@typescript-eslint/parser': ^5.10.2
-  cookie: ^0.4.1
+  cookie: ^0.4.2
   cross-env: ^7.0.3
   dayjs: ^1.10.7
-  dotenv: ^15.0.0
+  dotenv: ^16.0.0
   eslint: ^8.8.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^3.4.0
@@ -42,7 +42,7 @@ dependencies:
   '@lukeed/uuid': 2.0.0
   '@stripe/stripe-js': 1.22.0
   '@types/youtube': 0.0.46
-  cookie: 0.4.1
+  cookie: 0.4.2
   cross-env: 7.0.3
   dayjs: 1.10.7
   mdsvex: 0.10.5_svelte@3.46.3
@@ -67,7 +67,7 @@ devDependencies:
   '@types/cookie': 0.4.1
   '@typescript-eslint/eslint-plugin': 5.10.2_2595c2126aec4d4b6e944b931dabb4c2
   '@typescript-eslint/parser': 5.10.2_eslint@8.8.0+typescript@4.5.5
-  dotenv: 15.0.0
+  dotenv: 16.0.0
   eslint: 8.8.0
   eslint-config-prettier: 8.3.0_eslint@8.8.0
   eslint-plugin-svelte3: 3.4.0_eslint@8.8.0+svelte@3.46.3
@@ -615,8 +615,8 @@ packages:
       '@babel/types': 7.16.8
     dev: false
 
-  /cookie/0.4.1:
-    resolution: {integrity: sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==}
+  /cookie/0.4.2:
+    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -708,8 +708,8 @@ packages:
     resolution: {integrity: sha1-6oCxBqh1OHdOijpKWv4pPeSJ4Kk=}
     dev: false
 
-  /dotenv/15.0.0:
-    resolution: {integrity: sha512-/l1sXXm79ry34KwwS0y4oVZjB468iw/6u9g1W26dtexKcIJAnVL2pMF+hxQwzZ7LutxOwEgtym9eIxvX33CMKg==}
+  /dotenv/16.0.0:
+    resolution: {integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==}
     engines: {node: '>=12'}
     dev: true
 
