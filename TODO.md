@@ -1,0 +1,28 @@
+# Todo
+
+- [x] port one course
+- [x] make it work on gh-pages
+- [x] meta tags
+- [x] routing management
+- [x] implement some form of authentication
+- [x] protect a page behind authentication
+- [x] make reference links auto-work
+- [x] global components
+- [x] social media icons
+- [x] implement some styles
+- [x] write the README
+- [x] Add a LICENSE file
+- [ ] lock a page behind auth (even not under user's profile)
+- [ ] implement a small top-right user icon with flyout menu
+- [ ] lock a different page behind auth
+- [ ] implement a payment provider
+- [ ] Use [nps](https://www.npmjs.com/package/nps) for scripts
+- [ ] check custom markdown elements
+- [ ] Add a sidebar in course layout, as well as next/previous in course chapters
+- [ ] Make an authors database (and link author field in articles)
+- [ ] Do some SEO basics (meta tags and such)
+- [ ] multilanguage (file.[lng].md)
+- [ ] search functionality
+- [ ] make `state` login unique to prevent session hijacking
+- [ ] get more info about the user
+- [ ] implement other authentication providers
