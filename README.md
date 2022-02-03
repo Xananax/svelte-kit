@@ -11,6 +11,7 @@
     - [How do I pass classes downwards?](#how-do-i-pass-classes-downwards)
     - [How do I add Environment Variables?](#how-do-i-add-environment-variables)
     - [I need Icons!](#i-need-icons)
+    - [How do I handle session/similar?](#how-do-i-handle-sessionsimilar)
     - [Is There an example of a large real world app to learn from?](#is-there-an-example-of-a-large-real-world-app-to-learn-from)
 - [Consistency & Code Style](#consistency--code-style)
 
@@ -24,7 +25,7 @@ Uses [Pug](https://pugjs.org/api/getting-started.html) for templating, [Typescri
 
 1. copy `.env.development.example` to `.env.development.local` and fill in the values.
 2. Optionally/alternatively, also create `.env.production.local` if you intend to deploy from this machine.
-3. If you do not want to actually use Github login in your trial, then just enter any value.
+3. If you do not want to actually use Github login in your test, then just enter any value.
 
 <details> 
 <summary>Otherwise, follow the procedure below</summary>
@@ -164,6 +165,18 @@ Alternative method:
 That's not a question, but there's an icon library included, [Introvertuous-Fun/svelte-icons](https://github.com/Introvertuous-Fun/svelte-icons). Head to https://svelte-icons-explorer.vercel.app/, choose the icon you want, click on it to get the import statement, use it.
 
 You can check [`$c/SocialMediaIcon.svelte`](./src/lib/components/SocialMediaIcon.svelte) for an example. I used FontAwesome for social icons, but there's nothing set for icons in general.
+
+#### How do I handle session/similar?
+
+On the server side, add things to `req.locals`. Then edit the `getSession` method found in [src/hooks.ts](./src/hooks.ts), and add whatever locals you want to the session.
+
+Finally, you can access the session in any `Load` handler
+
+```js
+export const load: Load = async ({ session: { user } }) => {}
+```
+
+Don't forget to edit the `App.locals` and `App.Session` interfaces in [src/global.d.ts](./src/global.d.ts) to get good typings 
 
 #### Is There an example of a large real world app to learn from?
 
