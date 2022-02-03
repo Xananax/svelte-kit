@@ -8,6 +8,7 @@ weight: 1
 difficulty: beginner
 keywords: getting started with godot, godot getting started, learn godot, godot for beginners, godot 2021
 published: true
+price: 100
 resources:
   - src: get-started-with-godot-banner.png
     name: banner

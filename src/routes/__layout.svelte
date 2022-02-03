@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+  import { StatusCodes } from 'http-status-codes'
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
   import { dayjs } from '$lib/dayjs'
@@ -16,7 +17,7 @@
     const goto = page.query.get('goto')
 
     if (goto) {
-      return { redirect: `${base}${goto}`, status: 302 }
+      return { redirect: `${base}${goto}`, status: StatusCodes.TEMPORARY_REDIRECT }
     }
     const pages = (await fetch(`${base}/pages.json`).then((res) => res.json())).map(processPage)
     return {

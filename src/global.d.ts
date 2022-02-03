@@ -37,6 +37,7 @@ interface PostMetadata {
   pathParts: string[]
   href: string
   children: PostMetadata[]
+  price: number
 }
 
 /**

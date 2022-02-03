@@ -1,4 +1,5 @@
-import type { Request, RequestHandler, Response } from '@sveltejs/kit'
+import { StatusCodes } from 'http-status-codes'
+import type { Request, RequestHandler } from '@sveltejs/kit'
 import { stripe } from '$lib/stripe'
 import env from '$lib/config/serverEnv'
 
@@ -18,7 +19,7 @@ export const post: RequestHandler = async (req: Request<any, { data: any; type: 
   const event = await constructEvent(req.rawBody as string, signature)
   if (event instanceof Error) {
     return {
-      status: 400,
+      status: StatusCodes.BAD_REQUEST,
       body: `Webhook Error: ${event.message}`
     }
   }
@@ -51,6 +52,6 @@ export const post: RequestHandler = async (req: Request<any, { data: any; type: 
   }
 
   return {
-    status: 200
+    status: StatusCodes.OK
   }
 }

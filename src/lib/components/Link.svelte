@@ -33,8 +33,6 @@
       ? `noopener ${additionalRel}`
       : `noreferrer noopener nofollow ${additionalRel}`
     : additionalRel
-
-  //console.log({ href, external })
 </script>
 
 <template>

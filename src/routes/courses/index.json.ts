@@ -1,3 +1,4 @@
+import { StatusCodes } from 'http-status-codes'
 import type { RequestHandler } from '@sveltejs/kit'
 import { makeMetadata } from '$lib/metadataHelpers'
 import { toAPIPath, toHref, toSlug, toNormalizedPath } from './_utils'
@@ -46,7 +47,7 @@ export const get: RequestHandler = async ({ params: { course, chapter }, query }
   const isList = query.has('list') || slug === ''
   const data = isList ? children[slug] : pages[slug]
   if (!data) {
-    return { status: 404 }
+    return { status: StatusCodes.NOT_FOUND }
   }
   const response = {
     isList,

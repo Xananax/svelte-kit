@@ -1,10 +1,11 @@
 <script context="module" lang="ts">
+  import { StatusCodes } from 'http-status-codes'
   import type { Load } from '@sveltejs/kit'
   import { base } from '$app/paths'
   import { loadPageMetadata } from './index.json'
   import { augmentMetadata } from './_utils'
 
-  export const load: Load = async ({ page: { path }, fetch }) => {
+  export const load: Load = async ({ page: { path }, fetch, session: { user } }) => {
     const response = await loadPageMetadata(`${base}${path}`, fetch)
     switch (response.isList) {
       case true:
@@ -16,6 +17,13 @@
         }
       case false:
         const post = augmentMetadata(response.data)
+        if (post.price > 0 && !user) {
+          // TODO: replace this with checking that user has access to the resource
+          return {
+            error: 'you are not allowed to access this resource without logging in',
+            status: StatusCodes.UNAUTHORIZED
+          }
+        }
         const isCourse = post.levels == 1
         const isChapter = post.levels > 1
         //const md = modules[post.slug]

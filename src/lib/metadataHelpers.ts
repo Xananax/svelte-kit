@@ -42,6 +42,7 @@ export const makeMetadata = ({
   const href = base ? `${base}${_href}` : _href
   const inMenu = metadata.inMenu ?? (metadata.menuTitle !== null && metadata.menuTitle !== '')
   const title = metadata.title ?? slug.replace(/-|_/g, ' ')
+  const price = metadata.price ?? 0
   return {
     slug,
     levels,
@@ -58,6 +59,7 @@ export const makeMetadata = ({
     author: metadata.author ?? '',
     path: normalizedPath,
     pathParts: _href.replace(/^\/|\/$/g, '').split('/'),
-    children: [] as PostMetadata[]
+    children: [] as PostMetadata[],
+    price
   }
 }

@@ -1,3 +1,4 @@
+import { StatusCodes } from 'http-status-codes'
 import type { RequestHandler } from '@sveltejs/kit'
 import env from '$lib/config/serverEnv'
 import { base } from '$app/paths'
@@ -14,7 +15,7 @@ export const login: RequestHandler = async (req) => {
   const state = JSON.stringify(stateParams)
   const query = new URLSearchParams({ client_id: github_client_id, state }).toString()
   return {
-    status: 302,
+    status: StatusCodes.MOVED_TEMPORARILY,
     headers: {
       location: `${authURL}?${query}`
     }
@@ -28,7 +29,7 @@ export const logout: RequestHandler = async (req) => {
   const query = goto ? '?' + new URLSearchParams({ goto }).toString() : ''
 
   return {
-    status: 302,
+    status: StatusCodes.MOVED_TEMPORARILY,
     headers: {
       'set-cookie': 'user=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
       location: `/${query}`
@@ -44,7 +45,7 @@ export const githubCallback: RequestHandler = async (req) => {
   // TODO: switch this to a secure state
   if (key !== '1234') {
     return {
-      status: 403,
+      status: StatusCodes.FORBIDDEN,
       headers: {
         location: '/'
       }
@@ -61,7 +62,7 @@ export const githubCallback: RequestHandler = async (req) => {
   const path = goto ? goto : `profile/@${user.login}`
   const location = `${base}${path}`
   return {
-    status: 302,
+    status: StatusCodes.MOVED_TEMPORARILY,
     headers: {
       location
     }
@@ -87,7 +88,6 @@ const loadAccessToken = async (code: string) => {
   })
 
   const json = await response.json()
-  console.log(json)
   const access_token: string = json.access_token
 
   return access_token

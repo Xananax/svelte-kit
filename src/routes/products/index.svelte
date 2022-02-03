@@ -1,11 +1,12 @@
 <script context="module" lang="ts">
+  import { StatusCodes } from 'http-status-codes'
   export const prerender = true
 
   export async function load({ fetch }) {
     const res = await fetch('/products.json')
     const products: Product[] = await res.json()
     return {
-      status: 200,
+      status: StatusCodes.OK,
       props: {
         products
       }

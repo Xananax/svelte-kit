@@ -14,7 +14,7 @@
 - [x] Add a LICENSE file
 - [ ] lock a page behind auth (even not under user's profile)
 - [x] implement a small top-right user icon with flyout menu
-- [ ] lock a different page behind auth
+- [x] lock a different page behind auth
 - [ ] implement a payment provider
 - [ ] Use [nps](https://www.npmjs.com/package/nps) for scripts
 - [ ] check custom markdown elements
