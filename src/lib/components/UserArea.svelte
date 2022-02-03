@@ -7,9 +7,9 @@
   const url = $page.path.startsWith('/profile/@') ? '' : $page.path
 
   export let user: String = ''
-  let visible = false
-  const toggle = () => (visible = !visible)
-  const close = () => (visible = false)
+  let hidden = true
+  const toggle = () => (hidden = !hidden)
+  const close = () => (hidden = true)
 </script>
 
 <template>
@@ -19,12 +19,10 @@
         <button class="icon" on:click={toggle} aria-label="Open user menu">
           <UserIcon />
         </button>
-        {#if visible}
-          <div class="menu">
-            <Link href="/profile/">{user}'s Profile</Link>
-            <Link href="/profile/logout?url={url}">log out</Link>
-          </div>
-        {/if}
+        <div class="menu" class:hidden>
+          <Link class="menu-item" href="/profile/">{user}'s Profile</Link>
+          <Link class="menu-item" href="/profile/logout?url={url}">log out</Link>
+        </div>
       </div>
     {:else}
       <Link href="/profile/login?url={url}">log in</Link>
@@ -56,11 +54,17 @@
     position absolute
     top calc(100% + 5px)
     right -10px
-    width 100px
+    width 150px
     background #333
-    & > *
-      padding 5px
-      margin-bottom 12px
-      margin-top 0
+    display flex
+    flex-direction column
+    justify-content center
+  
+  .menu-item
+    padding 5px
+    margin-bottom 12px
+    margin-top 0
 
+  .hidden
+    display none
 </style>

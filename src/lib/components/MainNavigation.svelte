@@ -53,6 +53,7 @@
       display flex
       align-items center
       justify-content center
+      text-align center
       box-sizing border-box
       padding 1em
       font-weight 700
