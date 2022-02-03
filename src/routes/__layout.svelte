@@ -12,11 +12,17 @@
     href: `${post.href}` // TODO: WHY IS THIS NECESSARY BOTH HERE AND IN makeMetadata?????
   })
 
-  export const load: Load = async ({ fetch }) => {
+  export const load: Load = async ({ fetch, session: { user }, page }) => {
+    const goto = page.query.get('goto')
+
+    if (goto) {
+      return { redirect: `${base}${goto}`, status: 302 }
+    }
     const pages = (await fetch(`${base}/pages.json`).then((res) => res.json())).map(processPage)
     return {
       props: {
-        pages
+        pages,
+        user
       }
     }
   }
@@ -29,10 +35,11 @@
 
   const year = new Date().getFullYear()
   export let pages: PageMetadata[]
+  export let user
 </script>
 
 <template lang="pug">
-  MainNavigation("{pages}")
+  MainNavigation("{pages}" {user})
   main
     slot
   footer

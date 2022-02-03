@@ -1,3 +1,3 @@
-import { redirectToGithub as get } from '$lib/githubAuth'
+import { login as get } from '$lib/githubAuth'
 
 export { get }

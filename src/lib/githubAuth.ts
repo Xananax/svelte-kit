@@ -4,57 +4,82 @@ import { base } from '$app/paths'
 
 const { github_client_id, github_client_secret } = env
 
-const authURL = 'https://github.com/login/oauth/authorize'
+type OAuthStateParams = { goto: string; key: string }
 
-export const redirectToGithub: RequestHandler = async (_req) => {
-  const sessionId = '1234'
+export const login: RequestHandler = async (req) => {
+  const authURL = 'https://github.com/login/oauth/authorize'
+  const goto = req.query.get('url')
+  const key = '1234'
+  const stateParams: OAuthStateParams = { goto, key }
+  const state = JSON.stringify(stateParams)
+  const query = new URLSearchParams({ client_id: github_client_id, state }).toString()
   return {
     status: 302,
     headers: {
-      location: `${authURL}?client_id=${github_client_id}&state=${sessionId}`
+      location: `${authURL}?${query}`
     }
   }
 }
 
 export const logout: RequestHandler = async (req) => {
   req.locals.user = ''
+
+  const goto = req.query.get('url')
+  const query = goto ? '?' + new URLSearchParams({ goto }).toString() : ''
+
   return {
     status: 302,
     headers: {
       'set-cookie': 'user=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
-      location: '/'
+      location: `/${query}`
     }
   }
 }
 
-const tokenURL = 'https://github.com/login/oauth/access_token'
-const userURL = 'https://api.github.com/user'
-
-export const loadUser: RequestHandler = async (req) => {
+export const githubCallback: RequestHandler = async (req) => {
   const code = req.query.get('code')
-  const accessToken = await getAccessToken(code)
-  const user = await getUser(accessToken)
+  const { key, goto }: OAuthStateParams = JSON.parse(
+    req.query.get('state') || JSON.stringify({ goto: '', key: '' } as OAuthStateParams)
+  )
+  // TODO: switch this to a secure state
+  if (key !== '1234') {
+    return {
+      status: 403,
+      headers: {
+        location: '/'
+      }
+    }
+  }
+  const accessToken = await loadAccessToken(code)
+  const user = await loadUserFromAccessToken(accessToken)
 
   // this mutates the locals object on the request
   // and will be read by the hooks/handle function
   // after the resolve
   req.locals.user = user?.login || null
 
+  const path = goto ? goto : `profile/@${user.login}`
+  const location = `${base}${path}`
   return {
     status: 302,
     headers: {
-      location: `${base}/profile/@${user.login}`
+      location
     }
   }
 }
 
-const getAccessToken = async (code: string) => {
+/******************************************************************************
+ *  GITHUB API HANDLERS BELOW
+ *****************************************************************************/
+
+const loadAccessToken = async (code: string) => {
   const body = JSON.stringify({
     client_id: github_client_id,
     client_secret: github_client_secret,
     code
   })
 
+  const tokenURL = 'https://github.com/login/oauth/access_token'
   const response = await fetch(tokenURL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -62,12 +87,14 @@ const getAccessToken = async (code: string) => {
   })
 
   const json = await response.json()
+  console.log(json)
   const access_token: string = json.access_token
 
   return access_token
 }
 
-export const getUser = async (accessToken: string) => {
+export const loadUserFromAccessToken = async (accessToken: string) => {
+  const userURL = 'https://api.github.com/user'
   const response = await fetch(userURL, {
     headers: {
       Accept: 'application/json',
@@ -109,6 +136,6 @@ type GithubProfile = {
   public_gists: number
   followers: number
   following: number
-  created_at: string //'2011-06-07T21:03:31Z',
-  updated_at: string //'2021-08-24T11:39:24Z'
+  created_at: DateYMDHhMmSs //'2011-06-07T21:03:31Z',
+  updated_at: DateYMDHhMmSs //'2021-08-24T11:39:24Z'
 }

@@ -98,3 +98,51 @@ interface ImportMetaEnv {
   VITE_STRIPE_WEBHOOK_SECRET: string
   VITE_STRIPE_PUBLIC_KEY: string
 }
+
+declare namespace svelte.JSX {
+  interface HTMLAttributes<T> {
+    // defined in: src/lib/useClickOutside.ts
+    onoutclick?: () => void
+  }
+}
+
+type User = string
+
+declare namespace App {
+  interface Locals {
+    user?: User
+  }
+
+  interface Platform {}
+
+  interface Session {
+    user?: User
+  }
+
+  interface Stuff {}
+}
+
+/*
+type positiveDigits = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+type digit = 0 | positiveDigits
+type YYYY = `19${digit}${digit}` | `20${digit}${digit}`
+type MM = `0${positiveDigits}` | `1${0 | 1 | 2}`
+type DD = `${0}${positiveDigits}` | `${1 | 2}${digit}` | `3${0 | 1}`
+type hh = `${0 | 1}${digit}` | `2${0 | 1 | 2 | 3}`
+type mm = `0${digit}` | `${1 | 2 | 3 | 4 | 5}${digit}`
+type ss = mm
+type DateYM = `${YYYY}-${MM}`
+type DateYMD = `${YYYY}-${MM}-${DD}`
+type TimeHhMm = `${hh}:${mm}`
+type TimeHhMmSs = `${hh}:${mm}:${ss}`
+// unfortunately, Typescript borks at the combinatorial explosion here:
+type DateYMDHHMMSS = `${DateYMD}T${TimeHhMmSs}Z`
+*/
+type d = number
+type DateYMDHhMmSs = `${d}${d}${d}${d}-${d}${d}-${d}${d}T${d}${d}:${d}${d}:${d}${d}Z`
+
+const DateString: unique Symbol
+type DateString = string & { [DateString]: true }
+
+const UUID: unique symbol
+type UUID = string & { [UUID]: true }

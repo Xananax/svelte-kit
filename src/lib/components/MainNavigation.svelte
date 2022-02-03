@@ -5,8 +5,10 @@
   import SocialMediaIcon from '$c/SocialMediaIcon.svelte'
   import Link from '$c/Link.svelte'
   import Logo from '$c/Logo.svelte'
+  import UserArea from '$c/UserArea.svelte'
 
   export let pages: PageMetadataAugmented[] = []
+  export let user = ''
 
   const markActivePage = (currentPath: string[]) => (page: PageMetadataAugmented) => {
     const active =
@@ -31,6 +33,7 @@
       +each('socialMedia as {name, description, href} (href)')
         Link({href} social)
           SocialMediaIcon(icon="{name}" class="social-media-icon") {description}
+    UserArea("{user}")
     slot
 </template>
 
