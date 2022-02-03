@@ -6,7 +6,7 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 
 export const isDev = process.env.NODE_ENV !== 'production'
-export const projectRoot = dirname(dirname(import.meta.url)).replace(/^file:\/+/, '')
+export const projectRoot = dirname(dirname(import.meta.url)).replace(/^file:\/+/, '/')
 
 export const fromRoot = (path: string) => join(projectRoot, path)
 
