@@ -12,11 +12,11 @@
 - [x] implement some styles
 - [x] write the README
 - [x] Add a LICENSE file
-- [ ] lock a page behind auth (even not under user's profile)
+- [x] lock a page behind auth (even not under user's profile)
 - [x] implement a small top-right user icon with flyout menu
 - [x] lock a different page behind auth
+- [-] Use [nps](https://www.npmjs.com/package/nps) for scripts
 - [ ] implement a payment provider
-- [ ] Use [nps](https://www.npmjs.com/package/nps) for scripts
 - [ ] check custom markdown elements
 - [ ] Add a sidebar in course layout, as well as next/previous in course chapters
 - [ ] Make an authors database (and link author field in articles)
