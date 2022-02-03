@@ -20,8 +20,8 @@
           <UserIcon />
         </button>
         <div class="menu" class:hidden>
-          <Link class="menu-item" href="/profile/">{user}'s Profile</Link>
-          <Link class="menu-item" href="/profile/logout?url={url}">log out</Link>
+          <Link href="/profile/">{user}'s Profile</Link>
+          <Link href="/profile/logout?url={url}">log out</Link>
         </div>
       </div>
     {:else}
@@ -59,11 +59,6 @@
     display flex
     flex-direction column
     justify-content center
-  
-  .menu-item
-    padding 5px
-    margin-bottom 12px
-    margin-top 0
 
   .hidden
     display none
