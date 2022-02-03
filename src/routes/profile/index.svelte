@@ -9,11 +9,3 @@
     }
   }
 </script>
-
-<script lang="ts">
-  import Link from '$c/Link.svelte'
-
-  export let user: string
-</script>
-
-<template />
