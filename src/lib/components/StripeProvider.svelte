@@ -13,13 +13,13 @@
 <script lang="ts">
   import { loadStripe } from '@stripe/stripe-js'
   import { setContext } from 'svelte'
-
-  const publishableKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY
+  import props from '$lib/config/browserEnv'
+  const { stripe_public_key } = props
 
   // TODO: Use a store rather than context?
   setContext('stripe', { getStripe: async () => stripe })
 
-  let stripe = loadStripe(publishableKey)
+  let stripe = loadStripe(stripe_public_key)
 </script>
 
 <template>

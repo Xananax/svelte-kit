@@ -10,7 +10,7 @@
     "build:site": "svelte-kit build",
     "build:build-scripts": "npx tsc --project build-scripts/tsconfig.json",
     "watch:build-scripts": "npx tsc --project build-scripts/tsconfig.json --watch",
-    "build:products": "node ./build-scripts/products-creator/index.js",
+    "build:products": "node ./build-scripts/products-creator/index.js -f",
     "build": "run-s clean:build build:site",
     "disable-jekill": "touch build/.nojekyll",
     "deploy:gh-pages": "gh-pages -d build -t true",

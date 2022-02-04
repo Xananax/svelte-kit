@@ -24,6 +24,15 @@ const props = {
 }
 
 if (dev) {
+  if (props.stripe_public_key && props.stripe_public_key.startsWith('sk')) {
+    const error = `ENV ERROR: 
+  A Stripe SECRET key is set as a PUBLIC key.
+  Make sure the VITE_STRIPE_PUBLIC_KEY environment variable
+  starts with "pk_" and not "sk_".
+  Aborting
+  `
+    process.exit(0)
+  }
   checkAndDie(props)
 }
 

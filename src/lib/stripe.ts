@@ -7,7 +7,7 @@ export const stripe = new Stripe(stripe_secret_key, { apiVersion })
 
 export const createStripeSession = async (host: string, priceId: string, quantity = 1) =>
   stripe.checkout.sessions.create({
-    mode: 'subscription',
+    mode: 'payment',
     payment_method_types: ['card'],
     line_items: [
       {

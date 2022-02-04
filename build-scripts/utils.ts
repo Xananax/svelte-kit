@@ -9,6 +9,11 @@ export const isDev = process.env.NODE_ENV !== 'production'
 export const projectRoot = dirname(dirname(import.meta.url)).replace(/^file:\/+/, '/')
 
 export const fromRoot = (path: string) => join(projectRoot, path)
+export const relToRoot = (path: string) =>
+  path
+    .replace(/^file:\/+/, '/')
+    .replace(projectRoot, '')
+    .replace(/^\//, '')
 
 export const getEnvFile = () => {
   const envFilename = join(projectRoot, `.env.${isDev ? 'development' : 'production'}.local`)

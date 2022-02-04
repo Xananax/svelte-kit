@@ -2,7 +2,7 @@
   import { StatusCodes } from 'http-status-codes'
   export const prerender = true
 
-  export async function load({ fetch }) {
+  export const load = async ({ fetch }) => {
     const res = await fetch('/products.json')
     const products: Product[] = await res.json()
     return {

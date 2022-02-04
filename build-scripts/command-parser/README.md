@@ -9,7 +9,7 @@ Usage:
 ```js
 const { buildCLI, exit, error, consume, int } = require('./command-parser')
 
-const defaults = { depth:0}
+const defaults = { depth: 0}
 
 const parse = buildCLI(defaults)`
 Any text you'd like here.
