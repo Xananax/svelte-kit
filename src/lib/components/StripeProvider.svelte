@@ -1,4 +1,9 @@
 <script context="module" lang="ts">
+  /**
+   * All this component does is inject the client Stripe API in children Svelte
+   * components and make it available to them. It has nothing to do with the
+   * specific logic of Stripe or products on the site
+   */
   import type { Stripe } from '@stripe/stripe-js'
 
   export interface GetStripe {

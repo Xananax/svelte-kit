@@ -2,11 +2,11 @@
 // run the proper script
 // @ts-ignore
 import { StatusCodes } from 'http-status-codes'
-import body from './productsData.json'
+import { products } from './productsData'
 
 export async function get() {
   return {
     status: StatusCodes.OK,
-    body
+    body: products
   }
 }
