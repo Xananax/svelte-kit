@@ -1,8 +1,8 @@
-import { loadProductsFromDisk } from './loadProductsFromDisk.js'
 import { uploadProductsToStripe } from './uploadProductsToStripe.js'
 import { writeProductsJson } from './writeSiteData.js'
 import { buildCLI, exit, error } from '../command-parser/index.js'
-import { getEnvFile } from '../utils.js'
+import { getEnvFile, fromRoot } from '../utils'
+import { getNewProducts } from './collectProducts.js'
 
 const { VITE_STRIPE_SECRET_KEY, VITE_STRIPE_API_VERSION } = getEnvFile()
 
@@ -13,8 +13,15 @@ const defaultConfig = {
   dryrun: false
 }
 
-const createAndUpload = ({ secretkey, apiversion, fresh, dryrun } = defaultConfig) =>
-  loadProductsFromDisk()
+const loadProductsFromDisk = () => {
+  const productsDir = fromRoot(`src/routes/courses`)
+  const productsCacheFilePath = fromRoot('products.json')
+  return getNewProducts(productsDir, productsCacheFilePath)
+}
+
+const createAndUpload = ({ secretkey, apiversion, fresh, dryrun } = defaultConfig) => {}
+/*  
+loadProductsFromDisk()
     .then(uploadProductsToStripe(secretkey, apiversion, dryrun))
     .then(writeProductsJson(fresh, dryrun))
     .then(() => {
@@ -25,6 +32,7 @@ const createAndUpload = ({ secretkey, apiversion, fresh, dryrun } = defaultConfi
       console.error(err)
       process.exit(1)
     })
+    */
 
 const parse = buildCLI(defaultConfig)`
 Uploads products to Stripe.

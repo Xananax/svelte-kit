@@ -14,14 +14,20 @@ export const scriptURLexists = (url: string) =>
  * You can use this to load an API like Youtube, without fear of including it more than once
  * Using this on the server results in a no-op, so you can use it anywhere.
  * @param url the url of the script to append
+ * @param doBeforeLoading
  * @returns
  */
-export const appendScriptURL = (url: string) => {
+export const appendScriptURL = async (
+  url: string,
+  doBeforeLoading: () => void | Promise<void> = () => {}
+) => {
   if (!browser) {
-    return
+    return Promise.resolve(false)
   }
+  await Promise.resolve(doBeforeLoading())
   const tag = document.createElement('script')
   tag.src = url
+  tag.async = true
   const firstScriptTag = document.getElementsByTagName('script')[0]
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
   const promise = deferredPromise<true>()
@@ -33,7 +39,8 @@ export const appendScriptURL = (url: string) => {
  * If a provided script isn't loaded, this function will load it. If the script
  * was already loaded, this function is a no-op. On the server, this function is a no-op
  * @param url the script's url
+ * @param doBeforeLoading a method that will run before appending the script
  * @returns A promise that resolves to `true` when the script is loaded
  */
-export const appendScriptIfNotLoaded = (url: string) =>
-  scriptURLexists(url) ? Promise.resolve(true) : appendScriptURL(url)
+export const appendScriptIfNotLoaded = (url: string, doBeforeLoading: () => void | Promise<void>) =>
+  scriptURLexists(url) ? Promise.resolve(true) : appendScriptURL(url, doBeforeLoading)

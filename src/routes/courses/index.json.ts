@@ -40,11 +40,11 @@ type ResponseOne = {
 
 export type Response = ResponseList | ResponseOne
 
-export const get: RequestHandler = async ({ params: { course, chapter }, query }) => {
+export const get: RequestHandler = async ({ params: { course, chapter }, url }) => {
   course = course ?? ''
   chapter = chapter ?? ''
   const slug = chapter ? course + '/' + chapter : course
-  const isList = query.has('list') || slug === ''
+  const isList = url.searchParams.has('list') || slug === ''
   const data = isList ? children[slug] : pages[slug]
   if (!data) {
     return { status: StatusCodes.NOT_FOUND }

@@ -3,26 +3,23 @@ import cookie from 'cookie'
 import type { Handle, GetSession } from '@sveltejs/kit'
 import '$lib/config/serverEnv' // we import this to get the errors thrown as soon as we run if variables are missing
 
-export const handle: Handle = async ({ request, resolve }) => {
-  const cookies = cookie.parse(request.headers.cookie || '')
-  //request.locals.userid = cookies.userid || uuid()
+export const handle: Handle = async ({ event, resolve }) => {
+  const cookies = cookie.parse(event.request.headers.get('cookie') || '')
 
-  request.locals.user = cookies.user || ''
+  console.log({ cookies })
 
-  // TODO https://github.com/sveltejs/kit/issues/1046
-  if (request.query.has('_method')) {
-    request.method = request.query.get('_method').toUpperCase()
-  }
+  event.locals.user = cookies.user || ''
 
-  const response = await resolve(request)
+  const response = await resolve(event)
 
-  response.headers['set-cookie'] = `user=${request.locals.user}; Path=/; HttpOnly`
+  response.headers.set('set-cookie', `user=${event.locals.user}; Path=/; SameSite=strict; HttpOnly`)
 
   return response
 }
 
-export const getSession: GetSession = (request) => {
+export const getSession: GetSession = (event) => {
+  console.log('sesh', event.locals)
   return {
-    user: request.locals.user
+    user: event.locals.user
   }
 }

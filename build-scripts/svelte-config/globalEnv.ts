@@ -1,6 +1,5 @@
 import { basename } from 'path'
-import { getPackageJson } from '../utils.js'
-
+import { getPackageJson } from '../utils/index.js'
 
 export const { name, version, homepage } = getPackageJson()
 

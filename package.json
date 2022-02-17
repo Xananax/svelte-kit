@@ -29,9 +29,7 @@
     "postinstall": "run-s build:build-scripts"
   },
   "devDependencies": {
-    "@sveltejs/adapter-node": "^1.0.0-next.43",
-    "@sveltejs/adapter-static": "^1.0.0-next.16",
-    "@sveltejs/kit": "1.0.0-next.147",
+    "@sveltejs/kit": "1.0.0-next.272",
     "@types/cookie": "^0.4.1",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
@@ -52,6 +50,7 @@
   "dependencies": {
     "@lukeed/uuid": "^2.0.0",
     "@stripe/stripe-js": "^1.22.0",
+    "@sveltejs/adapter-node": "^1.0.0-next.68",
     "@types/youtube": "^0.0.46",
     "cookie": "^0.4.2",
     "cross-env": "^7.0.3",
@@ -66,9 +65,10 @@
     "remark-abbr": "^1.4.1",
     "rimraf": "^3.0.2",
     "stripe": "^8.201.0",
-    "stylus": "^0.56.0",
+    "stylus": "0.55.0",
     "svelte": "^3.46.3",
     "svelte-icons": "^2.1.0",
+    "svelte-kit-cookie-session": "^2.0.5",
     "svelte-preprocess": "^4.10.2",
     "type-fest": "^2.11.1"
   }

@@ -1,17 +1,24 @@
 <script context="module" lang="ts">
+  import { browser } from '$app/env'
   declare global {
     interface Window {
       onYouTubeIframeAPIReady: () => void
+      YouTubeIframeAPIReady: boolean
     }
   }
-  let YouTubeIframeAPIReady = false
   import { appendScriptIfNotLoaded } from '$lib/appendScriptURL'
-  if (appendScriptIfNotLoaded('https://www.youtube.com/iframe_api')) {
-    window.onYouTubeIframeAPIReady = () => {
-      YouTubeIframeAPIReady = true
-      window.dispatchEvent(new Event('YouTubeIframeAPIReady'))
-    }
-  }
+
+  const loadYoutube = () =>
+    appendScriptIfNotLoaded('https://www.youtube.com/iframe_api', () => {
+      window.YouTubeIframeAPIReady = false
+      if (!('onYouTubeIframeAPIReady' in window)) {
+        window.onYouTubeIframeAPIReady = () => {
+          console.log('ready!1')
+          window.YouTubeIframeAPIReady = true
+          window.dispatchEvent(new Event('YouTubeIframeAPIReady'))
+        }
+      }
+    })
 </script>
 
 <script lang="ts">
@@ -32,6 +39,7 @@
   export const getCurrentTime = () => player.getCurrentTime()
 
   const createPlayer = () => {
+    console.log('ready!2')
     player = new YT.Player(id, {
       height,
       width,
@@ -48,12 +56,15 @@
   }
 
   onMount(() => {
-    if (YouTubeIframeAPIReady) {
+    console.log('adasd')
+    if (window.YouTubeIframeAPIReady) {
       createPlayer()
     } else {
       window.addEventListener('YouTubeIframeAPIReady', createPlayer)
     }
   })
+
+  loadYoutube()
 </script>
 
 <template lang="pug">

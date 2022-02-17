@@ -4,7 +4,8 @@
   import { clickOutside } from '$lib/useClickOutside'
   import Link from '$c/Link.svelte'
 
-  const url = $page.path.startsWith('/profile/@') ? '' : $page.path
+  const pathname = $page.url.pathname
+  const url = pathname.startsWith('/profile/@') ? '' : pathname
 
   export let user: String = ''
   let hidden = true

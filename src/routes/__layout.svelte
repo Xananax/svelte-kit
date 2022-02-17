@@ -13,8 +13,8 @@
     href: `${post.href}` // TODO: WHY IS THIS NECESSARY BOTH HERE AND IN makeMetadata?????
   })
 
-  export const load: Load = async ({ fetch, session: { user }, page }) => {
-    const goto = page.query.get('goto')
+  export const load: Load = async ({ url, fetch, session: { user } }) => {
+    const goto = url.searchParams.get('goto')
 
     if (goto) {
       return { redirect: `${base}${goto}`, status: StatusCodes.TEMPORARY_REDIRECT }
@@ -36,7 +36,7 @@
 
   const year = new Date().getFullYear()
   export let pages: PageMetadata[]
-  export let user
+  export let user: App.Session['user']
 </script>
 
 <template lang="pug">

@@ -5,8 +5,8 @@
   import { loadPageMetadata } from './index.json'
   import { augmentMetadata } from './_utils'
 
-  export const load: Load = async ({ page: { path }, fetch, session: { user } }) => {
-    const response = await loadPageMetadata(`${base}${path}`, fetch)
+  export const load: Load = async ({ url: { pathname }, fetch, session: { user } }) => {
+    const response = await loadPageMetadata(`${base}${pathname}`, fetch)
     switch (response.isList) {
       case true:
         const list = response.data.map(augmentMetadata)

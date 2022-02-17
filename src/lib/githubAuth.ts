@@ -7,9 +7,9 @@ const { github_client_id, github_client_secret } = env
 
 type OAuthStateParams = { goto: string; key: string }
 
-export const login: RequestHandler = async (req) => {
+export const login: RequestHandler = async (event) => {
   const authURL = 'https://github.com/login/oauth/authorize'
-  const goto = req.query.get('url')
+  const goto = event.url.searchParams.get('url')
   const key = '1234'
   const stateParams: OAuthStateParams = { goto, key }
   const state = JSON.stringify(stateParams)
@@ -22,26 +22,28 @@ export const login: RequestHandler = async (req) => {
   }
 }
 
-export const logout: RequestHandler = async (req) => {
-  req.locals.user = ''
+export const logout: RequestHandler = async (event) => {
+  event.locals.user = ''
 
-  const goto = req.query.get('url')
+  const goto = event.url.searchParams.get('url')
   const query = goto ? '?' + new URLSearchParams({ goto }).toString() : ''
 
+  console.log('logout', query)
   return {
     status: StatusCodes.MOVED_TEMPORARILY,
     headers: {
-      'set-cookie': 'user=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
+      'set-cookie': ['user=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'],
       location: `/${query}`
     }
   }
 }
 
-export const githubCallback: RequestHandler = async (req) => {
-  const code = req.query.get('code')
+export const githubCallback: RequestHandler = async (event) => {
+  const code = event.url.searchParams.get('code')
   const { key, goto }: OAuthStateParams = JSON.parse(
-    req.query.get('state') || JSON.stringify({ goto: '', key: '' } as OAuthStateParams)
+    event.url.searchParams.get('state') || JSON.stringify({ goto: '', key: '' })
   )
+
   // TODO: switch this to a secure state
   if (key !== '1234') {
     return {
@@ -57,13 +59,14 @@ export const githubCallback: RequestHandler = async (req) => {
   // this mutates the locals object on the request
   // and will be read by the hooks/handle function
   // after the resolve
-  req.locals.user = user?.login || null
+  event.locals.user = user?.login || null
 
   const path = goto ? goto : `profile/@${user.login}`
   const location = `${base}${path}`
   return {
     status: StatusCodes.MOVED_TEMPORARILY,
     headers: {
+      'set-cookie': [`user=${event.locals.user}; Path=/; SameSite=strict; HttpOnly`],
       location
     }
   }
@@ -93,7 +96,7 @@ const loadAccessToken = async (code: string) => {
   return access_token
 }
 
-export const loadUserFromAccessToken = async (accessToken: string) => {
+const loadUserFromAccessToken = async (accessToken: string) => {
   const userURL = 'https://api.github.com/user'
   const response = await fetch(userURL, {
     headers: {

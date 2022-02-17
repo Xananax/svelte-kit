@@ -18,8 +18,7 @@ export const products: Product[] = [
         interval: 'month'
       },
       id: 'price_1KPWo8Ka4Qks6fcmwdTlL7dT'
-    },
-    includes: ['How to make games', 'Paying money', '200 fresh random numbers']
+    }
   },
   {
     product: {
@@ -34,13 +33,6 @@ export const products: Product[] = [
         interval: 'month'
       },
       id: 'price_1KPWo8Ka4Qks6fcmpLkLlRZ6'
-    },
-    includes: [
-      'All of the best course',
-      'A bestest course',
-      'Infinite course',
-      'Potatoes',
-      'Pay more'
-    ]
+    }
   }
 ]

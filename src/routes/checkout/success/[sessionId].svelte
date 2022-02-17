@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit'
 
-  export const load: Load = async ({ page: { params } }) => {
+  export const load: Load = async ({ params }) => {
     const { sessionId } = params
     return {
       props: {

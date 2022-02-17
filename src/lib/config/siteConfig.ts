@@ -1,5 +1,4 @@
 import { homepage } from './env'
-import { escapeRegExp } from '$lib/escapeRegExp'
 
 export const title = 'GDQuest'
 export const youtube = 'https://www.youtube.com/c/gdquest'

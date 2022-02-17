@@ -1,4 +1,4 @@
-/// <reference path="../src/global.d.ts"/>
+/// <reference path="../../src/global.d.ts"/>
 
 import { dirname } from 'path'
 import dotenv from 'dotenv'
@@ -6,7 +6,11 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 
 export const isDev = process.env.NODE_ENV !== 'production'
-export const projectRoot = dirname(dirname(import.meta.url)).replace(/^file:\/+/, '/')
+//export const projectRoot = dirname(dirname(__dirname))
+//
+//export const fromRoot = (path: string) => join(projectRoot, path)
+//export const relToRoot = (path: string) => path.replace(projectRoot, '').replace(/^\//, '')
+export const projectRoot = dirname(dirname(dirname(import.meta.url))).replace(/^file:\/+/, '/')
 
 export const fromRoot = (path: string) => join(projectRoot, path)
 export const relToRoot = (path: string) =>

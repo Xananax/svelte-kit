@@ -36,7 +36,7 @@
 </script>
 
 <section class="plans">
-  {#each products as { product: { id, name, description }, price, includes } (id)}
+  {#each products as { product: { id, name, description }, price } (id)}
     <div class="plan">
       <div class="top">
         <div class="about">
@@ -56,11 +56,7 @@
       <div class="divider" />
       <div class="bottom">
         <div>Includes...</div>
-        <ul>
-          {#each includes as feature}
-            <li>{feature}</li>
-          {/each}
-        </ul>
+        <ul />
       </div>
     </div>
   {/each}
@@ -126,9 +122,7 @@
     color: rgb(71, 97, 97);
     padding-left: 1rem;
   }
-  li {
-    margin-bottom: 0.5rem;
-  }
+
   @media (min-width: 640px) {
     .plans {
       flex-direction: row;

@@ -37,7 +37,7 @@ interface PostMetadata {
   pathParts: string[]
   href: string
   children: PostMetadata[]
-  price: number
+  price?: import('stripe').Stripe.PriceCreateParams | 0
 }
 
 /**
@@ -88,7 +88,6 @@ interface UploadableProduct {
 interface Product {
   product: import('stripe').Stripe.ProductCreateParams
   price: import('stripe').Stripe.PriceCreateParams & { id: string }
-  includes: string[]
 }
 
 interface ImportMetaEnv {

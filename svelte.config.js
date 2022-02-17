@@ -1,6 +1,5 @@
 import preprocess from 'svelte-preprocess'
-import adapter from '@sveltejs/adapter-static'
-//import adapter from '@sveltejs/adapter-node'
+import adapter from '@sveltejs/adapter-node'
 import { mdsvex, extensions } from './build-scripts/svelte-config/mdsvex.config.js'
 import define, { is_prod, base } from './build-scripts/svelte-config/globalEnv.js'
 import { mdsvexGlobalComponents } from './build-scripts/svelte-config/mdsvexGlobalComponents.js'
@@ -17,9 +16,11 @@ const config = {
   extensions: ['.svelte', ...extensions],
   preprocess: [preprocess(), globalComponents, mdsvex],
   kit: {
-    target: '#svelte',
     vite: {
       define,
+      optimizeDeps: {
+        exclude: ['svelte-kit-cookie-session']
+      },
       resolve: {
         alias: {
           $c: resolve('./src/lib/components'),

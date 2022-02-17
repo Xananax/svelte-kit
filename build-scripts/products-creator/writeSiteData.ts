@@ -1,5 +1,5 @@
 import { writeFileSync, existsSync, unlinkSync } from 'fs'
-import { fromRoot, relToRoot } from '../utils.js'
+import { fromRoot, relToRoot } from '../utils'
 
 export const productsFilePath = fromRoot('src/routes/products/productsData.ts')
 

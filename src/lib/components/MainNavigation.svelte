@@ -8,7 +8,7 @@
   import UserArea from '$c/UserArea.svelte'
 
   export let pages: PageMetadataAugmented[] = []
-  export let user = ''
+  export let user: App.Session['user']
 
   const markActivePage = (currentPath: string[]) => (page: PageMetadataAugmented) => {
     const active =
@@ -18,7 +18,7 @@
     return { ...page, active }
   }
 
-  $: currentPath = $page.path.replace(/^\/|\/$/g, '').split('/')
+  $: currentPath = $page.url.pathname.replace(/^\/|\/$/g, '').split('/')
   $: pagesList = pages.map(markActivePage(currentPath))
 </script>
 
