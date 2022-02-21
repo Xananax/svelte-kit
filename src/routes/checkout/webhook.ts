@@ -1,11 +1,11 @@
 import { StatusCodes } from 'http-status-codes'
-import type { Request, RequestHandler } from '@sveltejs/kit'
+import type { RequestEvent, RequestHandler } from '@sveltejs/kit'
 import { stripe } from '$lib/stripe'
-import env from '$lib/config/serverEnv'
+import env from '$config/env.server'
 
 const { stripe_webhook_secret } = env
 
-const constructEvent = (rawBody: string, signature: string) => {
+const constructEvent = (rawBody: string | Buffer, signature: string) => {
   try {
     const event = stripe.webhooks.constructEvent(rawBody, signature, stripe_webhook_secret)
     return event
@@ -14,17 +14,17 @@ const constructEvent = (rawBody: string, signature: string) => {
   }
 }
 
-export const post: RequestHandler = async (req: Request<any, { data: any; type: any }>) => {
-  const signature = req.headers['stripe-signature']
-  const event = await constructEvent(req.rawBody as string, signature)
-  if (event instanceof Error) {
+export const post: RequestHandler = async ({ request }) => {
+  const signature = request.headers.get('stripe-signature')
+  const stripeEvent = await constructEvent(await request.text(), signature)
+  if (stripeEvent instanceof Error) {
     return {
       status: StatusCodes.BAD_REQUEST,
-      body: `Webhook Error: ${event.message}`
+      body: `Webhook Error: ${stripeEvent.message}`
     }
   }
 
-  const { data, eventType } = event
+  const { data: _data, eventType } = stripeEvent
 
   switch (eventType) {
     case 'checkout.session.completed':

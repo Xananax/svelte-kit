@@ -1,38 +1,52 @@
 <script context="module" lang="ts">
-  import Logo from '$c/Logo.svelte'
-  import Title from '$c/PageMeta/Title.svelte'
-  import Link from '$c/Link.svelte'
-  import Content from '$c/Content.svelte'
-
   export const prerender = true
 </script>
 
-<template lang="pug">
-  Title(title="Home")
-  Content(white="{false}")
-    h1 Become a Game Developer with Godot
-    p Learn the techniques professionals use to create stunning games, using Free and Open Source Software.
-    Link(href="" button tall) Get Started For Free
-  Content
-    .logo
-      Logo
-    h1 welcome to your new SvelteKit app
-    h2 try editing src/routes/index.svelte
+<script lang="ts">
+  import Counter from '$c/Counter.svelte'
+</script>
 
-    p
-      Link(href="/profile") log in
-  slot
-</template>
+<svelte:head>
+  <title>Home</title>
+</svelte:head>
 
-<style lang="stylus">
-  .logo
-    width 100%
-    display flex
-    flex-direction column
-    justify-content center
-    align-items center
-    flex 1
-  h1
-    width 100%
+<section>
+  <h1>
+    to your new<br />SvelteKit app
+  </h1>
 
+  <h2>
+    try editing <strong>src/routes/index.svelte</strong>
+  </h2>
+
+  <Counter />
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+
+  h1 {
+    width: 100%;
+  }
+
+  .welcome {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding: 0 0 calc(100% * 495 / 2048) 0;
+  }
+
+  .welcome img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: block;
+  }
 </style>

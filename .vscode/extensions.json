@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "bungcip.better-toml",
-    "formulahendry.auto-rename-tag",
     "dbaeumer.vscode-eslint",
     "redvanworkshop.explorer-exclude-vscode-extension",
     "yzhang.markdown-all-in-one",

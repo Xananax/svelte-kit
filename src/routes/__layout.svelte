@@ -1,17 +1,8 @@
 <script context="module" lang="ts">
-  import { StatusCodes } from 'http-status-codes'
   import type { Load } from '@sveltejs/kit'
+  import { StatusCodes } from 'http-status-codes'
   import { base } from '$app/paths'
-  import { dayjs } from '$lib/dayjs'
-  // TODO: Why is this not working? See: https://github.com/pngwn/MDsveX/discussions/292
-  import { a } from '$lib/MarkdownImports'
-  export { a }
-
-  const processPage = (post: PageMetadata): PageMetadataAugmented => ({
-    ...post,
-    date: dayjs(post.date),
-    href: `${post.href}` // TODO: WHY IS THIS NECESSARY BOTH HERE AND IN makeMetadata?????
-  })
+  import { augmentPage } from '$lib/metadata'
 
   export const load: Load = async ({ url, fetch, session: { user } }) => {
     const goto = url.searchParams.get('goto')
@@ -19,52 +10,61 @@
     if (goto) {
       return { redirect: `${base}${goto}`, status: StatusCodes.TEMPORARY_REDIRECT }
     }
-    const pages = (await fetch(`${base}/pages.json`).then((res) => res.json())).map(processPage)
+
+    const pages = await fetch(`${base}/pages.json`)
+      .then((res) => res.json())
+      .then((pages) => pages.map(augmentPage))
+
     return {
       props: {
-        pages,
-        user
+        user,
+        pages
       }
     }
   }
 </script>
 
 <script lang="ts">
-  import MainNavigation from '$c/MainNavigation.svelte'
-  import Link from '$c/Link.svelte'
   import '../app.stylus'
+  import { page } from '$app/stores'
+  import MainNavigation from '$c/MainNavigation.svelte'
 
-  const year = new Date().getFullYear()
-  export let pages: PageMetadata[]
   export let user: App.Session['user']
+  export let pages: PageMetadata[] = []
 </script>
 
 <template lang="pug">
-  MainNavigation("{pages}" {user})
+  MainNavigation({user} {pages})
   main
     slot
   footer
-    p 
-      | (c) 2015-2021 
-      Link(href="https://twitter.com/NathanGDQuest" social) GDQuest
-      |  | 
-      Link(href="/pages/legal") mentions légales
+    +each('pages as page')
+      li {page.menuTitle}
 </template>
 
-<style lang="stylus">
-  footer
-    display flex
-    flex-direction column
-    justify-content center
-    align-items center
-    padding 40px
-    background-color #222
-    color #fdfdfd
-    :global(a)
-      font-weight bold
-      color #fdfdfd
-      text-decoration none
-  @media (min-width: 480px)
-    footer
-      padding 40px 0
+<style>
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  @media (min-width: 480px) {
+    footer {
+      padding: 40px 0;
+    }
+  }
 </style>

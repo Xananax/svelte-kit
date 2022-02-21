@@ -2,19 +2,18 @@ import type { RequestHandler } from '@sveltejs/kit'
 import { base } from '$app/paths'
 import { basename, extname } from 'path'
 import { dayjs } from '$lib/dayjs'
-import { makeMetadata } from '$lib/metadataHelpers'
+import { normalizeMetadata } from '$lib/metadata'
 
-const toSlug = (path: string) => basename(path, extname(path))
-const toNormalizedPath = (path: string) => path.replace(/^(\.\/)/, '')
-const toHref = (slug: string) => `/pages/${slug}`
+const unprocessedPages = Object.entries(import.meta.globEager('./*.{md,svx,svelte,svelte.md}'))
 
-const unprocessedPages = import.meta.globEager('./*.{md,svx,svelte,svelte.md}')
+const options = {
+  toSlug: (path: string) => basename(path, extname(path)),
+  toHref: (slug: string) => `/pages/${slug}`
+}
 
-const list = Object.entries(unprocessedPages)
-  .map(([path, { metadata }]) =>
-    makeMetadata({ path, metadata: metadata ?? {}, toSlug, toNormalizedPath, toHref })
-  )
-  .sort(({ order: a }, { order: b }) => a - b)
+const list = unprocessedPages.map(([requestPath, { metadata = {} }]) =>
+  normalizeMetadata({ requestPath, metadata, ...options })
+)
 
 const now = dayjs(Date.now())
 const date = now.format(`YYYY-MM-DDTHH`)

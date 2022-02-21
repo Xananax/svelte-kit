@@ -1,5 +1,12 @@
 import Stripe from 'stripe'
-import env from '$lib/config/serverEnv'
+import env from '$config/env.server'
+import { browser } from '$app/env'
+
+if (browser) {
+  throw new Error(
+    'file `stripe.ts` is included from a browser file. This exposes sensitive constants. Review your architecture!'
+  )
+}
 
 const { stripe_secret_key, stripe_api_version: apiVersion } = env
 

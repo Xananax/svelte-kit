@@ -1,1 +1,0 @@
-This directory contains components that don't appear in the UI, such as page title, meta tags, and so on

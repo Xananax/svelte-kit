@@ -1,6 +1,5 @@
 <script lang="ts">
   import { session } from '$app/stores'
-  import Link from '$c/Link.svelte'
 
   const { user } = $session
 </script>

@@ -1,9 +1,9 @@
 import { StatusCodes } from 'http-status-codes'
-import type { Request, RequestHandler } from '@sveltejs/kit'
+import type { RequestHandler } from '@sveltejs/kit'
 import { createStripeSession } from '$lib/stripe'
 
-export const post: RequestHandler = async (req: Request<any, { priceId: string }>) => {
-  const { priceId } = req.body
+export const post: RequestHandler = async ({ url, request }) => {
+  const priceId = (await request.formData()).get('priceId')
   if (typeof priceId !== 'string') {
     return {
       status: StatusCodes.BAD_REQUEST,
@@ -13,7 +13,7 @@ export const post: RequestHandler = async (req: Request<any, { priceId: string }
     }
   }
   try {
-    const session = await createStripeSession(req.host, priceId)
+    const session = await createStripeSession(url.host, priceId)
     return {
       status: StatusCodes.OK,
       body: {

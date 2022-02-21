@@ -1,6 +1,7 @@
 <script context="module">
+  import Title from '$c/Title.svelte'
   import { browser, dev } from '$app/env'
-  import Title from '$c/PageMeta/Title.svelte'
+  import Content from '$c/Content.svelte'
 
   // we don't need any JS on this page, though we'll load
   // it in dev so that we get hot module replacement...
@@ -18,11 +19,6 @@
     title: 'About',
     order: 1
   }
-</script>
-
-<script lang="ts">
-  import Content from '$c/Content.svelte'
-  import Link from '$c/Link.svelte'
 </script>
 
 <template lang="pug">
