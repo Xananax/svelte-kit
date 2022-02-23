@@ -28,8 +28,6 @@ export const post: RequestHandler = async ({ request }) => {
 
   const { data: _data, type } = stripeEvent
 
-  console.log(stripeEvent)
-
   switch (type) {
     case 'checkout.session.completed':
       // const checkout = event.data.object;
@@ -54,7 +52,7 @@ export const post: RequestHandler = async ({ request }) => {
       console.log('Event: invoice.payment_failed')
       break
     default:
-      console.log(stripeEvent)
+      break
   }
 
   return {
