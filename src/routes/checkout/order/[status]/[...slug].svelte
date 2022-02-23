@@ -2,20 +2,24 @@
   import type { Load } from '@sveltejs/kit'
 
   export const load: Load = async ({ params }) => {
-    const { sessionId } = params
+    const { status: statusStr, slug } = params
+    const success = statusStr === 'success'
     return {
       props: {
-        sessionId
+        success,
+        slug
       }
     }
   }
 </script>
 
 <script lang="ts">
-  export let sessionId: string
+  export let slug: string
+  export let success: boolean
+  const status = success ? 'success' : 'cancel'
 </script>
 
 <template lang="pug">
-  h1 Success
-  p {sessionId}
+  h1 {status}
+  p {slug}
 </template>

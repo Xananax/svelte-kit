@@ -19,7 +19,6 @@ body
   min-height 100vh
   margin 0
   background-color #7d39e4
-  background-image url('$assets/header-home-background.svg')
   background-repeat no-repeat
   background-position top center
   background-size 100%

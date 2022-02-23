@@ -1,11 +1,13 @@
+// create one at https://dashboard.stripe.com/test/webhooks
 import { StatusCodes } from 'http-status-codes'
-import type { RequestEvent, RequestHandler } from '@sveltejs/kit'
+import type { RequestHandler } from '@sveltejs/kit'
 import { stripe } from '$lib/stripe'
+import type { Stripe } from 'stripe'
 import env from '$config/env.server'
 
 const { stripe_webhook_secret } = env
 
-const constructEvent = (rawBody: string | Buffer, signature: string) => {
+const constructEvent = (rawBody: string | Buffer, signature: string): Stripe.Event | Error => {
   try {
     const event = stripe.webhooks.constructEvent(rawBody, signature, stripe_webhook_secret)
     return event
@@ -16,7 +18,7 @@ const constructEvent = (rawBody: string | Buffer, signature: string) => {
 
 export const post: RequestHandler = async ({ request }) => {
   const signature = request.headers.get('stripe-signature')
-  const stripeEvent = await constructEvent(await request.text(), signature)
+  const stripeEvent = constructEvent(await request.text(), signature)
   if (stripeEvent instanceof Error) {
     return {
       status: StatusCodes.BAD_REQUEST,
@@ -24,13 +26,17 @@ export const post: RequestHandler = async ({ request }) => {
     }
   }
 
-  const { data: _data, eventType } = stripeEvent
+  const { data: _data, type } = stripeEvent
 
-  switch (eventType) {
+  console.log(stripeEvent)
+
+  switch (type) {
     case 'checkout.session.completed':
       // const checkout = event.data.object;
       // Payment is successful and the subscription is created.
       // You should provision the subscription and save the customer ID to your database.
+      // - saving a copy of the order in your own database.
+      // - Sending the customer a receipt email.
       console.log('Event: checkout.session.completed')
       break
     case 'invoice.paid':
@@ -48,7 +54,7 @@ export const post: RequestHandler = async ({ request }) => {
       console.log('Event: invoice.payment_failed')
       break
     default:
-    // Unhandled event type
+      console.log(stripeEvent)
   }
 
   return {

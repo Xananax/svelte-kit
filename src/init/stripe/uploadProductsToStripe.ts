@@ -1,5 +1,5 @@
 import Stripe from 'stripe'
-import type { StripeCreateParams } from './products'
+import type { StripeCreateParams } from '../../routes/checkout/api.json'
 import props from '$config/env.server'
 
 const { stripe_secret_key, stripe_api_version } = props
